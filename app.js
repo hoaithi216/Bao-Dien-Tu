@@ -23,9 +23,9 @@ app.get('/', (req, res) => {
 
   res.render('home');
 })
-app.use('/account', require('./routes/account.route'))
-
-app.use('/categories', require('./routes/category.route'));
+app.use('/account', require('./routes/account.route'));
+// app.use('/', require('./routes/showByCat.route'));
+app.use('/', require('./routes/category.route'));
 // app.use('/admin/categories', require('./routes/admin/category.route'));
 
 app.use((req, res, next) => {

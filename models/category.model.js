@@ -5,6 +5,9 @@ module.exports = {
     return db.load('select * from category');
   },
 
+  allSubCatName: () => {
+    return db.load('select subNameCat from category');
+  },
   allWithDetails: () => {
     return db.load(`
       select *
@@ -24,6 +27,8 @@ module.exports = {
   },
 
 
+
+
   add: entity => {
     return db.add('Category', entity);
   },
@@ -34,5 +39,8 @@ module.exports = {
 
   delete: id => {
     return db.delete('Category', 'IDCategory', id);
-  }
+  },
+  exchangeIDName: () => {
+    return db.load(`select IDCategory from Category where subNameCat = 'giao-thong'`);
+  },
 };

@@ -1,32 +1,687 @@
-<div class="card shadow">
-  <h4 class="card-header">
-    Categories
-  </h4>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th class="text-center" scope="col">#</th>
-        <th scope="col">Category</th>
-        <th scope="col" class="text-right">
-          <a class="btn btn-outline-success" href="/admin/categories/add" role="button">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            Add Category
-          </a>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each this.categories}}
-      <tr>
-        <th class="text-center" scope="row">{{IDCategory}}</th>
-        <td>{{NameCategory}}</td>
-        <td class="text-right">
-          <a class="btn btn-primary btn-sm" href="/admin/categories/edit/{{IDCategory}}" role="button">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </a>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-</div>
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Express App</title>
+  <link rel="icon" href="img/core-img/iconweb.ico">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  {{{_sections.css}}}
+
+</head>
+
+<body>
+   
+   
+      <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="#"><img src="/img/core-img/logo.png" alt=""></a>
+                            </div>
+
+                            <!-- Login Search Area -->
+                            <div class="login-search-area d-flex align-items-center">
+                                 <!-- Search Form -->
+                                 <div class="search-form">
+                                        <form action="#" method="post">
+                                            <input type="search" name="search" class="form-control" placeholder="Tìm kiếm">
+                                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                        </form>
+                                    </div>
+                                <!-- Login -->
+                                <div class="login d-flex">
+                                    <a href="dangnhap.html">Đăng nhập</a>
+                                    <a href="dangky.html">Đăng ký</a>
+                                </div>
+         
+                      
+
+                  </div>
+               </div>
+            </div>
+        </div>
+     </div>
+  </div>
+  <!-- Navbar Area -->
+           <div class="newspaper-main-menu" id="stickyMenu">
+                <div class="classy-nav-container breakpoint-off">
+                      <div class="container">
+                        <!-- Menu -->
+                         <nav class="classy-navbar justify-content-between" id="newspaperNav">
+
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                        </div>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav"> 
+                              <ul>
+                                 <li class="active"><a href="#">Trang chủ</a></li>
+                                {{#each parentscat}}
+
+                                  <li><a href="#">{{NameParents}}</a>
+                                   
+                                       
+                                              <ul class="dropdown">
+                                                 {{#each ../havesubcategory}}
+                                                  <li><a href="#">{{NameCategory}}</a></li>
+                                                   {{/each}}
+                                              </ul>    
+                                       
+                                        
+                                  </li>
+                                  {{/each}}
+                               
+                              </ul>
+
+                            </div>
+                          </div>
+                       </nav>
+                    </div>
+                </div>
+               </div>
+       
+      </header>
+       <!-- ##### Hero Area Start ##### -->
+    <div class="hero-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-slides owl-carousel">
+                        <!-- Single Blog Post -->
+                        <div class="single-blog-post style-4 d-flex align-items-center mb-50">
+                            <div class="post-thumb">
+                                <a href="singlenews.html"><img src="img/bg-img/new1.jpg" alt=""></a>
+                            </div>
+                            <div class="post-data">
+                                <a href="singlenews.html" class="post-title">
+                                    <h6>Thời điểm các cặp đôi thường ngoại tình</h6>
+                                </a>
+                                <div class="post-meta">
+                                    <p class="post-date"><a href="#">2 Ngày trước</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+             
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ##### Hero Area End ##### -->
+           <!-- ##### Tin mới ##### -->
+    <div class="featured-post-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-8">
+                   <div class="row">
+                             <div class="col-12 col-lg-6">
+                                    <div class="single-blog-post box-shadow">
+                                            <!-- Post Thumbnail -->
+                                            <div class="post-thumbnail">
+                                                <img src="img/blog-img/b1.jpg" alt="">
+                                                <!-- Catagory -->
+                                                <div class="post-cta"><a href="category.html">Thế giới</a></div>
+                                            </div>
+                                            <!-- Post Content -->
+                                            <div class="post-content">
+                                                <a href="singlenews.html" class="headline">
+                                                    <h5>18 Điều Thú Vị Có Thể Bạn Chưa Biết Về Hiện Tượng Bắc Cực Quang</h5>
+                                                </a>
+                                                <p>Những hình ảnh về bắc cực quang trong danh sách này cũng rất ấn tượng. Bạn hãy sẵn sàng xách ba lô lên và đi đến vùng đất Bắc Cực ...</p>
+                                                <!-- Post Meta -->
+                                                <div class="post-meta">
+                                                    <p><a href="#" class="post-author">Hoài Thi</a>Ngày đăng<a href="#" class="post-date"> 3 tháng 5 2019</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                             </div>
+                             <div class="col-12 col-lg-6">
+                                    <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
+                                         <!-- Post Thumbnail -->
+                                            <div class="post-thumbnail">
+                                                <img src="img/blog-img/b10.jpg" alt="">
+                                            </div>
+                                            <!-- Post Content -->
+                                            <div class="post-content">
+                                                <a href="singlenews.html" class="headline">
+                                                    <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
+                                                </a>
+                                                <!-- Post Meta -->
+                                                <div class="post-meta">
+                                                    <p><a href="#" class="post-author">Tên tác giả</a> Ngày đăng <a href="#" class="post-date"> 3 tháng 5 2019</a></p>
+                                                </div>
+                                            </div>
+                                    </div>
+                             
+                                    <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
+                                         <!-- Post Thumbnail -->
+                                            <div class="post-thumbnail">
+                                                <img src="img/blog-img/b10.jpg" alt="">
+                                            </div>
+                                            <!-- Post Content -->
+                                            <div class="post-content">
+                                                <a href="singlenews.html" class="headline">
+                                                    <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
+                                                </a>
+                                                <!-- Post Meta -->
+                                                <div class="post-meta">
+                                                    <p><a href="#" class="post-author">Tên tác giả</a>Ngày đăng <a href="#" class="post-date">3 tháng 5 2019</a></p>
+                                                </div>
+                                            </div>
+                                    </div>
+                            
+                                    <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
+                                         <!-- Post Thumbnail -->
+                                            <div class="post-thumbnail">
+                                                <img src="img/blog-img/b10.jpg" alt="">
+                                            </div>
+                                            <!-- Post Content -->
+                                            <div class="post-content">
+                                                <a href="singlenews.html" class="headline">
+                                                    <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
+                                                </a>
+                                                <!-- Post Meta -->
+                                                <div class="post-meta">
+                                                    <p><a href="#" class="post-author">Tên tác giả</a>Ngày đăng<a href="#" class="post-date">3 tháng 5 2019</a></p>
+                                                </div>
+                                            </div>
+                                    </div>
+                            
+                                    <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
+                                         <!-- Post Thumbnail -->
+                                            <div class="post-thumbnail">
+                                                <img src="img/blog-img/b10.jpg" alt="">
+                                            </div>
+                                            <!-- Post Content -->
+                                            <div class="post-content">
+                                                <a href="singlenews.html" class="headline">
+                                                    <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
+                                                </a>
+                                                <!-- Post Meta -->
+                                                <div class="post-meta">
+                                                    <p><a href="#" class="post-author">Tên tác giả</a>Ngày đăng<a href="#" class="post-date"> 3 tháng 5 2019</a></p>
+                                                </div>
+                                            </div>
+                                    </div>
+                             </div>
+                   </div>
+                </div>
+                            
+
+               
+         <!--Hiển thị 3-4 bài viết nổi bật nhất trong tuần qua-->
+                <div class="col-12 col-md-6 col-lg-4">
+                        <div class="popular-news-widget mb-30">
+                                <h3>Nổi bật trong tuần</h3>
+        
+                                <!-- Single Popular Blog -->
+                                <div class="single-popular-post">
+                                    <a href="singlenews.html">
+                                        <h6><span>1.</span> Kết nối chuyên gia quốc tế, thúc đẩy trí tuệ nhân tạo ở Việt Nam...                                         .</h6>
+                                    </a>
+                                    <p>14 tháng 5 2019</p>
+                                </div>
+        
+                                <!-- Single Popular Blog -->
+                                <div class="single-popular-post">
+                                    <a href="singlenews.html">
+                                        <h6><span>2.</span> Kết nối chuyên gia quốc tế, thúc đẩy trí tuệ nhân tạo ở Việt Nam...                                           .</h6>
+                                    </a>
+                                    <p>14 tháng 5 2019</p>
+                                </div>
+        
+                                <!-- Single Popular Blog -->
+                                <div class="single-popular-post">
+                                    <a href="singlenews.html">
+                                        <h6><span>3.</span> Kết nối chuyên gia quốc tế, thúc đẩy trí tuệ nhân tạo ở Việt Nam...                                           .</h6>
+                                    </a>
+                                    <p>14 tháng 5 2019</p>
+                                </div>
+        
+                                <!-- Single Popular Blog -->
+                                <div class="single-popular-post">
+                                    <a href="singlenews.html">
+                                        <h6><span>4.</span> Kết nối chuyên gia quốc tế, thúc đẩy trí tuệ nhân tạo ở Việt Nam... </h6>
+                                    </a>
+                                    <p>14 tháng 5 2019</p>
+                                </div>
+                            </div>
+        
+            </div>
+        </div>
+    </div>
+    <!-- ##### Tin mới & Nổi bật trong tuần END  ##### -->
+   <!-- ##### CATEGORY ##### -->
+
+       
+    <div class="blog-area section-padding-0-80">
+        <div class="container">
+            <div class="row">
+          <!-- ##### Các tin trong 1 category ##### -->
+          <div class ="col-12  col-lg-8">
+                <div class="category-posts-area ">
+                    <div class ="section-heading mt-50">
+                        <h6>Thể Thao - Bóng Đá Việt Nam</h6>
+
+                    </div>
+                    <div class=""></div>
+                    <!-- Single blog post -->
+                    <div class ="single-blog-post style-3 box-shadow d-flex align-items-center">
+                         <!-- Post Thumbnail -->
+                         <div class="post-thumbnail">
+                                <img src="img/bg-img/13.jpg" alt="">
+                            </div>
+                            <!-- Post Content -->
+                            <div class="post-content">
+                                <a href="singlenews.html" class="headline">
+                                    <h5>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều</h5>
+                                </a>
+                                <p>Sau khi hoàn tất thủ tục visa để sang một số nước châu Âu “soi giò” các cầu thủ Việt kiều, HLV Park Hang Seo hôm nay (4/5) chính thức lên đường...</p>
+                                <!-- Post Meta -->
+                                <div class="post-meta">
+                                    <p><a href="#" class="post-author">Hoai Thi</a> Ngày đăng <a href="#" class="post-date"> 4/5/2019 lúc 9:48 sa</a></p>
+                                </div>
+                            </div>
+
+                    </div>
+                     <!-- Single blog post -->
+                     <div class ="single-blog-post style-3 box-shadow d-flex align-items-center">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail">
+                                   <img src="img/bg-img/13.jpg" alt="">
+                               </div>
+                               <!-- Post Content -->
+                               <div class="post-content">
+                                   <a href="singlenews.html" class="headline">
+                                       <h5>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều</h5>
+                                   </a>
+                                   <p>Sau khi hoàn tất thủ tục visa để sang một số nước châu Âu “soi giò” các cầu thủ Việt kiều, HLV Park Hang Seo hôm nay (4/5) chính thức lên đường...</p>
+                                   <!-- Post Meta -->
+                                   <div class="post-meta">
+                                       <p><a href="singlenews.html" class="post-author">Hoai Thi</a> Ngày đăng <a href="#" class="post-date"> 4/5/2019 lúc 9:48 sa</a></p>
+                                   </div>
+                               </div>
+   
+                       </div>
+                        <!-- Single blog post -->
+                    <div class ="single-blog-post style-3 box-shadow d-flex align-items-center">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail">
+                                   <img src="img/bg-img/13.jpg" alt="">
+                               </div>
+                               <!-- Post Content -->
+                               <div class="post-content">
+                                   <a href="singlenews.html" class="headline">
+                                       <h5>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều</h5>
+                                   </a>
+                                   <p>Sau khi hoàn tất thủ tục visa để sang một số nước châu Âu “soi giò” các cầu thủ Việt kiều, HLV Park Hang Seo hôm nay (4/5) chính thức lên đường...</p>
+                                   <!-- Post Meta -->
+                                   <div class="post-meta">
+                                       <p><a href="#" class="post-author">Hoai Thi</a> Ngày đăng <a href="#" class="post-date"> 4/5/2019 lúc 9:48 sa</a></p>
+                                   </div>
+                               </div>
+   
+                       </div>
+                    <div class ="single-blog-post style-3 box-shadow d-flex align-items-center">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail">
+                                   <img src="img/bg-img/13.jpg" alt="">
+                               </div>
+                               <!-- Post Content -->
+                               <div class="post-content">
+                                   <a href="singlenews.html" class="headline">
+                                       <h5>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều</h5>
+                                   </a>
+                                   <p>Sau khi hoàn tất thủ tục visa để sang một số nước châu Âu “soi giò” các cầu thủ Việt kiều, HLV Park Hang Seo hôm nay (4/5) chính thức lên đường...</p>
+                                   <!-- Post Meta -->
+                                   <div class="post-meta">
+                                       <p><a href="#" class="post-author">Hoai Thi</a> Ngày đăng <a href="#" class="post-date"> 4/5/2019 lúc 9:48 sa</a></p>
+                                   </div>
+                               </div>
+   
+                       </div>
+                       <div class ="single-blog-post style-3 box-shadow d-flex align-items-center">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail">
+                                   <img src="img/bg-img/13.jpg" alt="">
+                               </div>
+                               <!-- Post Content -->
+                               <div class="post-content">
+                                   <a href="singlenews.html" class="headline">
+                                       <h5>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều</h5>
+                                   </a>
+                                   <p>Sau khi hoàn tất thủ tục visa để sang một số nước châu Âu “soi giò” các cầu thủ Việt kiều, HLV Park Hang Seo hôm nay (4/5) chính thức lên đường...</p>
+                                   <!-- Post Meta -->
+                                   <div class="post-meta">
+                                       <p><a href="#" class="post-author">Hoai Thi</a> Ngày đăng <a href="#" class="post-date"> 4/5/2019 lúc 9:48 sa</a></p>
+                                   </div>
+                               </div>
+   
+                       </div>
+                       <div class ="single-blog-post style-3 box-shadow d-flex align-items-center">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail">
+                                   <img src="img/bg-img/13.jpg" alt="">
+                               </div>
+                               <!-- Post Content -->
+                               <div class="post-content">
+                                   <a href="singlenews.html" class="headline">
+                                       <h5>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều</h5>
+                                   </a>
+                                   <p>Sau khi hoàn tất thủ tục visa để sang một số nước châu Âu “soi giò” các cầu thủ Việt kiều, HLV Park Hang Seo hôm nay (4/5) chính thức lên đường...</p>
+                                   <!-- Post Meta -->
+                                   <div class="post-meta">
+                                       <p><a href="#" class="post-author">Hoai Thi</a> Ngày đăng <a href="#" class="post-date"> 4/5/2019 lúc 9:48 sa</a></p>
+                                   </div>
+                               </div>
+   
+                       </div>
+                       <div class ="single-blog-post style-3 box-shadow d-flex align-items-center">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail">
+                                   <img src="img/bg-img/13.jpg" alt="">
+                               </div>
+                               <!-- Post Content -->
+                               <div class="post-content">
+                                   <a href="singlenews.html" class="headline">
+                                       <h5>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều</h5>
+                                   </a>
+                                   <p>Sau khi hoàn tất thủ tục visa để sang một số nước châu Âu “soi giò” các cầu thủ Việt kiều, HLV Park Hang Seo hôm nay (4/5) chính thức lên đường...</p>
+                                   <!-- Post Meta -->
+                                   <div class="post-meta">
+                                       <p><a href="#" class="post-author">Hoai Thi</a> Ngày đăng <a href="#" class="post-date"> 4/5/2019 lúc 9:48 sa</a></p>
+                                   </div>
+                               </div>
+   
+                       </div>
+                       <div class ="single-blog-post style-3 box-shadow d-flex align-items-center">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail">
+                                   <img src="img/bg-img/13.jpg" alt="">
+                               </div>
+                               <!-- Post Content -->
+                               <div class="post-content">
+                                   <a href="#" class="headline">
+                                       <h5>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều</h5>
+                                   </a>
+                                   <p>Sau khi hoàn tất thủ tục visa để sang một số nước châu Âu “soi giò” các cầu thủ Việt kiều, HLV Park Hang Seo hôm nay (4/5) chính thức lên đường...</p>
+                                   <!-- Post Meta -->
+                                   <div class="post-meta">
+                                       <p><a href="#" class="post-author">Hoai Thi</a> Ngày đăng <a href="#" class="post-date"> 4/5/2019 lúc 9:48 sa</a></p>
+                                   </div>
+                               </div>
+   
+                       </div>
+                    
+
+                </div>
+                <!-- nav 1 2 3 4 5..-->
+                 <nav aria-label="Page navigation example">
+                     <ul class="pagination mt-50">
+                         <li class="page-item active">
+                             <a class="page-link" href="#">1</a>
+                         </li>
+                         <li class="page-item ">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="#">3</a>
+                            </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="#">7</a>
+                        </li>
+                        <li class="page-item ">
+                           <a class="page-link" href="#">8</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="#">9</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="#">10</a>
+                        </li>
+                        <li class="page-item ">
+                             <a class="page-link" href="#">11</a>
+                        </li>
+                     </ul>
+                 </nav>
+          </div>
+
+               
+         <!--Các tin phổ biến -->
+                <div class="col-12  col-lg-4">
+                        <div class="popular-news-widget mt-100">
+                                <h3>Nổi bật trong tuần</h3>
+        
+                                <!-- Single Popular Blog -->
+                                <div class="single-popular-post">
+                                    <a href="singlenews.html">
+                                        <h6><span>1.</span> Kết nối chuyên gia quốc tế, thúc đẩy trí tuệ nhân tạo ở Việt Nam...                                         .</h6>
+                                    </a>
+                                    <p>14 tháng 5 2019</p>
+                                </div>
+        
+                                <!-- Single Popular Blog -->
+                                <div class="single-popular-post">
+                                    <a href="singlenews.html">
+                                        <h6><span>2.</span> Kết nối chuyên gia quốc tế, thúc đẩy trí tuệ nhân tạo ở Việt Nam...                                           .</h6>
+                                    </a>
+                                    <p>14 tháng 5 2019</p>
+                                </div>
+        
+                                <!-- Single Popular Blog -->
+                                <div class="single-popular-post">
+                                    <a href="singlenews.html">
+                                        <h6><span>3.</span> Kết nối chuyên gia quốc tế, thúc đẩy trí tuệ nhân tạo ở Việt Nam...                                           .</h6>
+                                    </a>
+                                    <p>14 tháng 5 2019</p>
+                                </div>
+        
+                                <!-- Single Popular Blog -->
+                                <div class="single-popular-post">
+                                    <a href="singlenews.html">
+                                        <h6><span>4.</span> Kết nối chuyên gia quốc tế, thúc đẩy trí tuệ nhân tạo ở Việt Nam... </h6>
+                                    </a>
+                                    <p>14 tháng 5 2019</p>
+                                </div>
+                        </div>
+                        <div class="section-heading style-2">
+                                <h6> Nổi bật mỗi chuyên mục</h6>
+                            </div>
+                            
+                            <div class="single-blog-post small-featured-post d-flex">
+                                <div class="post-thumb">
+                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
+                                </div>
+                                <div class="post-data">
+                                    <a href="#" class="post-catagory">Xã Hội</a>
+                                    <div class="post-meta">
+                                        <a href="singlenews.html" class="post-title">
+                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc và Trung nóng mức nào</h6>
+                                        </a>
+                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
+                                    </div>
+                                </div>
+                            </div>
+        
+                           
+                             <!-- Single Featured Post -->
+                             <div class="single-blog-post small-featured-post d-flex">
+                                <div class="post-thumb">
+                                    <a href="singlenews.html"><img src="img/bg-img/19.jpg" alt=""></a>
+                                </div>
+                                <div class="post-data">
+                                    <a href="#" class="post-catagory">Thời tiết</a>
+                                    <div class="post-meta">
+                                        <a href="#" class="post-title">
+                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc và Trung nóng mức nào</h6>
+                                        </a>
+                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Single Featured Post -->
+                             <div class="single-blog-post small-featured-post d-flex">
+                                <div class="post-thumb">
+                                    <a href="singlenews.html"><img src="img/bg-img/19.jpg" alt=""></a>
+                                </div>
+                                <div class="post-data">
+                                    <a href="#" class="post-catagory">Thời tiết</a>
+                                    <div class="post-meta">
+                                        <a href="#" class="post-title">
+                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc và Trung nóng mức nào</h6>
+                                        </a>
+                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Single Featured Post -->
+                             <div class="single-blog-post small-featured-post d-flex">
+                                <div class="post-thumb">
+                                    <a href="singlenews.html"><img src="img/bg-img/19.jpg" alt=""></a>
+                                </div>
+                                <div class="post-data">
+                                    <a href="#" class="post-catagory">Thời tiết</a>
+                                    <div class="post-meta">
+                                        <a href="#" class="post-title">
+                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc và Trung nóng mức nào</h6>
+                                        </a>
+                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Single Featured Post -->
+                             <div class="single-blog-post small-featured-post d-flex">
+                                <div class="post-thumb">
+                                    <a href="singlenews.html"><img src="img/bg-img/19.jpg" alt=""></a>
+                                </div>
+                                <div class="post-data">
+                                    <a href="#" class="post-catagory">Thời tiết</a>
+                                    <div class="post-meta">
+                                        <a href="singlenews.html" class="post-title">
+                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc và Trung nóng mức nào</h6>
+                                        </a>
+                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Single Featured Post -->
+                             <div class="single-blog-post small-featured-post d-flex">
+                                <div class="post-thumb">
+                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
+                                </div>
+                                <div class="post-data">
+                                    <a href="#" class="post-catagory">Thời tiết</a>
+                                    <div class="post-meta">
+                                        <a href="singlenews.html" class="post-title">
+                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc và Trung nóng mức nào</h6>
+                                        </a>
+                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+        
+        
+           
+        </div>
+    </div>
+  
+    <!-- Footer -->
+    
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <div class="row">
+        <div class="col-12 col-md">
+          <img class="mb-2" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="24"
+            height="24">
+          <small class="d-block mb-3 text-muted">© 2017-2019</small>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Features</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Cool stuff</a></li>
+            <li><a class="text-muted" href="#">Random feature</a></li>
+            <li><a class="text-muted" href="#">Team feature</a></li>
+            <li><a class="text-muted" href="#">Stuff for developers</a></li>
+            <li><a class="text-muted" href="#">Another one</a></li>
+            <li><a class="text-muted" href="#">Last time</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Resource</a></li>
+            <li><a class="text-muted" href="#">Resource name</a></li>
+            <li><a class="text-muted" href="#">Another resource</a></li>
+            <li><a class="text-muted" href="#">Final resource</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Team</a></li>
+            <li><a class="text-muted" href="#">Locations</a></li>
+            <li><a class="text-muted" href="#">Privacy</a></li>
+            <li><a class="text-muted" href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+  
+     {{{_sections.js}}}
+</body>
+
+</html>

@@ -3,7 +3,7 @@ var categoryModel = require('../../models/category.model');
 
 var router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/:subNameCat', (req, res) => {
 
     
   var p = categoryModel.all();
