@@ -14,6 +14,7 @@ app.use(express.static('public'));
 require('./middlewares/view-engine')(app);
 require('./middlewares/sesson')(app);
 require('./middlewares/passport.js')(app);
+require('./middlewares/upload')(app);
 
 app.set('view engine', 'hbs');
 
@@ -25,8 +26,9 @@ app.get('/', (req, res) => {
 })
 app.use('/account', require('./routes/account.route'));
 // app.use('/', require('./routes/showByCat.route'));
-app.use('/', require('./routes/category.route'));
+// app.use('/', require('./routes/category.route'));
 // app.use('/admin/categories', require('./routes/admin/category.route'));
+app.use('/add-blog', require('./routes/writer/add-blog.route'));
 
 app.use((req, res, next) => {
   next(createError(404));
