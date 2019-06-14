@@ -8,7 +8,7 @@ require('../middlewares/sesson')(router);
 
 router.get('/', function(req, res, next) {
     let IDcat = IDcate; // Refactored to access our albumId property
-    console.log(IDcat);
+    
     next();
     // retrieve album's track data and render track list page
   });
@@ -20,11 +20,14 @@ router.get('/:IDblog', (req, res, next) => {
       blogModel.single(IDblog),
 
     ]).then(Blog => {
-      console.log(Blog);
+      // console.log(Blog);
+      // var singleBlogA = [];
+      // singleBlogA.push(Blog);
+      console.log(Blog[0]);
      
       res.render('vwBlogs/singleBlog', {
         layout: 'category_blog.hbs',
-        singleBlog: Blog,
+        singleBlog: Blog[0],
         
         
 
@@ -32,7 +35,10 @@ router.get('/:IDblog', (req, res, next) => {
     
     
     
-  }).catch(next);
+  }).catch((error) => {
+    next();
+  });
+ 
 
 
 

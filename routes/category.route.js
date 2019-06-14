@@ -60,7 +60,7 @@ router.get('/:IDcat', (req, res, next) => {
         }
         pages.push(obj);
       }
-   
+      console.log(rows);
       res.render('vwBlogs/byCat', {
         NameCate: NameCat,
         layout: 'category_blog.hbs',
