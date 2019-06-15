@@ -34,7 +34,9 @@ app.use('/account', require('./routes/account.route'));
 // app.use('/', require('./routes/showByCat.route'));
 app.use('/', require('./routes/category.route'));
 app.use('/admin', require('./routes/admin/category.route'));
-app.use('/writer/add-blog', require('./routes/writer/add-blog.route'));
+////Thanh
+app.use('/writer/blog', require('./routes/writer/blog.route'));
+////Thanh
 
 app.use((req, res, next) => {
   next(createError(404));
