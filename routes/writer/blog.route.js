@@ -10,23 +10,23 @@ router.get("/", (req, res) => {
 })
 
 router.get("/publishing", (req, res) => {
-    var iduser = authUser.IDUser;
+    var iduser = res.locals.authUser.IDUser;
     var statuseditor = 1;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {
+        console.log(rows);
         res.render('writer/publishing-blog', {
             title: "view-blog-list",
             layout: "../../views/_layouts/baseview-writer.hbs",
             blogs: rows
         })
-        console.log('aaaaaaaaaaa');
     }).catch(err => {
         console.log(err);
     });
 })
 
 router.get("/published", (req, res) => {
-    var iduser = authUser.IDUser;
+    var iduser = res.locals.authUser.IDUser;
     var statuseditor = 2;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {
@@ -41,7 +41,7 @@ router.get("/published", (req, res) => {
 })
 
 router.get("/refused", (req, res) => {
-    var iduser = authUser.IDUser;
+    var iduser = res.locals.authUser.IDUser;
     var statuseditor = 3;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {
@@ -56,7 +56,7 @@ router.get("/refused", (req, res) => {
 })
 
 router.get("/pending", (req, res) => {
-    var iduser = authUser.IDUser;
+    var iduser = res.locals.authUser.IDUser;
     var statuseditor = 4;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {

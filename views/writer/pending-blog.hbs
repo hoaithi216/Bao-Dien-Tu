@@ -16,14 +16,10 @@
       <tbody>
         {{#each blogs}}
         <tr>
-          <td>{{idblog}}</td>
-          <td>{{tittle}}</td>
-          {{#if dateproduct}}
-          <td>{{dateproduct}}</td>
-          {{else}}
-          <td>{{datepublic}}</td>
-          {{/if}}
-          <td>{{datepublic}}</td>
+          <td>{{IDBlog}}</td>
+          <td>{{Tittle}}</td>
+          <td>{{DateProduct}}</td>
+          <td>{{DatePublic}}</td>
           <td class="text-center">
             <a href="edit-post/{{idblog}}" class="btn btn-outline-primary" role="button">
               <i class="fas fa-pen"></i>

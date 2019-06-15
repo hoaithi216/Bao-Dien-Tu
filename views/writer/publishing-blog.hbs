@@ -13,16 +13,12 @@
         </tr>
       </thead>
       <tbody>
-        {{#each blogs}}
+        {{#each this.blogs}}
         <tr>
-          <td>{{this.blogs.idblog}}</td>
-          <td>{{tittle}}</td>
-          {{#if dateproduct}}
-          <td>{{dateproduct}}</td>
-          {{else}}
-          <td>{{datepublic}}</td>
-          {{/if}}
-          <td>{{datepublic}}</td>
+          <td>{{IDBlog}}</td>
+          <td>{{Tittle}}</td>
+          <td>{{DateProduct}}</td>
+          <td>{{DatePublic}}</td>
         </tr>
         {{/each}}
       </tbody>
