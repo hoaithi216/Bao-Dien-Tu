@@ -36,8 +36,14 @@ app.use('/account', require('./routes/account.route'));
 
 app.use('/', require('./routes/category.route'));
 app.use('/admin', require('./routes/admin/category.route'));
+<<<<<<< HEAD
 // created by Duy Thanh
 app.use('/writer/add-blog', require('./routes/writer/add-blog.route'));
+=======
+////Thanh
+app.use('/writer/blog', require('./routes/writer/blog.route'));
+////Thanh
+>>>>>>> d61f15d353d2aaa6261f855930833deaf99e4fea
 
 app.use((req, res, next) => {
   next(createError(404));
