@@ -20,7 +20,7 @@ router.get("/is-available", (req,res,next) => {
 })
 
 router.get("/register", (req,res,next)=> {
-    res.render('vwAccount/register');
+    res.render('vwAccount/register',{layout:false});
 
 
 router.post('/register', (req,res,next)=>{
@@ -40,6 +40,7 @@ router.post('/register', (req,res,next)=>{
 
     }
     userModel.add(entity).then(id=>{
+        
         res.redirect('/account/login');
     })
 })

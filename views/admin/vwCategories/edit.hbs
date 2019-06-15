@@ -9,15 +9,15 @@
       <a href="/admin/categories" class="alert-link">Go Back</a>
     </div>
     {{else}}
-    <form method="POST" action="/admin/categories/update">
+    <form method="POST" action="/admin/categories/edit/update">
       <div class="form-group">
         <label for="txtCatID">#</label>
-        <input readonly type="text" class="form-control" id="txtCatID" name="CatID" value="{{this.category.CatID}}">
+        <input readonly type="text" class="form-control" id="txtCatID" name="IDCategory" value="{{this.category.IDCategory}}">
       </div>
       <div class="form-group">
         <label for="txtCatName">Category</label>
-        <input type="text" class="form-control" id="txtCatName" name="CatName" autofocus
-          value="{{this.category.CatName}}" placeholder="Enter category name">
+        <input type="text" class="form-control" id="txtCatName" name="NameCategory" autofocus
+          value="{{this.category.NameCategory}}" placeholder="Enter category name">
       </div>
       <a class="btn btn-primary" href="/admin/categories" role="button">
         <i class="fa fa-backward" aria-hidden="true"></i>

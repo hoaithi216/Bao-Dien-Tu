@@ -7,7 +7,7 @@ module.exports = function (app){
 
 
 app.engine('hbs', exphbs({
-    // defaultLayout: 'main.hbs',
+    defaultLayout: 'main.hbs',
     layoutsDir: 'views/_layouts',
     helpers: {
       format: val => {
