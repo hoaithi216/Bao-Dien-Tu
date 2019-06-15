@@ -41,7 +41,7 @@ router.get("/published", (req, res) => {
 })
 
 router.get("/refused", (req, res) => {
-    var iduser = res.locals.authUser.IDUser;
+    var iduser = 1;
     var statuseditor = 3;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {
@@ -107,14 +107,15 @@ router.post('/add', (req, res) => {
 })
 
 router.get("/edit/:id", (req, res) => {
-    var id = req.param.id;
+    var id = req.params.id;
     var blog = blogModel.single(id);
     var categories = categoryModel.all();
+    var p;
     Promise.all([blog, categories]).then(values => {
         if (values[0].length > 0) {
             for (const cat of values[1]) {
-                if (cat.id == values[0].CategoryID) {
-                    cat['selected'] = true;
+                if (cat.id == values[0].IDCategory) {
+                    temp = cat;
                 }
             }
             res.render('writer/edit-blog', {
@@ -122,7 +123,8 @@ router.get("/edit/:id", (req, res) => {
                 layout: "../../views/_layouts/baseview-writer.hbs",
                 blog: values[0],
                 categories: values[1],
-                error: false
+                error: false,
+                temp: temp
             });
         } else {
             res.render('writer/edit-blog', {
@@ -150,7 +152,7 @@ router.post('/edit/:id', (req, res) => {
     blogModel.update(entity)
     .then(id => {
         console.log(id);
-        res.redirect('');
+        res.redirect('/writer/blog/publishing');
     }).catch(err => {
         console.log(err);
     })

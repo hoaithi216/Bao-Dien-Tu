@@ -37,9 +37,6 @@ app.use('/account', require('./routes/account.route'));
 app.use('/', require('./routes/category.route'));
 app.use('/admin', require('./routes/admin/category.route'));
 
-// created by Duy Thanh
-app.use('/writer/add-blog', require('./routes/writer/add-blog.route'));
-
 ////Thanh
 app.use('/writer/blog', require('./routes/writer/blog.route'));
 ////Thanh
