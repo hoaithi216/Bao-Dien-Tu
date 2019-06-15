@@ -18,11 +18,11 @@
           <td>{{idblog}}</td>
           <td>{{tittle}}</td>
           {{#if dateproduct}}
-          <td>{{moment dateproduct format="DD/MM/YYYY hh:mm:ss"}}</td>
+          <td>{{dateproduct}}</td>
           {{else}}
           <td>{{datepublic}}</td>
           {{/if}}
-          <td>{{moment datepublic format="DD/MM/YYYY hh:mm:ss"}}</td>
+          <td>{{datepublic}}</td>
         </tr>
         {{/each}}
       </tbody>
