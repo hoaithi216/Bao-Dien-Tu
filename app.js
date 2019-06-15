@@ -30,10 +30,13 @@ app.get('/', (req, res) => {
 
   res.render('home');
 })
+//created by Hoai Thi
 app.use('/account', require('./routes/account.route'));
 // app.use('/', require('./routes/showByCat.route'));
+
 app.use('/', require('./routes/category.route'));
 app.use('/admin', require('./routes/admin/category.route'));
+// created by Duy Thanh
 app.use('/writer/add-blog', require('./routes/writer/add-blog.route'));
 
 app.use((req, res, next) => {

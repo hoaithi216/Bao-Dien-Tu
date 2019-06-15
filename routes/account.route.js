@@ -20,7 +20,7 @@ router.get("/is-available", (req,res,next) => {
 })
 
 router.get("/register", (req,res,next)=> {
-    res.render('vwAccount/register',{layout:false});
+    res.render('vwAccount/register',{layout:'baseview-writer.hbs'});
 
 
 router.post('/register', (req,res,next)=>{
