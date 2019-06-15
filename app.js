@@ -14,7 +14,7 @@ app.use(express.static('public'));
 require('./middlewares/view-engine')(app);
 require('./middlewares/sesson')(app);
 require('./middlewares/passport.js')(app);
-require('./middlewares/upload')(app);
+// require('./middlewares/upload')(app);
 
 app.set('view engine', 'hbs');
 

@@ -2,7 +2,7 @@
 <!-- Tags Input -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
 <!-- File Input -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css"> -->
 {{/section}}
 
 {{#section 'js'}}
@@ -24,26 +24,15 @@ src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbb
     });
   })
 
-  $(function () {
-    $('#avatar').fileinput({
-      theme: 'fa',
-      dropZoneEnabled: false,
-      allowedFileExtensions: ['png', 'jpg', 'jpeg'],
-      uploadUrl: '/upload',
-      uploadAsync: false,
-      // showCaption: true,
-      // uploadExtraData: function () {
-      //       return {
-      //           avatar: $('input[name="avatar"]').val(),
-      //       };
-      //   }
-      // uploadExtraData: {avatar: 'filename'}
-      // showUpload: true,
-      // fileActionSettings: {
-      //   showUpload: false
-      // }
-    })
-  })
+  // $(function () {
+  //   $('#avatar').fileinput({
+  //     theme: 'fa',
+  //     dropZoneEnabled: false,
+  //     allowedFileExtensions: ['png', 'jpg', 'jpeg'],
+  //     uploadUrl: '/add',
+  //     uploadAsync: false
+  //   })
+  // })
 
   // fetch('/add-blog', {
   //   method: 'POST',
@@ -63,8 +52,8 @@ src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbb
 <!-- Tags Input -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 <!-- File Input -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script> -->
 {{/section}}
 
 <div class="container mt-5">
@@ -77,17 +66,21 @@ src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbb
         <!-- Title Input -->
         <div class="form-group">
           <label for="txtTitle">Tiêu đề</label>
-          <textarea class="form-control" id="txtTitle" name="Tittle" required></textarea>
+          <textarea class="form-control" id="txtTitle" name="Tittle"
+          placeholder="Tiêu đề bài viết" required></textarea>
         </div>
         <!-- Summary Input -->
         <div class="form-group">
           <label for="txtSummary">Tóm tắt</label>
-          <textarea class="form-control" id="txtSummary" name="SortContext" required></textarea>
+          <textarea class="form-control" id="txtSummary" name="SortContext"
+          placeholder="Tóm tắt nội dung" required></textarea>
         </div>
         <!-- Thumbnail -->
         <div class="form-group mt-3">
-          <label class="col-form-label">Ảnh thumbnail</label>
-          <input id="avatar" name="avatar" type="file" class="file"  data-show-preview="false">
+          <label class="col-form-label" for="avatar">Ảnh thumbnail</label>
+          <!-- <input id="avatar" name="avatar" type="file" class="file" data-show-preview="true"> -->
+          <input id="avatar" name="linkAvatar" type="text" class="form-control"
+          placeholder="Link ảnh" required>
         </div>
         <!-- Category Select -->
         <div class="form-group mt-2">
@@ -102,7 +95,7 @@ src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbb
         <!-- Content Input -->
         <div class="form-group mt-2">
           <label for="txtContent">Nội dung</label>
-          <textarea class="form-control" id="txtContent" name="Context" required></textarea>
+          <textarea class="form-control" id="txtContent" name="Context"></textarea>
         </div>
         <button type="submit" class="btn btn-success">
           <i class="fa fa-check" aria-hidden="true"></i>

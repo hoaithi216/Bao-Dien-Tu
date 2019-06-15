@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
         Tittle: req.body.Tittle,
         Context: req.body.Context,
         SortContext: req.body.SortContext,
-        AvatarBlog: req.body.avatar
+        AvatarBlog: req.body.linkAvatar
     }
     blogModel.add(entity)
     .then(id => {
