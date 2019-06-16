@@ -7,7 +7,11 @@ router.get('/', (req,res,next) =>{
   
     blogModel.searchAll(query).then(rows => {
         console.log(rows);
-        res.render('./search');
+        res.render('./search',{
+            blogs: rows,
+            layout: 'main.hbs'
+        });
+    
     }).catch(err => {
         console.log(err); })
     
