@@ -39,6 +39,7 @@ app.use('/admin', require('./routes/admin/category.route'));
 
 ////Thanh
 app.use('/writer/blog', require('./routes/writer/blog.route'));
+app.use('/editor', require('./routes/editor/manage-draft.route'));
 ////Thanh
 
 
