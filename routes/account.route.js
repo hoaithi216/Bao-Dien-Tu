@@ -79,5 +79,11 @@ router.post('/login',(req, res, next) => {
 router.get('/profile', auth, (req, res, next) => {
   res.end('PROFILE');
 })
+router.get('/logout', function(req, res) {
+  req.session.destroy();
+  console.log(res.locals.authUser)
+  res.redirect('/');
+});
+
 
 module.exports = router;

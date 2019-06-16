@@ -5,8 +5,20 @@
   <div class="card-body">
     <form method="POST">
       <div class="form-group">
+        
+          <label for="exampleFormControlSelect1">Parents Categories</label>
+           <div class="form-group">
+          <select name="IDParents"class="form-control" id="exampleFormControlSelect1">
+            {{#each this.ParentsCategories}}
+            <option value="{{IDParents}}"> {{NameParents}}</option>
+         
+            {{/each}}
+          </select>
+          </div>
+       
         <label for="txtCatName">Category</label>
-        <input type="text" class="form-control" id="txtCatName" name="NameCategory" autofocus placeholder="Enter category name">
+        <input type="text" class="form-control" id="txtCatName" name="NameCategory" autofocus
+          placeholder="Enter category name">
       </div>
       <a class="btn btn-primary" href="/admin/categories" role="button">
         <i class="fa fa-backward" aria-hidden="true"></i>

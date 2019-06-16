@@ -8,6 +8,10 @@ module.exports = {
   all: () =>{
     return db.load('select * from parentcategory');
   },
+  add: entity => {
+    return db.add('ParentCategory', entity);
+  },
+ 
 
   // allByCat: () =>  {
   //   return db.load(`select * from category where IDParents = ${IDParent}`);

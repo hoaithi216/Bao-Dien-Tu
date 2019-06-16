@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+
 require('./middlewares/view-engine')(app);
 require('./middlewares/sesson')(app);
 require('./middlewares/passport.js')(app);
@@ -18,13 +19,15 @@ require('./middlewares/passport.js')(app);
 
 
 
-app.use(require('./middlewares/auth-locals.mdw'));
 
-// require('./middlewares/upload')(app);
+
+
 
 app.set('view engine', 'hbs');
 
 app.use(require('./middlewares/locals.mdw'));
+app.use(require('./middlewares/auth-locals.mdw'));
+
 
 app.get('/', (req, res) => {
 
@@ -36,9 +39,10 @@ app.use('/account', require('./routes/account.route'));
 
 app.use('/', require('./routes/category.route'));
 app.use('/admin', require('./routes/admin/category.route'));
+app.use('/admin/users', require('./routes/admin/users.route'));
 
 // created by Duy Thanh
-app.use('/writer/add-blog', require('./routes/writer/add-blog.route'));
+// app.use('/writer/add-blog', require('./routes/writer/add-blog.route'));
 
 ////Thanh
 app.use('/writer/blog', require('./routes/writer/blog.route'));

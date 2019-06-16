@@ -18,7 +18,7 @@ router.get('/:IDcat', (req, res, next) => {
   res.locals.IDcate = req.params.IDcat;
   var IDcat = req.params.IDcat;
   
-
+ 
   
   
 
@@ -60,7 +60,7 @@ router.get('/:IDcat', (req, res, next) => {
         }
         pages.push(obj);
       }
-      console.log(rows);
+      
       res.render('vwBlogs/byCat', {
         NameCate: NameCat,
         layout: 'category_blog.hbs',

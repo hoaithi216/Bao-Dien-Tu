@@ -4,6 +4,7 @@ module.exports = {
   all: () => {
     return db.load('select * from category');
   },
+  
 
   allSubCatName: () => {
     return db.load('select subNameCat from category');
@@ -32,6 +33,7 @@ module.exports = {
   add: entity => {
     return db.add('Category', entity);
   },
+
 
   update: entity => {
     return db.update('Category', 'IDCategory', entity);

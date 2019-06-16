@@ -1,5 +1,6 @@
 var express = require('express');
 var categoryModel = require('../../models/category.model');
+var ParentsCatModel = require('../../models/parentscat.model');
 const editCatById = require('./editCatById.route')
 
 
@@ -31,57 +32,82 @@ router.use('/categories/edit', function(req, res, next) {
 
 
 router.get('/categories/add', (req, res) => {
-  res.render('admin/vwCategories/add',{
-    layout:'main_admin.hbs',
+  
+    
+  ParentsCatModel.all().then(rows  => {
+    console.log(rows);
+    res.render('admin/vwCategories/add',{
+      layout:'main_admin.hbs',
+      ParentsCategories: rows
+    
+    })
+   
   });
 })
+router.get('/categories/addParents', (req, res) => {
+  res.render('admin/vwCategories/addParents',{
+    layout: 'main_admin.hbs'
+  });
 
-router.post('/categories/add', (req, res) => {
-  categoryModel.add(req.body)
+})
+router.post('/categories/addParents', (req, res) => {
+  
+  ParentsCatModel.add(req.body)
     .then(id => {
       console.log(id);
-      res.render('admin/vwCategories/add',{
-        layout:'main_admin.hbs',
+      res.render('admin/vwCategories/addParents',{
+        layout: 'main_admin.hbs'
       });
     }).catch(err => {
       console.log(err);
     })
+})
+
+
+router.post('/categories/add', (req, res) => {
+  var entity = {
+    
+    IDParents: req.body.IDParents,
+    NameCategory:req.body.NameCategory,
+    
+   
+  }
+  Promise.all([
+    categoryModel.add(entity),
+    ParentsCatModel.all()
+  ]).then(([id,rows])=>{
+    res.render('admin/vwCategories/add',{
+      layout:'main_admin.hbs',
+      ParentsCategories: rows
+    });
+
+  }).catch(err => {
+      console.log(err);
+    })
+  
 })
 
 
 
 router.post('/categories/delete', (req, res) => {
-  categoryModel.delete(req.body.CatID)
+  categoryModel.delete(req.body.IDCategory)
     .then(n => {
-      res.redirect('/admin/categories',{
-        layout:'main_admin.hbs',
-      });
-    }).catch(err => {
-      console.log(err);
-    })
-})
-router.get('/add', (req, res) => {
-  res.render('admin/vwCategories/add');
-})
-
-router.post('/add', (req, res) => {
-  categoryModel.add(req.body)
-    .then(id => {
-      console.log(id);
-      res.render('admin/vwCategories/add');
+        res.redirect('/admin/categories'
+      );
     }).catch(err => {
       console.log(err);
     })
 })
 
-router.post('/delete', (req, res) => {
-  categoryModel.delete(req.body.CatID)
+router.post('/categories/update', (req, res) => {
+  categoryModel.update(req.body)
     .then(n => {
       res.redirect('/admin/categories');
     }).catch(err => {
       console.log(err);
     })
 })
+
 
 
 module.exports = router;
