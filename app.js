@@ -41,11 +41,15 @@ app.use('/', require('./routes/category.route'));
 app.use('/admin', require('./routes/admin/category.route'));
 app.use('/admin/users', require('./routes/admin/users.route'));
 
+<<<<<<< HEAD
 // created by Duy Thanh
 // app.use('/writer/add-blog', require('./routes/writer/add-blog.route'));
 
+=======
+>>>>>>> 9d3d47b49cd54f9e07885f1b1dfdd2696b62bef5
 ////Thanh
 app.use('/writer/blog', require('./routes/writer/blog.route'));
+app.use('/editor', require('./routes/editor/manage-draft.route'));
 ////Thanh
 
 

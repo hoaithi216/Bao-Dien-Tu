@@ -14,7 +14,6 @@ router.get("/publishing", (req, res) => {
     var statuseditor = 1;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {
-        console.log(rows);
         res.render('writer/publishing-blog', {
             title: "view-blog-list",
             layout: "../../views/_layouts/baseview-writer.hbs",
@@ -107,14 +106,15 @@ router.post('/add', (req, res) => {
 })
 
 router.get("/edit/:id", (req, res) => {
-    var id = req.param.id;
+    var id = req.params.id;
     var blog = blogModel.single(id);
     var categories = categoryModel.all();
+    var p;
     Promise.all([blog, categories]).then(values => {
         if (values[0].length > 0) {
             for (const cat of values[1]) {
-                if (cat.id == values[0].CategoryID) {
-                    cat['selected'] = true;
+                if (cat.id == values[0].IDCategory) {
+                    temp = cat;
                 }
             }
             res.render('writer/edit-blog', {
@@ -122,7 +122,8 @@ router.get("/edit/:id", (req, res) => {
                 layout: "../../views/_layouts/baseview-writer.hbs",
                 blog: values[0],
                 categories: values[1],
-                error: false
+                error: false,
+                temp: temp
             });
         } else {
             res.render('writer/edit-blog', {
@@ -140,6 +141,7 @@ router.post('/edit/:id', (req, res) => {
     var currdate = moment().format('YYYY-MM-DD');
     console.log(req.body);
     var entity = {
+        IDBlog: req.params.id,
         IDCategory: req.body.IDCategory,
         DateProduct: currdate,
         Tittle: req.body.Tittle,
@@ -150,7 +152,7 @@ router.post('/edit/:id', (req, res) => {
     blogModel.update(entity)
     .then(id => {
         console.log(id);
-        res.redirect('');
+        res.redirect('/writer/blog/publishing');
     }).catch(err => {
         console.log(err);
     })
