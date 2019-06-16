@@ -48,19 +48,19 @@
                             <div class="login-search-area d-flex align-items-center">
                                 <!-- Search Form -->
                                 <div class="search-form">
-                                    <form action="#" method="post">
-                                        <input type="search" name="search" class="form-control" placeholder="Tìm kiếm">
+                                    <form action="/search">
+                                        <input type="search" name="query" class="form-control" placeholder="Tìm kiếm">
                                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                     </form>
                                 </div>
                                 <!-- Login -->
                                 {{#if isAuthenticated}}
-                                <form id="frmSingout" action = "/account/logout" method = "post"></form>
+                                <form id="frmSingout" action="/account/logout" method="post"></form>
                                 <li class="navbar-nav nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                             
-                                            Hi, <h6>{{authUser.Username}}</h6>
+
+                                        Hi, <h6>{{authUser.Username}}</h6>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="/account/profile">
@@ -76,8 +76,8 @@
                                 </li>
                                 {{else}}
                                 <div class="login d-flex">
-                                    <a href="./account/login">Đăng nhập</a>
-                                    <a href="./account/register">Đăng ký</a>
+                                    <a href="/account/login">Đăng nhập</a>
+                                    <a href="/account/register">Đăng ký</a>
                                 </div>
 
 
@@ -130,7 +130,7 @@
 
                                         <ul class="dropdown">
                                             {{#each ../havesubcategory}}
-                                            <li><a href="{{IDCategory}}">{{NameCategory}}</a></li>
+                                            <li><a href="/category/{{IDCategory}}">{{NameCategory}}</a></li>
                                             {{/each}}
                                         </ul>
 
@@ -177,118 +177,17 @@
         </div>
     </div>
     <!-- ##### Hero Area End ##### -->
-    <!-- ##### Tin mới & Nổi bật trong tuần Start ##### -->
-
-    <!-- ##### Tin mới ##### -->
-    <div class="featured-post-area">
+    <div class="blog-area section-padding-0-80">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-8">
-                    <div class="row">
-                        <div class="col-12 col-lg-6">
-                            <div class="single-blog-post box-shadow">
-                                <!-- Post Thumbnail -->
-                                <div class="post-thumbnail">
-                                    <img src="img/blog-img/b1.jpg" alt="">
-                                    <!-- Catagory -->
-                                    <div class="post-cta"><a href="category.html">Thế giới</a></div>
-                                </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <a href="singlenews.html" class="headline">
-                                        <h5>18 Điều Thú Vị Có Thể Bạn Chưa Biết Về Hiện Tượng Bắc Cực Quang</h5>
-                                    </a>
-                                    <p>Những hình ảnh về bắc cực quang trong danh sách này cũng rất ấn tượng. Bạn hãy
-                                        sẵn sàng xách ba lô lên và đi đến vùng đất Bắc Cực ...</p>
-                                    <!-- Post Meta -->
-                                    <div class="post-meta">
-                                        <p><a href="#" class="post-author">Hoài Thi</a>Ngày đăng<a href="#"
-                                                class="post-date"> 3 tháng 5 2019</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
-                                <!-- Post Thumbnail -->
-                                <div class="post-thumbnail">
-                                    <img src="img/blog-img/b10.jpg" alt="">
-                                </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <a href="singlenews.html" class="headline">
-                                        <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
-                                    </a>
-                                    <!-- Post Meta -->
-                                    <div class="post-meta">
-                                        <p><a href="#" class="post-author">Tên tác giả</a> Ngày đăng <a href="#"
-                                                class="post-date"> 3 tháng 5 2019</a></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
-                                <!-- Post Thumbnail -->
-                                <div class="post-thumbnail">
-                                    <img src="img/blog-img/b10.jpg" alt="">
-                                </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <a href="singlenews.html" class="headline">
-                                        <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
-                                    </a>
-                                    <!-- Post Meta -->
-                                    <div class="post-meta">
-                                        <p><a href="#" class="post-author">Tên tác giả</a>Ngày đăng <a href="#"
-                                                class="post-date">3 tháng 5 2019</a></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
-                                <!-- Post Thumbnail -->
-                                <div class="post-thumbnail">
-                                    <img src="img/blog-img/b10.jpg" alt="">
-                                </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <a href="singlenews.html" class="headline">
-                                        <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
-                                    </a>
-                                    <!-- Post Meta -->
-                                    <div class="post-meta">
-                                        <p><a href="#" class="post-author">Tên tác giả</a>Ngày đăng<a href="#"
-                                                class="post-date">3 tháng 5 2019</a></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
-                                <!-- Post Thumbnail -->
-                                <div class="post-thumbnail">
-                                    <img src="img/blog-img/b10.jpg" alt="">
-                                </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <a href="singlenews.html" class="headline">
-                                        <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
-                                    </a>
-                                    <!-- Post Meta -->
-                                    <div class="post-meta">
-                                        <p><a href="#" class="post-author">Tên tác giả</a>Ngày đăng<a href="#"
-                                                class="post-date"> 3 tháng 5 2019</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- ##### Các tin trong 1 category ##### -->
+                <div class="col-12  col-lg-8">
+                    {{{body}}}
                 </div>
-
-
 
                 <!--Hiển thị 3-4 bài viết nổi bật nhất trong tuần qua-->
                 <div class="col-12 col-md-6 col-lg-4">
-                    <div class="popular-news-widget mb-30">
+                    <div class="popular-news-widget mt-100">
                         <h3>Nổi bật trong tuần</h3>
 
                         <!-- Single Popular Blog -->
@@ -328,481 +227,98 @@
                         </div>
                     </div>
 
+                    <div class="section-heading style-2">
+                        <h6> Nổi bật mỗi chuyên mục</h6>
+                    </div>
+
+                    <div class="single-blog-post small-featured-post d-flex">
+                        <div class="post-thumb">
+                            <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
+                        </div>
+                        <div class="post-data">
+                            <a href="#" class="post-catagory">Xã Hội</a>
+                            <div class="post-meta">
+                                <a href="singlenews.html" class="post-title">
+                                    <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc và
+                                        Trung nóng mức nào</h6>
+                                </a>
+                                <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
-        <!-- ##### Tin mới & Nổi bật trong tuần END  ##### -->
-        <!-- ##### Nổi Bật & Mới mỗi chuyên mục Start ##### -->
-        <div class="popular-news-area section-padding-80-50">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-lg-8">
-                        <div class="section-heading">
-                            <h6>Tin mới mỗi chuyên mục</h6>
-                        </div>
 
-                        <div class="row">
-
-                            <!-- Single Post -->
-                            <div class="col-12 col-md-6 ">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="singlenews.html"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a href="category.html" class="post-catagory">Bóng Đá</a>
-                                        <a href="singlenews.html" class="post-title">
-                                            <h6>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều...
-                                            </h6>
-                                        </a>
-                                        <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="img/core-img/like.png" alt="">
-                                                <span>256</span></a>
-                                            <a href="#" class="post-comment"><img src="img/core-img/chat.png" alt="">
-                                                <span>55</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Post -->
-                            <div class="col-12 col-md-6 ">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="singlenews.html"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a href="category.html" class="post-catagory">Bóng Đá</a>
-                                        <a href="singlenews.html" class="post-title">
-                                            <h6>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều...
-                                            </h6>
-                                        </a>
-                                        <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="img/core-img/like.png" alt="">
-                                                <span>256</span></a>
-                                            <a href="#" class="post-comment"><img src="img/core-img/chat.png" alt="">
-                                                <span>55</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Post -->
-                            <div class="col-12 col-md-6 ">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="singlenews.html"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a href="category.html" class="post-catagory">Bóng Đá</a>
-                                        <a href="singlenews.html" class="post-title">
-                                            <h6>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều...
-                                            </h6>
-                                        </a>
-                                        <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="img/core-img/like.png" alt="">
-                                                <span>256</span></a>
-                                            <a href="#" class="post-comment"><img src="img/core-img/chat.png" alt="">
-                                                <span>55</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Post -->
-                            <div class="col-12 col-md-6 ">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="singlenews.html"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a href="category.html" class="post-catagory">Bóng Đá</a>
-                                        <a href="singlenews.html" class="post-title">
-                                            <h6>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều...
-                                            </h6>
-                                        </a>
-                                        <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="img/core-img/like.png" alt="">
-                                                <span>256</span></a>
-                                            <a href="#" class="post-comment"><img src="img/core-img/chat.png" alt="">
-                                                <span>55</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Post -->
-                            <div class="col-12 col-md-6 ">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="singlenews.html"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a href="category.html" class="post-catagory">Bóng Đá</a>
-                                        <a href="singlenews.html" class="post-title">
-                                            <h6>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều...
-                                            </h6>
-                                        </a>
-                                        <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="img/core-img/like.png" alt="">
-                                                <span>256</span></a>
-                                            <a href="#" class="post-comment"><img src="img/core-img/chat.png" alt="">
-                                                <span>55</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Post -->
-                            <div class="col-12 col-md-6 ">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="singlenews.html"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a href="category.html" class="post-catagory">Bóng Đá</a>
-                                        <a href="singlenews.html" class="post-title">
-                                            <h6>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều...
-                                            </h6>
-                                        </a>
-                                        <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="img/core-img/like.png" alt="">
-                                                <span>256</span></a>
-                                            <a href="#" class="post-comment"><img src="img/core-img/chat.png" alt="">
-                                                <span>55</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Post -->
-                            <div class="col-12 col-md-6 ">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="singlenews.html"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a href="category.html" class="post-catagory">Bóng Đá</a>
-                                        <a href="singlenews.html" class="post-title">
-                                            <h6>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều...
-                                            </h6>
-                                        </a>
-                                        <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="img/core-img/like.png" alt="">
-                                                <span>256</span></a>
-                                            <a href="#" class="post-comment"><img src="img/core-img/chat.png" alt="">
-                                                <span>55</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Post -->
-                            <div class="col-12 col-md-6 ">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="singlenews.html"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a href="category.html" class="post-catagory">Bóng Đá</a>
-                                        <a href="singlenews.html" class="post-title">
-                                            <h6>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều...
-                                            </h6>
-                                        </a>
-                                        <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="img/core-img/like.png" alt="">
-                                                <span>256</span></a>
-                                            <a href="#" class="post-comment"><img src="img/core-img/chat.png" alt="">
-                                                <span>55</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Post -->
-                            <div class="col-12 col-md-6 ">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="singlenews.html"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a href="category.html" class="post-catagory">Bóng Đá</a>
-                                        <a href="singlenews.html" class="post-title">
-                                            <h6>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều...
-                                            </h6>
-                                        </a>
-                                        <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="img/core-img/like.png" alt="">
-                                                <span>256</span></a>
-                                            <a href="#" class="post-comment"><img src="img/core-img/chat.png" alt="">
-                                                <span>55</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Post -->
-                            <div class="col-12 col-md-6">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="#"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a href="#" class="post-catagory">Bóng Đá</a>
-                                        <a href="#" class="post-title">
-                                            <h6>Thầy Park chính thức “vi hành” ở châu Âu, soi giò cầu thủ Việt kiều...
-                                            </h6>
-                                        </a>
-                                        <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="img/core-img/like.png" alt="">
-                                                <span>120</span></a>
-                                            <a href="#" class="post-comment"><img src="img/core-img/chat.png" alt="">
-                                                <span>7</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- Tin nổi bật mỗi chuyên mục Start-->
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <!-- Single Featured Post -->
-                        <div class="section-heading">
-                            <h6> Nổi bật mỗi chuyên mục</h6>
-                        </div>
-                        <div class="row section-padding-0-0">
-                            <div class="single-blog-post small-featured-post d-flex">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Xã Hội</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc
-                                                và Trung nóng mức nào</h6>
-                                        </a>
-                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post small-featured-post d-flex">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Thời tiết</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc
-                                                và Trung nóng mức nào</h6>
-                                        </a>
-                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post small-featured-post d-flex">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Thời tiết</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc
-                                                và Trung nóng mức nào</h6>
-                                        </a>
-                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post small-featured-post d-flex">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Thời tiết</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc
-                                                và Trung nóng mức nào</h6>
-                                        </a>
-                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post small-featured-post d-flex">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Thời tiết</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc
-                                                và Trung nóng mức nào</h6>
-                                        </a>
-                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post small-featured-post d-flex">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Thời tiết</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc
-                                                và Trung nóng mức nào</h6>
-                                        </a>
-                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post small-featured-post d-flex">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Thời tiết</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc
-                                                và Trung nóng mức nào</h6>
-                                        </a>
-                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post small-featured-post d-flex">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Thời tiết</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc
-                                                và Trung nóng mức nào</h6>
-                                        </a>
-                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post small-featured-post d-flex">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Thời tiết</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc
-                                                và Trung nóng mức nào</h6>
-                                        </a>
-                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post small-featured-post d-flex">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Thời tiết</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc
-                                                và Trung nóng mức nào</h6>
-                                        </a>
-                                        <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Featured Post -->
+    </div>
+    
 
 
-                    </div>
-                </div>
 
 
-                <!-- ##### Nổi Bật & Mới mỗi chuyên mục  END ##### -->
 
-
-                {{{body}}}
-
-
-                <footer class="pt-4 my-md-5 pt-md-5 border-top">
-                    <div class="row">
-                        <div class="col-12 col-md">
-                            <img class="mb-2" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg"
-                                alt="" width="24" height="24">
-                            <small class="d-block mb-3 text-muted">© 2017-2019</small>
-                        </div>
-                        <div class="col-6 col-md">
-                            <h5>Features</h5>
-                            <ul class="list-unstyled text-small">
-                                <li><a class="text-muted" href="#">Cool stuff</a></li>
-                                <li><a class="text-muted" href="#">Random feature</a></li>
-                                <li><a class="text-muted" href="#">Team feature</a></li>
-                                <li><a class="text-muted" href="#">Stuff for developers</a></li>
-                                <li><a class="text-muted" href="#">Another one</a></li>
-                                <li><a class="text-muted" href="#">Last time</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md">
-                            <h5>Resources</h5>
-                            <ul class="list-unstyled text-small">
-                                <li><a class="text-muted" href="#">Resource</a></li>
-                                <li><a class="text-muted" href="#">Resource name</a></li>
-                                <li><a class="text-muted" href="#">Another resource</a></li>
-                                <li><a class="text-muted" href="#">Final resource</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md">
-                            <h5>About</h5>
-                            <ul class="list-unstyled text-small">
-                                <li><a class="text-muted" href="#">Team</a></li>
-                                <li><a class="text-muted" href="#">Locations</a></li>
-                                <li><a class="text-muted" href="#">Privacy</a></li>
-                                <li><a class="text-muted" href="#">Terms</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </footer>
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+            <div class="col-12 col-md">
+                <img class="mb-2" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt=""
+                    width="24" height="24">
+                <small class="d-block mb-3 text-muted">© 2017-2019</small>
             </div>
+            <div class="col-6 col-md">
+                <h5>Features</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Cool stuff</a></li>
+                    <li><a class="text-muted" href="#">Random feature</a></li>
+                    <li><a class="text-muted" href="#">Team feature</a></li>
+                    <li><a class="text-muted" href="#">Stuff for developers</a></li>
+                    <li><a class="text-muted" href="#">Another one</a></li>
+                    <li><a class="text-muted" href="#">Last time</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Resources</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Resource</a></li>
+                    <li><a class="text-muted" href="#">Resource name</a></li>
+                    <li><a class="text-muted" href="#">Another resource</a></li>
+                    <li><a class="text-muted" href="#">Final resource</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>About</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Team</a></li>
+                    <li><a class="text-muted" href="#">Locations</a></li>
+                    <li><a class="text-muted" href="#">Privacy</a></li>
+                    <li><a class="text-muted" href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    </div>
 
-            {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                crossorigin="anonymous"></script>
-            <!-- ##### All Javascript Files ##### -->
-            <!-- jQuery-2.2.4 js -->
-            <script src="js/jquery/jquery-2.2.4.min.js"></script>
-            <!-- Popper js -->
-            <script src="js/bootstrap/popper.min.js"></script>
-            <!-- Bootstrap js -->
-            <script src="js/bootstrap/bootstrap.min.js"></script>
-            <!-- All Plugins js -->
-            <script src="js/plugins/plugins.js"></script>
-            <!-- Active js -->
-            <script src="js/active.js"></script>
+    {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
 
-            {{{_sections.js}}}
+    {{{_sections.js}}}
 </body>
 
 </html>

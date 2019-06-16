@@ -35,23 +35,23 @@ app.get('/', (req, res) => {
 })
 //created by Hoai Thi
 app.use('/account', require('./routes/account.route'));
+app.use('/search', require('./routes/search.route'));
+
 // app.use('/', require('./routes/showByCat.route'));
 
-app.use('/', require('./routes/category.route'));
+app.use('/category', require('./routes/category.route'));
 app.use('/admin', require('./routes/admin/category.route'));
 app.use('/admin/users', require('./routes/admin/users.route'));
 
-<<<<<<< HEAD
+
 // created by Duy Thanh
 // app.use('/writer/add-blog', require('./routes/writer/add-blog.route'));
 
-=======
->>>>>>> 9d3d47b49cd54f9e07885f1b1dfdd2696b62bef5
+
 ////Thanh
 app.use('/writer/blog', require('./routes/writer/blog.route'));
 app.use('/editor', require('./routes/editor/manage-draft.route'));
 ////Thanh
-
 
 app.use((req, res, next) => {
   next(createError(404));

@@ -26,7 +26,7 @@ router.get('/:IDblog', (req, res, next) => {
       console.log(Blog[0]);
      
       res.render('vwBlogs/singleBlog', {
-        layout: 'category_blog.hbs',
+        layout: 'main.hbs',
         singleBlog: Blog[0],
         
         

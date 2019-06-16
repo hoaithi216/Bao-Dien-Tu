@@ -3,7 +3,7 @@ const showByCat = require('./showByCat.route');
 var blogModel = require('../models/blog.model');
 const router = express.Router();
 
-
+router.use(express.static('public'));
 require('../middlewares/sesson')(router);
 
 
@@ -63,7 +63,7 @@ router.get('/:IDcat', (req, res, next) => {
       
       res.render('vwBlogs/byCat', {
         NameCate: NameCat,
-        layout: 'category_blog.hbs',
+        layout: 'main.hbs',
         Blogs: rows,
         pages
         

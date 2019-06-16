@@ -11,6 +11,9 @@ module.exports = {
   allByCat: IDcat => {
     return db.load(`select * from blog b join category c on c.IDCategory = b.IDBlog and c.IDCategory = ${IDcat}`);
   },
+  searchAll: query =>{
+    return db.load(`select * from blogs where match (Tittle, Context, SortContext) AGAINST ("${query}") `);
+  },
 
   pageByCat: (IDCategory, limit, offset) => {
     return db.load(`select * from blogs where IDCategory = ${IDCategory} limit ${limit} offset ${offset}`);
