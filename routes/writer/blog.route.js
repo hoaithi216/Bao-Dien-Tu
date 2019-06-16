@@ -141,6 +141,7 @@ router.post('/edit/:id', (req, res) => {
     var currdate = moment().format('YYYY-MM-DD');
     console.log(req.body);
     var entity = {
+        IDBlog: req.params.id,
         IDCategory: req.body.IDCategory,
         DateProduct: currdate,
         Tittle: req.body.Tittle,
