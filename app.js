@@ -72,6 +72,6 @@ app.use((err, req, res, next) => {
   })
 })
 
-app.listen(5432, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('Web Server is running at http://localhost:3000');
 })
