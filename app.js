@@ -40,8 +40,8 @@ app.use('/loginfb', require('./routes/loginfb.route'));
 // app.use('/', require('./routes/showByCat.route'));
 
 app.use('/category', require('./routes/category.route'));
-app.use('/admin', require('./routes/admin/category.route'));
-app.use('/admin/users', require('./routes/admin/users.route'));
+//app.use('/admin', require('./routes/admin/category.route'));
+//app.use('/admin/users', require('./routes/admin/users.route'));
 
 
 // created by Duy Thanh
@@ -52,6 +52,12 @@ app.use('/admin/users', require('./routes/admin/users.route'));
 app.use('/writer/blog', require('./routes/writer/blog.route'));
 app.use('/editor', require('./routes/editor/manage-draft.route'));
 ////Thanh
+
+
+/// Duy Tan
+app.use('/admin/percategory', require('./routes/f_admin/percategory.route'));
+app.use('/admin/renewal', require('./routes/f_admin/accrenewal.route'));
+
 
 app.use((req, res, next) => {
   next(createError(404));

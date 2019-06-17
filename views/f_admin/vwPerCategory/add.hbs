@@ -1,0 +1,41 @@
+<div class="card shadow">
+  <h4 class="card-header">
+    Thêm chuyên mục
+  </h4>
+  <div class="card-body">
+    {{#if this.error}}
+    <div class="alert alert-danger" role="alert">
+      Invalid categoryId. <a href="/admin/percategory/view/{{iduser}}" class="alert-link">Go back</a>.
+    </div>
+    {{else}}
+    <form method="POST" action="/admin/percategory/add">
+        <div class="form-group">
+            <label for="txtIDUser">ID Editor</label>
+            <input readonly type="text" class="form-control" id="txtIDUser" name="IDUser" value="{{iduser}}">
+      
+            <div class="input-group mb-3">
+             <div class="input-group-prepend" >
+                <label class="input-group-text" for="inputGroupSelect01">Chọn chuyên mục</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="NameCategory" >
+             <option selected >Choose...</option>
+             {{#each this.editchuyenmuc}}
+             <option >{{NameCategory}}</option>
+             
+             {{/each}}
+            </select>
+            </div>
+
+        </div>
+      <a class="btn btn-primary" href="/admin/percategory/view/{{iduser}}" role="button">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+        List
+      </a>
+      <button type="submit" class="btn btn-success">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Save
+      </button>
+    </form>
+    {{/if}}
+  </div>
+</div>

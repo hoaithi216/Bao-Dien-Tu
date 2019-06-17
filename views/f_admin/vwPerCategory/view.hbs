@@ -1,0 +1,39 @@
+<div class="card shadow">
+    <h4 class="card-header">Danh sách chuyên mục quản lí</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">Chuyên mục gốc</th>
+                 <th scope="col">Chuyên mục con</th>
+                <th scope="col" class="text-right">
+                    <a class="btn btn-outline-success" href="/admin/percategory/add/{{iduser}}" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Thêm chuyên mục
+                    </a>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.categories}}
+            <tr>
+                <th class="text-center" scope="row">{{NameParents}}</th>
+                 <td>{{NameCategory}}</td>
+                <td class="text-right">
+                    <a class="btn btn-primary" href="/admin/percategory/edit/{{Username}}/{{NameCategory}}" role="button">
+                        Chỉnh sửa
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+            
+        </tbody>
+
+        
+    </table>
+
+    <a class="btn btn-primary mb-3" href="/admin/percategory" role="button">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+        Quay về danh sách Editor
+      </a>
+</div>

@@ -1,0 +1,27 @@
+<div class="card shadow">
+    <h4 class="card-header">Danh sách Editor </h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">IDUser</th>
+                <th scope="col">Tên Editor</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.categories}}
+            <tr>
+                <th class="text-center" scope="row">{{Username}}</th>
+                <td>{{FirstName}}</td>
+                <td>{{Email}}</td>
+                <td class="text-right">
+                    <a class="btn btn-primary" href="/admin/percategory/view/{{Username}}" role="button">
+                        Xem
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>

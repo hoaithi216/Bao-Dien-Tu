@@ -1,0 +1,52 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section }}
+{{#section 'js'}}
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+  <script>
+  $(function () {
+    $('#txtDateUpdate').datetimepicker({
+      format: 'Y/m/d',
+      timepicker: false,
+      mask: true,
+    });
+  })
+</script>
+{{/section }}
+
+<div class="card shadow">
+  <h4 class="card-header">
+    Gia hạn thêm ngày
+  </h4>
+  <div class="card-body">
+    {{#if this.error}}
+    <div class="alert alert-danger" role="alert">
+      Invalid IDUser. <a href="/admin/renewal" class="alert-link">Go back</a>.
+    </div>
+    {{else}}
+    <form method="POST" action="/admin/renewal/dateupdate">
+      <div class="form-group">
+        <label for="txtCatID">ID Subcriber</label>
+        <input readonly type="text" class="form-control" id="txtIDUser" name="IDUser" value="{{this.viewID.Username}}">
+
+         <label for="txtCatID">Ngày hết hạn</label>
+        <input readonly type="text" class="form-control" id="txtEXP" name="" value="{{this.viewID.EXP}}">
+        <label for="txtCatID">Cập nhật ngày mới</label>
+        <input type="text" class="form-control" id="txtDateUpdate" name="EXP" value="">
+
+     </div>
+
+      <a class="btn btn-primary" href="/admin/renewal" role="button">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+        List
+      </a>
+      <button type="submit" class="btn btn-success">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Update
+      </button>
+    </form>
+    {{/if}}
+  </div>
+</div>
