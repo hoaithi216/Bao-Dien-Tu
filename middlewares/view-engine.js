@@ -5,6 +5,13 @@ var exphbs = require('express-handlebars');
 
 module.exports = function (app){
 
+  const isEqualHelperHandlerbar = function(a, b, opts) {
+    if (a == b) {
+        return opts.fn(this) 
+    } else { 
+        return opts.inverse(this) 
+    } 
+}
 
 app.engine('hbs', exphbs({
     defaultLayout: 'main.hbs',
@@ -13,7 +20,8 @@ app.engine('hbs', exphbs({
       format: val => {
         return numeral(val).format('0,0');
       },
-      section: hbs_sections()
+      section: hbs_sections(),
+      if_e : isEqualHelperHandlerbar
     }
   }));
 }

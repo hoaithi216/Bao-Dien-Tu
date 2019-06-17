@@ -1,0 +1,38 @@
+<div class="card shadow">
+  <h4 class="card-header">
+    Thêm chuyên mục con
+  </h4>
+  <div class="card-body">
+    {{#if this.error}}
+    <div class="alert alert-danger" role="alert">
+      Invalid categoryId. <a href="/admin/managecategory" class="alert-link">Go back</a>.
+    </div>
+    {{else}}
+    <form method="POST" action="/admin/managecategory/add">
+        <div class="form-group">
+            <div class="input-group mb-3">
+             <div class="input-group-prepend" >
+                <label class="input-group-text" for="inputGroupSelect01">Chọn chuyên mục gốc</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="NameParents" >
+             <option selected >Choose...</option>
+             {{#each this.choose}}
+             <option >{{NameParents}}</option>
+             {{/each}}
+            </select>
+            </div>
+            <label for="txtIDUser">Tên chuyên mục con</label>
+            <input type="text" class="form-control" id="txt" name="NameCategory" value="">
+        </div>
+      <a class="btn btn-primary" href="/admin/managecategory" role="button">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+        List
+      </a>
+      <button type="submit" class="btn btn-success">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Save
+      </button>
+    </form>
+    {{/if}}
+  </div>
+</div>

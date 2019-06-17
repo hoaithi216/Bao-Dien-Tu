@@ -1,0 +1,93 @@
+{{#section 'css'}}
+<!-- Tags Input -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+{{/section}}
+
+{{#section 'js'}}
+<!-- Tiny MCE -->
+<script
+src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6"></script>
+<script>
+  $(function () {
+    tinymce.init({
+      selector: '#txtContent',
+      height: 500,
+      menubar: false,
+      plugins: 'paste image link autolink lists table media',
+      toolbar: [
+      'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+      'forecolor backcolor',
+      'table link image media',
+      ],
+    });
+  })
+
+</script>
+<!-- Tags Input -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+{{/section}}
+
+
+<div class="card shadow">
+  <h4 class="card-header">
+    Chỉnh sửa bài viết
+  </h4>
+  <div class="card-body">
+    {{#if this.error}}
+    <div class="alert alert-danger" role="alert">
+      Invalid Blog ID. <a href="" class="alert-link">Go back</a>
+    </div>
+    {{else}}
+    <form method="POST">
+      <!-- ID -->
+      {{#each this.blog}}
+      <div class="form-group">
+        <label for="txtIDBlog">ID</label>
+        <input class="form-control" id="txtIDBlog" name="IDBlog"
+        value="{{IDBlog}}" readonly>
+      </div>
+      <!-- Title Input -->
+      <div class="form-group">
+        <label for="txtTitle">Tiêu đề</label>
+        <textarea class="form-control" id="txtTitle" name="Tittle"
+        required>{{Tittle}}</textarea>
+      </div>
+      <!-- Summary Input -->
+      <div class="form-group">
+        <label for="txtSummary">Tóm tắt</label>
+        <textarea class="form-control" id="txtSummary" name="SortContext"
+        placeholder="Tóm tắt nội dung" required>{{SortContext}}</textarea>
+      </div>
+      <!-- Thumbnail -->
+      <div class="form-group mt-3">
+        <label class="col-form-label" for="avatar">Ảnh thumbnail</label>
+        <input id="avatar" name="linkAvatar" type="text" class="form-control"
+        value="{{AvatarBlog}}" placeholder="Link ảnh" required>
+      </div>
+      {{/each}}
+      <!-- Category Select -->
+      <div class="form-group mt-2">
+        <label for="txtCategory">Chuyên mục</label>
+        <select class="form-control" id="txtCategory" name="IDCategory" required>
+          <option selected value="">Chọn chuyên mục</option>
+          {{#each this.categories}}
+          <option value="{{IDCategory}}">{{NameCategory}}</option>
+          {{/each}}
+          <option selected value="{{this.temp.IDCategory}}">{{this.temp.NameCategory}}</option>
+        </select>
+      </div>
+      {{#each this.blog}}
+      <!-- Content Input -->
+      <div class="form-group mt-2">
+        <label for="txtContent">Nội dung</label>
+        <textarea class="form-control" id="txtContent" name="Context">{{Context}}</textarea>
+      </div>
+      {{/each}}
+      <button type="submit" class="btn btn-success">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Save
+      </button>
+    </form>
+    {{/if}}
+  </div>
+</div>

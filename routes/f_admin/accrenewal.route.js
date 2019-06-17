@@ -1,12 +1,13 @@
 var express = require('express');
 var moment = require('moment');
 var temp = require('../../models/accrenewal.model');
-var auth = require('../../middlewares/auth');
+var admin = require('../../middlewares/admin');
+
 
 var router = express.Router();
 
 
-router.get('/', (req, res) => {
+router.get('/', admin, (req, res) => {
     var p = temp.all();
     p.then(rows => {
         console.log(rows);
@@ -20,7 +21,7 @@ router.get('/', (req, res) => {
     });
 })
 
-router.get('/update/:id', (req, res) => {
+router.get('/update/:id', admin, (req, res) => {
     var id = req.params.id;
     temp.view(id).then(rows =>{
         
@@ -43,7 +44,7 @@ router.get('/update/:id', (req, res) => {
     });
 
 })
-router.post('/dateupdate', (req,res) =>{
+router.post('/dateupdate', admin, (req,res) =>{
     //var dob = moment(req.body.EXP, 'DD/MM/YYYY').format('YY-MM-DD');
     console.log(req.body.EXP + "lalala");
     console.log(req.body.IDUser + "lalala");

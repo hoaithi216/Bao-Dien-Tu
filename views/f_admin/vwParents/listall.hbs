@@ -1,0 +1,34 @@
+<div class="card shadow">
+    <h4 class="card-header">Danh sách chuyên mục gốc</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">ID Chuyên mục gốc</th>
+                 <th scope="col">Chuyên mục gốc</th>
+                <th scope="col" class="text-right">
+                     <a class="btn btn-outline-success" href="/admin/manageparents/add" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Thêm
+                    </a>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.listparents}}
+            <tr>
+                <th class="text-center" scope="row">{{IDParents}}</th>
+                 <td>{{NameParents}}</td>
+                <td class="text-right">
+                    <a class="btn btn-primary" href="/admin/manageparents/{{IDParents}}/{{NameParents}}" role="button">
+                        Chỉnh sửa
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+            
+        </tbody>
+
+        
+    </table>
+</div>

@@ -1,0 +1,34 @@
+<div class="card shadow">
+    <h4 class="card-header">Danh sách chuyên mục</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">Chuyên mục gốc</th>
+                 <th scope="col">Chuyên mục con</th>
+                <th scope="col" class="text-right">
+                     <a class="btn btn-outline-success" href="/admin/managecategory/add" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        thêm chuyên mục con
+                    </a>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.listcate}}
+            <tr>
+                <th class="text-center" scope="row">{{NameParents}}</th>
+                 <td>{{NameCategory}}</td>
+                <td class="text-right">
+                    <a class="btn btn-primary" href="/admin/managecategory/{{NameParents}}/{{IDCategory}}/{{NameCategory}}" role="button">
+                        Chỉnh sửa
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+            
+        </tbody>
+
+        
+    </table>
+</div>

@@ -1,10 +1,10 @@
 var express = require('express');
 var categoryModel = require('../../models/percategory.model');
-
+var admin = require('../../middlewares/admin');
 var router = express.Router();
 
 
-router.get('/', (req, res) => {
+router.get('/', admin, (req, res) => {
     var p = categoryModel.all();
     p.then(rows => {
         console.log(rows);
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     });
 })
 
-router.get('/view/:id', (req, res) => {
+router.get('/view/:id', admin, (req, res) => {
     var id = req.params.id;
 
     categoryModel.single(id).then(rows =>{
@@ -45,7 +45,7 @@ router.get('/view/:id', (req, res) => {
 
 })
 
-router.get('/edit/:id/:name', (req, res) => {
+router.get('/edit/:id/:name', admin, (req, res) => {
     var id = req.params.id;
     var name = req.params.name;
     var p = categoryModel.choose(id);
@@ -63,7 +63,7 @@ router.get('/edit/:id/:name', (req, res) => {
 
 })
 
-router.get('/add/:id', (req, res) => {
+router.get('/add/:id', admin, (req, res) => {
     var id = req.params.id;
     var p = categoryModel.choose(id);
     p.then(rows => {
@@ -80,7 +80,7 @@ router.get('/add/:id', (req, res) => {
 
 })
 
-router.post('/add', (req,res) =>{
+router.post('/add', admin, (req,res) =>{
     
     console.log(req.body.IDUser + "lalalalalalalalalalala");
     console.log(req.body.NameCategory + "lalalalalalalalalalala");
@@ -93,7 +93,7 @@ router.post('/add', (req,res) =>{
 })
 
 
-router.post('/update/:name', (req,res) =>{
+router.post('/update/:name', admin, (req,res) =>{
     var name = req.params.name;
     console.log(req.body.NameCategory);
     console.log(req.body.IDUser);
@@ -106,7 +106,7 @@ router.post('/update/:name', (req,res) =>{
     })
 })
 
-router.post('/delete', (req,res) =>{
+router.post('/delete', admin, (req,res) =>{
     categoryModel.delete(req.body.IDUser,req.body.NameCategory)
     .then (id =>{
         res.redirect(`/admin/percategory/view/${req.body.IDUser}`)
