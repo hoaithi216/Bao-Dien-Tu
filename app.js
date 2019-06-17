@@ -72,6 +72,6 @@ app.use((err, req, res, next) => {
   })
 })
 
-app.listen(process.evn.PORT || 3000, () => {
+app.listen(5432, () => {
   console.log('Web Server is running at http://localhost:3000');
 })
