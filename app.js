@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 //created by Hoai Thi
 app.use('/account', require('./routes/account.route'));
 app.use('/search', require('./routes/search.route'));
-
+app.use('/loginfb', require('./routes/loginfb.route'));
 // app.use('/', require('./routes/showByCat.route'));
 
 app.use('/category', require('./routes/category.route'));

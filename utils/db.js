@@ -9,6 +9,16 @@ var createConnection = () => {
     database: 'fit_news_data'
   });
 }
+// var createConnection = () => {
+//   return mysql.createConnection({
+//     host: 'ec2-107-22-238-217.compute-1.amazonaws.com',
+//     port: '5432',
+//     user: 'hevdqactsuhemd',
+//     password: '2e4fc6eec187b3c330d5638fdc515a5c72414ce0fbf13f704426026a65d83624',
+//     database: 'dgnoeqdh6mscu'
+    
+//   });
+// }
 
 module.exports = {
   load: sql => {
