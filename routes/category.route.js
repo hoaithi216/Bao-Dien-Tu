@@ -40,11 +40,11 @@ router.get('/:IDcat', (req, res, next) => {
     ]).then(([count_rows ,NameCat, rows]) => {
      
       
-      // for (const c of res.locals.lcCategories) {
-      //   if (c.CatID === +catId) {
-      //     c.isActive = true;
-      //   }
-      // }
+      for (const c of res.locals.categories) {
+        if (c.IDCategory === +IDcat) {
+          c.isActive = true;
+        }
+      }
   
       var pages = [];
       var total = count_rows[0].total;

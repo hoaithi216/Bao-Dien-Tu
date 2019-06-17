@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 })
 
 router.get("/publishing", (req, res) => {
-    var iduser = res.locals.authUser.IDUser;
+    var iduser = 1  ;
     var statuseditor = 1;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {
@@ -23,9 +23,9 @@ router.get("/publishing", (req, res) => {
         console.log(err);
     });
 })
-
+// res.locals.authUser.IDUser
 router.get("/published", (req, res) => {
-    var iduser = res.locals.authUser.IDUser;
+    var iduser = 1;
     var statuseditor = 2;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {

@@ -29,7 +29,7 @@ module.exports = {
   },
 
   getBlogs: (Auth, StatusEditor) => {
-    return db.load(`select *, count(*) as num_of_blogs from blogs b where b.auth = ${Auth} and b.statuseditor = StatusEditor`);
+    return db.load(`select * from blogs b where b.auth = ${Auth} and b.statuseditor = StatusEditor`);
   },
 
   /////////// Thanh

@@ -123,16 +123,16 @@
                             <div class="classynav">
                                 <ul>
                                     <li class="active"><a href="/">Trang chủ</a></li>
-                                    {{#each parentscat}}
+                                    {{#each categories}}
 
-                                    <li><a href="#">{{NameParents}}</a>
+                                    <li><a href="/category/{{IDCategory}}">{{NameCategory}}</a>
 
 
-                                        <ul class="dropdown">
+                                        {{!-- <ul class="dropdown">
                                             {{#each ../havesubcategory}}
-                                            <li><a href="/category/{{IDCategory}}">{{NameCategory}}</a></li>
+                                            <li><a href="/category/{{havesubcategory.IDCategory}}">{{havesubcategory.parentscat.NameCategory}}</a></li>
                                             {{/each}}
-                                        </ul>
+                                        </ul> --}}
 
 
                                     </li>
@@ -181,10 +181,10 @@
         <div class="container">
             <div class="row">
                 <!-- ##### Các tin trong 1 category ##### -->
-                <div class="col-12  col-lg-8">
+                <div class="col-12 col-md-6 col-lg-8">
                     {{{body}}}
-                </div>
-
+               
+                </div>          
                 <!--Hiển thị 3-4 bài viết nổi bật nhất trong tuần qua-->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="popular-news-widget mt-100">
