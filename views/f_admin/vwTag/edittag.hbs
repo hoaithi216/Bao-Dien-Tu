@@ -1,0 +1,34 @@
+<div class="card shadow">
+  <h4 class="card-header">
+    Chỉnh sửa thẻ tag
+  </h4>
+  <div class="card-body">
+    {{#if this.error}}
+    <div class="alert alert-danger" role="alert">
+      Invalid categoryId. <a href="/admin/managetag" class="alert-link">Go back</a>.
+    </div>
+    {{else}}
+    <form method="POST" action="/admin/managetag/update/{{id}}">
+      <div class="form-group">
+        <label for="txtCatID">Chuyên mục gốc</label>
+        <input readonly type="text" class="form-control" id="txtCatID" name="IDTag" value="{{id}}">
+        <label for="txtCatID">Chuyên mục con</label>
+        <input type="text" class="form-control" id="txtCatID" name="NameTag" value="{{tag}}">
+     </div>
+       
+      <a class="btn btn-primary" href="/admin/managetag" role="button">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+        List
+      </a>
+      <button type="submit" class="btn btn-outline-danger" formaction="/admin/managetag/delete/{{id}}">
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+        Delete
+      </button>
+      <button type="submit" class="btn btn-success">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Update
+      </button>
+    </form>
+    {{/if}}
+  </div>
+</div>

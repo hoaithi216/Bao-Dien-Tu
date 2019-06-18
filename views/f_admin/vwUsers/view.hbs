@@ -1,0 +1,79 @@
+<div class="card shadow">
+    <h4 class="card-header">Chi tiết User</h4>
+    <div class="row">
+        <div class="table-responsive col-sm-12">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th scope="row">IDuser</th>
+                        <td>{{this.view.IDuser}}</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">Username</th>
+                        <td>{{this.view.Username}}</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">FirstName</th>
+                        <td>{{this.view.FirstName}}</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">LastName</th>
+                        <td>{{this.view.LastName}}</td>
+
+                    </tr>
+                    {{#if_e per 1}}
+                    <tr>
+                        <th scope="row">NickName</th>
+                        <td>{{this.view.NickName}}</td>
+
+                    </tr>
+                    {{/if_e}}
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td>{{this.view.Email}}</td>
+
+                    </tr>
+
+                    <tr>
+                        <th scope="row">DoB</th>
+                        <td>{{this.view.DOB}}</td>
+
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Date Register</th>
+                        <td>{{dateregister}}</td>
+
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Permission</th>
+                        <td>{{#if_e per 0}}Subcriber [0]{{/if_e}} {{#if_e per 1}}Writer [1]{{/if_e}}
+                            {{#if_e per 2}}Editor [2]{{/if_e}}</td>
+
+                    </tr>
+                    {{#if_e per 0}}
+                    <tr>
+                        <th scope="row">Date EXP</th>
+                        <td>{{datexp}}</td>
+                    </tr>
+                    {{/if_e}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row col-sm-12">
+        <a class="btn btn-primary" href="/admin/manageusers" role="button">
+            <i class="fa fa-backward" aria-hidden="true"></i>
+            List
+        </a>
+        <a class="btn btn-outline-success" href="/admin/manageusers/edit/{{this.view.IDuser}}" role="button">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            Edit
+        </a>
+    </div>
+
+</div>

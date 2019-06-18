@@ -25,5 +25,9 @@ module.exports = {
 
   delete: id => {
     return db.delete('users', 'IDuser', id);
-  }
+  },
+
+  addate: (name,date) => {
+    return db.load(`insert into adddate (Username,EXP) values("${name}", "${date}")`);
+  },
 };

@@ -24,24 +24,32 @@ router.get("/register", (req,res,next)=> {
 
 
 router.post('/register', (req,res,next)=>{
+  var d = new Date();
+  var currdate = moment(d).format('YYYY-MM-DD');
+
     var saltRounds=10;
     var hash = bcrypt.hashSync(req.body.password,saltRounds);
     var dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
     var entity = {
         Username: req.body.username,
         Password: hash,
-        FristName:req.body.FristName,   
+        FirstName:req.body.FristName,   
         LastName:req.body.LastName,
         Email:req.body.email,
-        NickName:req.body.NickName,
         DOB :dob,   
         Permission:0,
-      
-
+        TimeSub: currdate,
     }
+
+    var EXP = new Date();
+    EXP = addDays(EXP,7);
+    EXP = moment(EXP).format('YYYY-MM-DD');
+
     userModel.add(entity).then(id=>{
-        
-        res.redirect('/account/login');
+        userModel.addate(req.body.username,EXP).then(id =>{
+          res.redirect('/account/login');
+        })
+      
     })
 })
 
@@ -85,5 +93,10 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+
+function addDays(dateObj, numDays) {
+   dateObj.setDate(dateObj.getDate() + numDays);
+   return dateObj;
+}
 
 module.exports = router;

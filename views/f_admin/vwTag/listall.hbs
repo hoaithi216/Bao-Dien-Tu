@@ -1,0 +1,34 @@
+<div class="card shadow">
+    <h4 class="card-header">Danh sách Tags</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">ID Tag</th>
+                 <th scope="col">NameTag</th>
+                <th scope="col" class="text-right">
+                     <a class="btn btn-outline-success" href="/admin/managetag/add" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Thêm
+                    </a>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.listtag}}
+            <tr>
+                <th class="text-center" scope="row">{{IDTag}}</th>
+                 <td>{{NameTag}}</td>
+                <td class="text-right">
+                    <a class="btn btn-primary" href="/admin/managetag/{{IDTag}}/{{NameTag}}" role="button">
+                        Chỉnh sửa
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+            
+        </tbody>
+
+        
+    </table>
+</div>

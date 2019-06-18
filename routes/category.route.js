@@ -7,13 +7,6 @@ router.use(express.static('public'));
 require('../middlewares/sesson')(router);
 
 
-
-
-
-
-
-
-
 router.get('/:IDcat', (req, res, next) => {
   res.locals.IDcate = req.params.IDcat;
   var IDcat = req.params.IDcat;

@@ -1,0 +1,27 @@
+<div class="card shadow">
+  <h4 class="card-header">
+    Thêm thẻ tag
+  </h4>
+  <div class="card-body">
+    {{#if this.error}}
+    <div class="alert alert-danger" role="alert">
+      Invalid categoryId. <a href="/admin/managetag" class="alert-link">Go back</a>.
+    </div>
+    {{else}}
+    <form method="POST" action="/admin/managetag/add">
+        <div class="form-group">
+            <label for="txtIDUser">Tên thẻ tag</label>
+            <input type="text" class="form-control" id="txt" name="NameTag" value="">
+        </div>
+      <a class="btn btn-primary" href="/admin/managetag" role="button">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+        List
+      </a>
+      <button type="submit" class="btn btn-success">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Save
+      </button>
+    </form>
+    {{/if}}
+  </div>
+</div>
