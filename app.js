@@ -61,12 +61,11 @@ app.use('/admin/percategory', require('./routes/f_admin/percategory.route'));
 app.use('/admin/renewal', require('./routes/f_admin/accrenewal.route'));
 app.use('/admin/managecategory', require('./routes/f_admin/managecategory.route'));
 app.use('/admin/manageparents', require('./routes/f_admin/manageparents.route'));
-<<<<<<< HEAD
 app.use('/admin/managetag', require('./routes/f_admin/managetag.route'));
 app.use('/admin/manageusers', require('./routes/f_admin/manageusers.route'));
+app.use('/admin/manageblogs', require('./routes/f_admin/manageblog.route'));
 //app.use('/f_writer/blog', require('./routes/f_writer/blog.route'));
-=======
->>>>>>> b67c177e345cb2bb2eee8c9c5a4f43bf8a2e7122
+
 
 
 app.use((req, res, next) => {
