@@ -1,8 +1,7 @@
 module.exports = (req, res, next) => {
-    if (!req.user) {
-       
-      res.redirect('/account/login');
-    }
-    else next();
-  }
-  
+	if (!req.session.user) {
+		req.session.retUrl = req.originalUrl;
+		res.redirect('/account/login');
+	}
+	else next();
+}

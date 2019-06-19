@@ -1,9 +1,6 @@
 var express = require('express');
-
 var morgan = require('morgan');
-
 var createError = require('http-errors');
-
 var app = express();
 
 app.use(morgan('dev'));
@@ -11,17 +8,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+////Thanh
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+var session = require('express-session');
+app.use(session({
+  cookie: { httpOnly: true },
+  secret: 'keybroadcat',
+  resave: false,
+  saveUninitialized: false
+}));
+////Thanh
 
 require('./middlewares/view-engine')(app);
-require('./middlewares/sesson')(app);
+// require('./middlewares/sesson')(app);
 require('./middlewares/passport.js')(app);
-
-
-
-
-
-
-
 
 app.set('view engine', 'hbs');
 

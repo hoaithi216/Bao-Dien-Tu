@@ -32,10 +32,10 @@ module.exports = function (app) {
   passport.use(ls);
 
   passport.serializeUser((user, done) => {
-    done(null, user);
+    return done(null, user);
   });
 
   passport.deserializeUser((user, done) => {
-    done(null, user);
+    return done(null, user);
   });
 }

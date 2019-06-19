@@ -6,31 +6,35 @@ var passport = require('passport');
 var auth = require('../middlewares/auth');
 
 
-
 var router = express.Router();
 router.get("/is-available", (req,res,next) => {
- 
-    var user1 = req.query.username;
-    userModel.singleByUserName(user1).then(rows => {
-        if(rows.length > 0){
-            res.end("false");
-        }
-        res.end("true");
-    })
+
+  var user1 = req.query.username;
+  userModel.singleByUserName(user1).then(rows => {
+    if(rows.length > 0){
+      res.end("false");
+    }
+    res.end("true");
+  })
 })
 
 router.get("/register", (req,res,next)=> {
-    res.render('vwAccount/register',{layout:'baseview-writer.hbs'});
+  res.render('vwAccount/register',{layout:'baseview-writer.hbs'});
 
 
+<<<<<<< HEAD
 router.post('/register', (req,res,next)=>{
   var d = new Date();
   var currdate = moment(d).format('YYYY-MM-DD');
 
+=======
+  router.post('/register', (req,res,next)=>{
+>>>>>>> 56ff9070636d6f1bf526cfef72bd8dab7f6bf5f2
     var saltRounds=10;
     var hash = bcrypt.hashSync(req.body.password,saltRounds);
     var dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
     var entity = {
+<<<<<<< HEAD
         Username: req.body.username,
         Password: hash,
         FirstName:req.body.FristName,   
@@ -39,6 +43,16 @@ router.post('/register', (req,res,next)=>{
         DOB :dob,   
         Permission:0,
         TimeSub: currdate,
+=======
+      Username: req.body.username,
+      Password: hash,
+      FristName: req.body.FristName,   
+      LastName: req.body.LastName,
+      Email: req.body.email,
+      NickName: req.body.NickName,
+      DOB: dob,   
+      Permission: 0,
+>>>>>>> 56ff9070636d6f1bf526cfef72bd8dab7f6bf5f2
     }
 
     var EXP = new Date();
@@ -46,6 +60,7 @@ router.post('/register', (req,res,next)=>{
     EXP = moment(EXP).format('YYYY-MM-DD');
 
     userModel.add(entity).then(id=>{
+<<<<<<< HEAD
         userModel.addate(req.body.username,EXP).then(id =>{
           res.redirect('/account/login');
         })
@@ -54,11 +69,16 @@ router.post('/register', (req,res,next)=>{
 })
 
 
+=======
+>>>>>>> 56ff9070636d6f1bf526cfef72bd8dab7f6bf5f2
 
+      res.redirect('/account/login');
+    })
+  })
 })
 
-router.get("/login" , (req,res,next)=> {
-    res.render('vwAccount/login', {layout:false});
+router.get("/login" , (req, res, next)=> {
+  res.render('vwAccount/login', { layout:false });
 })
 
 router.post('/login',(req, res, next) => {
@@ -76,20 +96,39 @@ router.post('/login',(req, res, next) => {
     req.logIn(user, err => {
       if (err)
         return next(err);
-        
-        
-      return res.redirect('/');
-      
+      req.session.user = user;
+      var retUrl = req.session.retUrl || '/';
+      console.log(retUrl);
+      if (!retUrl) {
+        switch (user.Permission) {
+          case 1:
+            retUrl = '/';
+            break;
+          case 2:
+            retUrl = '/';
+            break;
+          case 3:
+            retUrl = '/writer';
+            break;
+          case 4:
+            retUrl = '/editor';
+            break;
+          case 5:
+            retUrl = '/admin';
+            break;
+        }
+      }
+      delete req.session.retUrl;
+      return res.redirect(retUrl);
     });
   })(req, res, next);
 })
-  
+
 router.get('/profile', auth, (req, res, next) => {
   res.end('PROFILE');
 })
 router.get('/logout', function(req, res) {
-  req.session.destroy();
-  console.log(res.locals.authUser)
+  req.logOut();
   res.redirect('/');
 });
 
