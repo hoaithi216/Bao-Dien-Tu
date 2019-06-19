@@ -24,14 +24,47 @@ module.exports = {
             where c.IDCategory = b.IDCategory
             and b.IDCategory = ${idcate})`)
     },
+    findCate2:(idcate) =>{
+        return db.load(`select * from category c where c.IDCategory != ${id}`)
+    },
+    findTag:(id) =>{
+        return db.load(`select * from tags t where t.IDTag != ${id}`)
+    },
 
     findIDCate:(NameCate) =>{
-        return db.load(`select c.IDCategory from category c where c.NameCategory = "${NameCate}"`)
+        return db.load(`select c.* from category c where c.NameCategory = "${NameCate}"`)
+    },
+
+    findIDTag:(NameTag) =>{
+        return db.load(`select t.* from tags t where t.NameTag = "${NameTag}"`)
     },
 
     update: entity => {
         return db.update('blogs', 'IDBlog', entity);
-      },
+    },
+
+    delete:(id) =>{
+        return db.load(`DELETE FROM blogs WHERE IDBlog = ${id}`)
+    },
+
+    allCategory: () => {
+        return db.load(`SELECT * from category `);
+    },
+    
+    blogsByCategory: (id) => {
+        return db.load(`SELECT b.*, u.Username , c.NameCategory FROM blogs b LEFT JOIN users u on b.Auth = u.IDuser LEFT JOIN category c ON b.IDCategory = c.IDCategory where b.IDCategory = ${id}`);
+    },
+
+    blogsByTag: (id) => {
+        return db.load(`SELECT b.*, u.Username , c.NameCategory, tb.* FROM blogs b LEFT JOIN users u on b.Auth = u.IDuser LEFT JOIN category c ON b.IDCategory = c.IDCategory LEFT JOIN tagsblog tb on tb.IDBlog = b.IDBlog Where tb.IDTag = ${id}`);
+    },
+    allTag: () => {
+        return db.load(`SELECT * from tags `);
+    },
+
+    findNameTag: (id) => {
+        return db.load(`SELECT * from tags where tags.IDTag = ${id}`);
+    },
 
     
 

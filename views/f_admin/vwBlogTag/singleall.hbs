@@ -1,0 +1,61 @@
+<div class="card shadow">
+    <h4 class="card-header">Danh sách bài viết theo Category</h4>
+     {{#if this.error}}
+    <div class="alert alert-danger" role="alert">
+      Không có bài viết. <a href="/admin/manageblogs/tag" class="alert-link">Go back</a>.
+    </div>
+    {{else}}
+    <div class="rows">
+        <form method="POST" action="/admin/manageblogs/tag">
+            <div class="form-group row">
+                <div class="input-group col-4">
+                    <select class="custom-select" id="inputGroupSelect01" name="NameTag">
+                        <option selected>{{nameTag}}</option>
+                        {{#each this.listtags}}
+                        <option>{{NameTag}}</option>
+                        {{/each}}
+                         <option>All</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success col-2">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Xem
+                </button>
+            </div>
+
+        </form>
+    </div>
+    <div class="rows">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">ID Blog</th>
+                    <th scope="col">Tiêu đề</th>
+                    <th scope="col">Tóm tắt</th>
+                    <th scope="col">Tác giả</th>
+                    <th scope="col">Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.listblogs}}
+                <tr>
+                    <th class="text-center" scope="row">{{IDBlog}}</th>
+                    <td>{{Tittle}}</td>
+                    <td>{{SortContext}}</td>
+                    <td>{{Username}}</td>
+                    <td>{{#if_e this.Status 0}}Draft{{/if_e}} {{#if_e Status 1}}Xuất bản{{/if_e}} </td>
+                    <td class="text-right">
+                        <a class="btn btn-primary" href="/admin/manageblogs/view/{{IDBlog}}" role="button">
+                            Chi tiết
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+
+
+        </table>
+    </div>
+    {{/if}}
+</div>

@@ -51,7 +51,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-
+    <script>
+function goBack() {
+  window.history.back();
+}
+</script>
 {{/section}}
 
 
@@ -111,7 +115,7 @@
                 <input readonly type="text" name="Tag" value="{{#each this.Tags}} {{NameTag}}, {{/each}}"
                     data-role="tagsinput"> </input>
             </div>
-            <a class="btn btn-primary" href="/admin/manageblogs" role="button">
+            <a  onclick="goBack()" class="btn btn-primary" href="#" role="button">
                 <i class="fa fa-backward" aria-hidden="true"></i>
                 List
             </a>
