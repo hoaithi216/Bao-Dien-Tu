@@ -4,7 +4,14 @@ var temp = require('../../models/manageblog.model');
 var admin = require('../../middlewares/admin');
 
 var router = express.Router();
-router.get('/all', (req, res) => {
+
+router.get('/',admin, (req, res) => {
+    res.redirect('admin.manageblogs/all', {
+        layout: 'dashboard.hbs',
+        listblogs: rows
+    });
+})
+router.get('/all',admin, (req, res) => {
     temp.all().then(rows => {
         console.log(rows);
         res.render('f_admin/vwBlog/listall', {
@@ -16,7 +23,7 @@ router.get('/all', (req, res) => {
     });
 })
 
-router.get('/view/:id', (req, res) => {
+router.get('/view/:id',admin, (req, res) => {
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
@@ -39,7 +46,7 @@ router.get('/view/:id', (req, res) => {
 
 })
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', admin, (req, res) => {
     var id = req.params.id
     var Tags
     var Categories
@@ -66,7 +73,7 @@ router.get('/edit/:id', (req, res) => {
     })
 })
 
-router.post('/update/:id', (req, res) => {
+router.post('/update/:id',admin, (req, res) => {
     var id = req.params.id;
     var nameCate = req.body.NameCategory
     var idCate
@@ -98,7 +105,7 @@ router.post('/update/:id', (req, res) => {
     })
 })
 
-router.post('/delete/:id', (req, res) => {
+router.post('/delete/:id', admin,(req, res) => {
     var id = req.params.id;
     temp.delete(id)
         .then(id => {
@@ -119,7 +126,7 @@ function findTag(listtag, id) {
 ////////////////////////////////// Quản lí theo Category
 ////////////////////////
 
-router.get('/category', (req, res) => {
+router.get('/category', admin,(req, res) => {
     temp.allCategory().then(rows => {
         var listcategory = rows
         temp.all().then(rows => {
@@ -135,7 +142,7 @@ router.get('/category', (req, res) => {
     })
 })
 
-router.post('/category', (req, res) => {
+router.post('/category', admin,(req, res) => {
     var name = req.body.NameCategory
 
     if (name == "All") {
@@ -148,7 +155,7 @@ router.post('/category', (req, res) => {
     })
 })
 
-router.get('/category/:id', (req, res) => {
+router.get('/category/:id', admin, (req, res) => {
     var id = req.params.id
     temp.findCate2(id).then(rows => {
         var listcategory = rows
@@ -178,7 +185,7 @@ router.get('/category/:id', (req, res) => {
 
 ///Quan li theo tag
 
-router.get('/tag', (req, res) => {
+router.get('/tag',admin, (req, res) => {
     temp.allTag().then(rows => {
         var listtags = rows
         temp.all().then(rows => {
@@ -195,7 +202,7 @@ router.get('/tag', (req, res) => {
 })
 
 
-router.post('/tag', (req, res) => {
+router.post('/tag', admin,(req, res) => {
     var name = req.body.NameTag
 
     if (name == "All") {
@@ -208,7 +215,7 @@ router.post('/tag', (req, res) => {
 })
 
 
-router.get('/tag/:id', (req, res) => {
+router.get('/tag/:id', admin,(req, res) => {
     var id = req.params.id
     temp.findNameTag(id).then(rows=>{
         var nameTag = rows[0].NameTag

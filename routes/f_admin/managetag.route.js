@@ -4,7 +4,7 @@ var temp = require('../../models/managetag.model');
 var admin = require('../../middlewares/admin');
 
 var router = express.Router();
-router.get('/', (req, res) => {
+router.get('/', admin,(req, res) => {
     
     temp.all().then(rows => {
         console.log(rows);
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     });
 })
 
-router.get('/:id/:tag', (req, res) => {
+router.get('/:id/:tag', admin,(req, res) => {
     var tag = req.params.tag;
     var id = req.params.id;
    
@@ -28,7 +28,7 @@ router.get('/:id/:tag', (req, res) => {
     });
 })
 
-router.post('/update/:id', (req,res) =>{
+router.post('/update/:id', admin,(req,res) =>{
     var id = req.params.id;
     temp.update(id,req.body.NameTag)
     .then (id =>{
@@ -38,7 +38,7 @@ router.post('/update/:id', (req,res) =>{
     })
 })
 
-router.post('/delete/:id', (req,res) =>{
+router.post('/delete/:id', admin,(req,res) =>{
     var id = req.params.id;
     temp.delete(id)
     .then (id =>{
@@ -50,13 +50,13 @@ router.post('/delete/:id', (req,res) =>{
 })
 
 
-router.get('/add', (req, res) => {
+router.get('/add', admin,(req, res) => {
     res.render('f_admin/vwTag/add', {
         layout: 'dashboard.hbs'
     });
 })
 
-router.post('/add', (req, res) => {
+router.post('/add', admin, (req, res) => {
     temp.insert(req.body.NameTag).then(rows => {
         res.redirect(`/admin/managetag`)
     }).catch(err => {

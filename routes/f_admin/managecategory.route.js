@@ -7,7 +7,7 @@ var admin = require('../../middlewares/admin');
 var router = express.Router();
 
 
-router.get('/', (req, res) => {
+router.get('/', admin, (req, res) => {
     
     temp.all().then(rows => {
         console.log(rows);
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 })
 
 
-router.get('/:parents/:id/:category', (req, res) => {
+router.get('/:parents/:id/:category', admin,(req, res) => {
     var par = req.params.parents;
     var id = req.params.id;
     var ca = req.params.category;
@@ -35,7 +35,7 @@ router.get('/:parents/:id/:category', (req, res) => {
     });
 })
 
-router.post('/update/:id', (req,res) =>{
+router.post('/update/:id', admin,(req,res) =>{
     var id = req.params.id;
     temp.add(id,req.body.NameCategory)
     .then (id =>{
@@ -45,7 +45,7 @@ router.post('/update/:id', (req,res) =>{
     })
 })
 
-router.post('/delete/:id', (req,res) =>{
+router.post('/delete/:id', admin,(req,res) =>{
     var id = req.params.id;
     temp.delete(id)
     .then (id =>{
@@ -56,7 +56,7 @@ router.post('/delete/:id', (req,res) =>{
 })
 
 
-router.get('/add', (req, res) => {
+router.get('/add', admin,(req, res) => {
     
     temp.choose().then(rows => {
         res.render('f_admin/vwCategory/add', {
@@ -69,7 +69,7 @@ router.get('/add', (req, res) => {
     });
 })
 
-router.post('/add', (req, res) => {
+router.post('/add',admin, (req, res) => {
     temp.insert(req.body.NameCategory,req.body.NameParents).then(rows => {
         res.redirect(`/admin/managecategory`)
     }).catch(err => {

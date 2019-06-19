@@ -21,7 +21,7 @@ router.get("/is-available", (req, res, next) => {
   })
 })
 
-router.get('/', (req, res) => {
+router.get('/', admin, (req, res) => {
   temp.all().then(rows => {
     console.log(rows);
     res.render('f_admin/vwUsers/listall', {
@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
   });
 })
 
-router.get("/add", (req, res, next) => {
+router.get("/add",admin, (req, res, next) => {
   res.render('f_admin/vwUsers/add', {
     layout: 'dashboard.hbs'
   });
@@ -43,7 +43,7 @@ router.get("/add", (req, res, next) => {
 
 
 
-router.post('/add', (req, res, next) => {
+router.post('/add',admin, (req, res, next) => {
   var d = new Date();
   var currdate = moment(d).format('YYYY-MM-DD');
   var saltRounds = 10;
@@ -64,7 +64,7 @@ router.post('/add', (req, res, next) => {
 })
 
 
-router.get('/view/:id', (req, res) => {
+router.get('/view/:id', admin, (req, res) => {
   var iduser = req.params.id
 
   temp.singleUser(iduser).then(rows => {
@@ -84,7 +84,7 @@ router.get('/view/:id', (req, res) => {
 })
 
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', admin,(req, res) => {
   var iduser = req.params.id
   temp.user(iduser).then(rows => {
     res.render('f_admin/vwUsers/edituser', {
@@ -99,7 +99,7 @@ router.get('/edit/:id', (req, res) => {
 })
 
 
-router.post('/update/:id', (req,res) =>{
+router.post('/update/:id', admin,(req,res) =>{
   var iduser = req.params.id;
   temp.update(iduser,req.body.Permission)
   .then (id =>{
@@ -110,7 +110,7 @@ router.post('/update/:id', (req,res) =>{
 })
 
 
-router.post('/delete/:id', (req,res) =>{
+router.post('/delete/:id', admin, (req,res) =>{
   var id = req.params.id;
   temp.delete(id)
   .then (id =>{

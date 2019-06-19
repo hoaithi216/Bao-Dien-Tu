@@ -7,7 +7,7 @@ var admin = require('../../middlewares/admin');
 var router = express.Router();
 
 
-router.get('/', (req, res) => {
+router.get('/', admin,(req, res) => {
     
     temp.all().then(rows => {
         console.log(rows);
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 })
 
 
-router.get('/:id/:parents', (req, res) => {
+router.get('/:id/:parents', admin,(req, res) => {
     var par = req.params.parents;
     var id = req.params.id;
    
@@ -35,7 +35,7 @@ router.get('/:id/:parents', (req, res) => {
     });
 })
 
-router.post('/update/:id', (req,res) =>{
+router.post('/update/:id',admin,(req,res) =>{
     var id = req.params.id;
     temp.update(id,req.body.NameParents)
     .then (id =>{
@@ -45,7 +45,7 @@ router.post('/update/:id', (req,res) =>{
     })
 })
 
-router.post('/delete/:id', (req,res) =>{
+router.post('/delete/:id', admin,(req,res) =>{
     var id = req.params.id;
     temp.delete(id)
     .then (id =>{
@@ -57,13 +57,13 @@ router.post('/delete/:id', (req,res) =>{
 })
 
 
-router.get('/add', (req, res) => {
+router.get('/add', admin,(req, res) => {
     res.render('f_admin/vwParents/add', {
         layout: 'dashboard.hbs'
     });
 })
 
-router.post('/add', (req, res) => {
+router.post('/add', admin,(req, res) => {
     temp.insert(req.body.NameParents).then(rows => {
         res.redirect(`/admin/manageparents`)
     }).catch(err => {

@@ -70,19 +70,27 @@
   <div class="container-fluid">
     <div class="row" >
       <div class="col-sm-3" >
-        {{#if_e authUser.Permission 3}}
+        {{#if_e authUser.Permission 2}}
         <div class="card shadow">
           <h5 class="card-header">Admin</h5>
           <div class="list-group">
-            <a href="percategory" class="list-group-item list-group-item-action   {{#if isActiveca}} active{{/if}}">Quản
-              lí biên tập viên (Editor)</a>
-            <a href="renewal" class="list-group-item list-group-item-action  {{#if isActive}} active{{/if}}">Quản lí độc
-              giả (Subcriber)</a>
-            <a href="percategory" class="list-group-item list-group-item-action">Quản lí chuyên mục (Categories)</a>
-            <a href="percategory" class="list-group-item list-group-item-action">Quản lí nhãn (Tags)</a>
-            <a href="renewal" class="list-group-item list-group-item-action">Quản lí độc giả (Subcriber)2</a>
+            <a href="http://localhost:3000/admin/manageblogs/all" class="list-group-item list-group-item-action">Quản lí
+              bài viết (All)</a>
+            <a href="http://localhost:3000/admin/manageblogs/category"
+              class="list-group-item list-group-item-action">Quản lí bài viết (Categories)</a>
+            <a href="http://localhost:3000/admin/manageblogs/tag" class="list-group-item list-group-item-action">Quản lí
+              bài viết (Tags) </a>
+            <a href="http://localhost:3000/admin/manageusers" class="list-group-item list-group-item-action">Quản lí
+              Users</a>
+            <a href="http://localhost:3000/admin/manageparents" class="list-group-item list-group-item-action">Quản lí
+              chuyên mục gốc (Parents)</a>
+            <a href="http://localhost:3000/admin/managecategory" class="list-group-item list-group-item-action">Quản lí
+              chuyên mục con (Categories)</a>
+            <a href="http://localhost:3000/admin/renewal" class="list-group-item list-group-item-action">Gia hạn độc giả
+              (Subcriber)</a>
+            <a href="http://localhost:3000/admin/percategory" class="list-group-item list-group-item-action">Phân công
+              chuyên mục (Editor)</a>
           </div>
-
         </div>
         {{/if_e}}
         {{#if_e authUser.Permission 2}}
@@ -114,7 +122,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-     {{{_sections.js}}}
+    {{{_sections.js}}}
 </body>
 
 </html>
