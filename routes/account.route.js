@@ -7,81 +7,58 @@ var auth = require('../middlewares/auth');
 
 
 var router = express.Router();
-router.get("/is-available", (req,res,next) => {
+router.get("/is-available", (req, res, next) => {
 
   var user1 = req.query.username;
   userModel.singleByUserName(user1).then(rows => {
-    if(rows.length > 0){
+    if (rows.length > 0) {
       res.end("false");
     }
     res.end("true");
   })
 })
 
-router.get("/register", (req,res,next)=> {
-  res.render('vwAccount/register',{layout:'baseview-writer.hbs'});
+router.get("/register", (req, res, next) => {
+  res.render('vwAccount/register', { layout: 'baseview-writer.hbs' });
 
 
-<<<<<<< HEAD
-router.post('/register', (req,res,next)=>{
-  var d = new Date();
-  var currdate = moment(d).format('YYYY-MM-DD');
+})
 
-=======
-  router.post('/register', (req,res,next)=>{
->>>>>>> 56ff9070636d6f1bf526cfef72bd8dab7f6bf5f2
-    var saltRounds=10;
-    var hash = bcrypt.hashSync(req.body.password,saltRounds);
+router.post('/register', (req, res, next) => {
+    var d = new Date();
+    var currdate = moment(d).format('YYYY-MM-DD');
+
+    var saltRounds = 10;
+    var hash = bcrypt.hashSync(req.body.password, saltRounds);
     var dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
     var entity = {
-<<<<<<< HEAD
-        Username: req.body.username,
-        Password: hash,
-        FirstName:req.body.FristName,   
-        LastName:req.body.LastName,
-        Email:req.body.email,
-        DOB :dob,   
-        Permission:0,
-        TimeSub: currdate,
-=======
       Username: req.body.username,
       Password: hash,
-      FristName: req.body.FristName,   
+      FirstName: req.body.FristName,
       LastName: req.body.LastName,
       Email: req.body.email,
-      NickName: req.body.NickName,
-      DOB: dob,   
+      DOB: dob,
       Permission: 0,
->>>>>>> 56ff9070636d6f1bf526cfef72bd8dab7f6bf5f2
+      TimeSub: currdate,
     }
 
     var EXP = new Date();
-    EXP = addDays(EXP,7);
+    EXP = addDays(EXP, 7);
     EXP = moment(EXP).format('YYYY-MM-DD');
-
-    userModel.add(entity).then(id=>{
-<<<<<<< HEAD
-        userModel.addate(req.body.username,EXP).then(id =>{
-          res.redirect('/account/login');
-        })
-      
+    userModel.add(entity).then(id => {
+      userModel.addate(req.body.username, EXP).then(id => {
+        res.redirect('/account/login');
+      })
     })
 })
 
 
-=======
->>>>>>> 56ff9070636d6f1bf526cfef72bd8dab7f6bf5f2
 
-      res.redirect('/account/login');
-    })
-  })
+router.get("/login", (req, res, next) => {
+  res.render('vwAccount/login', { layout: false });
 })
 
-router.get("/login" , (req, res, next)=> {
-  res.render('vwAccount/login', { layout:false });
-})
-
-router.post('/login',(req, res, next) => {
+router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err)
       return next(err);
@@ -127,15 +104,15 @@ router.post('/login',(req, res, next) => {
 router.get('/profile', auth, (req, res, next) => {
   res.end('PROFILE');
 })
-router.get('/logout', function(req, res) {
+router.get('/logout', function (req, res) {
   req.logOut();
   res.redirect('/');
 });
 
 
 function addDays(dateObj, numDays) {
-   dateObj.setDate(dateObj.getDate() + numDays);
-   return dateObj;
+  dateObj.setDate(dateObj.getDate() + numDays);
+  return dateObj;
 }
 
 module.exports = router;
