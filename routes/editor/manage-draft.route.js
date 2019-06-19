@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 })
 
 router.get("/pending", (req, res) => {
-    var iduser = 5;
+    var iduser = req.session.user.IDuser;
     var statuseditor = 4;
     manageModel.getBlogsWithDetails(iduser, statuseditor)
     .then(rows => {
@@ -26,7 +26,7 @@ router.get("/pending", (req, res) => {
 })
 
 router.get("/accepted", (req, res) => {
-    var iduser = 5;
+    var iduser = req.session.user.IDuser;
     var statuseditor = 1;
     manageModel.getBlogsWithDetails(iduser, statuseditor)
     .then(rows => {
@@ -42,7 +42,7 @@ router.get("/accepted", (req, res) => {
 })
 
 router.get("/refused", (req, res) => {
-    var iduser = 5;
+    var iduser = req.session.user.IDuser;
     var statuseditor = 3;
     manageModel.getBlogsWithDetails(iduser, statuseditor)
     .then(rows => {

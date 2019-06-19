@@ -78,19 +78,16 @@ router.post('/login', (req, res, next) => {
       console.log(retUrl);
       if (!retUrl) {
         switch (user.Permission) {
+          case 0:
+            retUrl = '/';
+            break;
           case 1:
-            retUrl = '/';
-            break;
-          case 2:
-            retUrl = '/';
-            break;
-          case 3:
             retUrl = '/writer';
             break;
-          case 4:
+          case 2:
             retUrl = '/editor';
             break;
-          case 5:
+          case 3:
             retUrl = '/admin';
             break;
         }

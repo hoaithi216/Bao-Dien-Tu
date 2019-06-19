@@ -6,7 +6,7 @@ var auth = require('../../middlewares/auth');
 
 var router = express.Router();
 
-router.get("/", auth, (req, res, next) => {
+router.get("/", (req, res, next) => {
     res.redirect('/writer/blog/publishing');
 })
 
@@ -15,9 +15,9 @@ router.get("/publishing", (req, res, next) => {
     var statuseditor = 1;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {
-        res.render('writer/publishing-blog', {
+        res.render('f_writer/publishing-blog', {
             title: "view-blog-list",
-            layout: "../../views/_layouts/baseview-writer.hbs",
+            layout: "dashboard.hbs",
             blogs: rows
         })
     }).catch(err => {
@@ -25,14 +25,14 @@ router.get("/publishing", (req, res, next) => {
     });
 })
 
-router.get("/published", auth, (req, res, next) => {
+router.get("/published", (req, res, next) => {
     var iduser = req.session.user.IDuser;
     var statuseditor = 2;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {
-        res.render('writer/published-blog', {
+        res.render('f_writer/published-blog', {
             title: "view-blog-list",
-            layout: "../../views/_layouts/baseview-writer.hbs",
+            layout: "dashboard.hbs",
             blogs: rows
         })
     }).catch(err => {
@@ -40,14 +40,14 @@ router.get("/published", auth, (req, res, next) => {
     });
 })
 
-router.get("/refused", auth, (req, res, next) => {
+router.get("/refused", (req, res, next) => {
     var iduser = req.session.user.IDuser;
     var statuseditor = 3;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {
-        res.render('writer/refused-blog', {
+        res.render('f_writer/refused-blog', {
             title: "view-blog-list",
-            layout: "../../views/_layouts/baseview-writer.hbs",
+            layout: "bdashboard.hbs",
             blogs: rows
         })
     }).catch(err => {
@@ -55,14 +55,14 @@ router.get("/refused", auth, (req, res, next) => {
     });
 })
 
-router.get("/pending", auth, (req, res, next) => {
+router.get("/pending", (req, res, next) => {
     var iduser = req.session.user.IDuser;
     var statuseditor = 4;
     blogModel.getBlogs(iduser, statuseditor)
     .then(rows => {
-        res.render('writer/pending-blog', {
+        res.render('f_writer/pending-blog', {
             title: "view-blog-list",
-            layout: "../../views/_layouts/baseview-writer.hbs",
+            layout: "dashboard.hbs",
             blogs: rows
         })
     }).catch(err => {
@@ -70,13 +70,13 @@ router.get("/pending", auth, (req, res, next) => {
     });
 })
 
-router.get("/add", auth, (req, res, next) => {
+router.get("/add", (req, res, next) => {
     console.log(req.user);
     var p = categoryModel.all();
     p.then(rows => {
-        res.render('writer/add-blog', {
+        res.render('f_writer/add-blog', {
             title: "add-blog",
-            layout: "../../views/_layouts/baseview-writer.hbs",
+            layout: "dashboard.hbs",
             categories: rows
         });
     }).catch(err => {
@@ -84,8 +84,8 @@ router.get("/add", auth, (req, res, next) => {
     });
 })
 
-router.post('/add', auth, (req, res, next) => {
-    var currdate = moment().format('YYYY-MM-DD');
+router.post('/add', (req, res, next) => {
+    var currdate = moment().format('YYYY-MM-DD hh:mm:ss');
     console.log(req.body);
     var entity = {
         IDCategory: req.body.IDCategory,
@@ -99,16 +99,16 @@ router.post('/add', auth, (req, res, next) => {
     blogModel.add(entity)
     .then(id => {
         console.log(id);
-        res.render('writer/add-blog', {
+        res.render('f_writer/add-blog', {
             title: "add-blog",
-            layout: "../../views/_layouts/baseview-writer.hbs"
+            layout: "dashboard.hbs"
         });
     }).catch(err => {
         console.log(err);
     })
 })
 
-router.get("/edit/:id", auth, (req, res, next) => {
+router.get("/edit/:id", (req, res, next) => {
     var id = req.params.id;
     var blog = blogModel.single(id);
     var categories = categoryModel.all();
@@ -120,18 +120,18 @@ router.get("/edit/:id", auth, (req, res, next) => {
                     temp = cat;
                 }
             }
-            res.render('writer/edit-blog', {
+            res.render('f_writer/edit-blog', {
                 title: "edit-blog",
-                layout: "../../views/_layouts/baseview-writer.hbs",
+                layout: "dashboard.hbs",
                 blog: values[0],
                 categories: values[1],
                 error: false,
                 temp: temp
             });
         } else {
-            res.render('writer/edit-blog', {
+            res.render('f_writer/edit-blog', {
                 title: "edit-blog",
-                layout: "../../views/_layouts/baseview-writer.hbs",
+                layout: "dashboard.hbs",
                 error: true
             });
         }
@@ -140,8 +140,8 @@ router.get("/edit/:id", auth, (req, res, next) => {
     });
 })
 
-router.post('/edit/:id', auth, (req, res, next) => {
-    var currdate = moment().format('YYYY-MM-DD');
+router.post('/edit/:id', (req, res, next) => {
+    var currdate = moment().format('YYYY-MM-DD hh:mm:ss');
     console.log(req.body);
     var entity = {
         IDBlog: req.params.id,
