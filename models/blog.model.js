@@ -25,11 +25,11 @@ module.exports = {
  
  /////////// Thanh
   allByWriter: Auth => {
-    return db.load(`select *, count(*) as num_of_blogs from blogs b where b.auth = ${Auth}`);
+    return db.load(`select *, count(*) as num_of_blogs from blogs b where b.Auth = ${Auth}`);
   },
 
   getBlogs: (Auth, StatusEditor) => {
-    return db.load(`select * from blogs b where b.auth = ${Auth} and b.statuseditor = StatusEditor`);
+    return db.load(`select * from blogs b where b.Auth = ${Auth} and b.statuseditor = StatusEditor`);
   },
 
   /////////// Thanh

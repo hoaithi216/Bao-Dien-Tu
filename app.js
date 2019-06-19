@@ -51,7 +51,7 @@ app.use('/category', require('./routes/category.route'));
 
 
 ////Thanh
-app.use('/writer/blog', require('./routes/writer/blog.route'));
+app.use('/writer', require('./routes/f_writer/blog.route'));
 app.use('/editor', require('./routes/editor/manage-draft.route'));
 ////Thanh
 
@@ -61,7 +61,6 @@ app.use('/admin/percategory', require('./routes/f_admin/percategory.route'));
 app.use('/admin/renewal', require('./routes/f_admin/accrenewal.route'));
 app.use('/admin/managecategory', require('./routes/f_admin/managecategory.route'));
 app.use('/admin/manageparents', require('./routes/f_admin/manageparents.route'));
-app.use('/f_writer/blog', require('./routes/f_writer/blog.route'));
 
 
 app.use((req, res, next) => {
