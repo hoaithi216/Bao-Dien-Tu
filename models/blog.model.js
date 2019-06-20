@@ -29,7 +29,15 @@ module.exports = {
   },
 
   getBlogs: (Auth, StatusEditor) => {
-    return db.load(`select * from blogs b where b.Auth = ${Auth} and b.statuseditor = StatusEditor`);
+    return db.load(`select * from blogs b where b.Auth = ${Auth} and b.statuseditor = ${StatusEditor}`);
+  },
+
+  getBlogsWithoutPremium: (Auth, StatusEditor) => {
+    return db.load(`select * from blogs b where b.Status = '0'`);
+  },
+
+  getBlogsWithoutPremium: (Auth, StatusEditor) => {
+    return db.load(`select * from blogs b where `);
   },
 
   /////////// Thanh

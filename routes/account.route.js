@@ -74,7 +74,7 @@ router.post('/login', (req, res, next) => {
       if (err)
         return next(err);
       req.session.user = user;
-      var retUrl = req.session.retUrl || '/';
+      var retUrl = req.session.retUrl;
       console.log(retUrl);
       if (!retUrl) {
         switch (user.Permission) {
@@ -98,9 +98,66 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 })
 
-router.get('/profile', auth, (req, res, next) => {
-  res.end('PROFILE');
-})
+
+// router.get("/profile/:id", function (req, res) {
+//     var isActive = false;
+//     var user = userModel.findById(req.params.id);
+//     user.then(rows => {
+//         if(rows.role_id == 3){
+//             isActive = true;
+//         }
+//         console.log(rows);
+//         res.render("update-profile", {
+//             title: "manage-draft",
+//             layout: "edit-profile",
+//             user: rows,
+//             isActive: isActive
+//         });
+//     }).catch(err => {
+//         console.log(err);
+//     });
+// });
+// router.post("/profile/:id", function (req, res) {
+//     var user = userModel.findById(req.params.id);
+//     user.then(user => {
+//         if (!user) {
+//             return res.redirect('/');
+//         }
+//         user.FirstName = req.body.FirstName;
+//         user.LastName = req.body.LastName;
+//         user.pseudonym = req.body.pseudonym;
+//         user.email = req.body.email;
+//         user.birthday = req.body.birthday;
+//         userModel.update(user).then(err => {
+//             console.log(user);
+//             switch (user.role_id) {
+//                 case 1:
+//                     res.redirect('../');
+//                     break;
+//                 case 3:
+//                     res.redirect('../writer');
+//                     break;
+//                 case 4:
+//                     res.redirect('../editor');
+//                     break;
+//                 case 5:
+//                     res.redirect('../admin');
+//                     break;
+//                 default:
+//                     res.redirect('../');
+//                     break; ''
+//             }
+//         }).catch(err => {
+//             console.log(err);
+//             return res.redirect('back');
+//         });
+
+//     }).catch(err => {
+//         console.log(err);
+//         return res.redirect('back');
+//     });
+// });
+
 router.get('/logout', function (req, res) {
   req.logOut();
   res.redirect('/');

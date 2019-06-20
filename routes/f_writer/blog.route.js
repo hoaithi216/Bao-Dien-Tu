@@ -94,7 +94,10 @@ router.post('/add', (req, res, next) => {
         Context: req.body.Context,
         SortContext: req.body.SortContext,
         Auth: req.session.user.IDuser,
-        AvatarBlog: req.body.linkAvatar
+        AvatarBlog: req.body.linkAvatar,
+        amount_of_views: 0,
+        StatusEditor: 4,
+        Status: 0
     }
     blogModel.add(entity)
     .then(id => {
