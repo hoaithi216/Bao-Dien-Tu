@@ -60,6 +60,15 @@ app.use('/editor', authEditor, require('./routes/editor/manage-draft.route'));
 
 
 /// Duy Tan
+app.get('/admin', (req, res) => {
+
+  res.redirect('/admin/manageblogs/all')
+})
+
+app.get('/f_editor', (req, res) => {
+
+  res.redirect('/f_editor/draft')
+})
 app.use('/admin/percategory', require('./routes/f_admin/percategory.route'));
 app.use('/admin/renewal', require('./routes/f_admin/accrenewal.route'));
 app.use('/admin/managecategory', require('./routes/f_admin/managecategory.route'));

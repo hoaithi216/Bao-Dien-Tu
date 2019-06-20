@@ -1,7 +1,7 @@
 <div class="card shadow">
-    <h4 class="card-header">Danh sách bài viết quản lí</h4>
+    <h4 class="card-header">Danh sách bài viết đã duyệt</h4>
     <div class="rows">
-        <form method="POST" action="/admin/manageblogs/category">
+        <form method="POST" action="">
             <div class="form-group row">
                 <div class="input-group col-4">
                     <select class="custom-select" id="inputGroupSelect01" name="NameCategory">
@@ -25,7 +25,7 @@
                     <th scope="col">Tác giả</th>
                     <th scope="col">Chuyên mục</th>
                    
-                   
+    
 
                 </tr>
             </thead>
@@ -38,7 +38,7 @@
                     <td>{{Username}}</td>
                      <td>{{NameCategory}}</td>
                     <td class="text-right">
-                        <a class="btn btn-primary" href="/f_editor/draft/view/{{IDBlog}}" role="button">
+                        <a class="btn btn-primary" href="/f_editor/draft/list_agree/{{IDBlog}}" role="button">
                             Chi tiết
                         </a>
                     </td>

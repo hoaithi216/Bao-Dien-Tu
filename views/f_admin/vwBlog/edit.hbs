@@ -120,15 +120,27 @@ function goBack() {
                 <label for="txtTitle">Ngày xuất bản</label>
                 <input class="form-control" id="txtPublic" name="DatePublic" value="{{datepublic}}">
             </div>
+            <div class="form-group">
+                <label for="txtTitle">Loại bài viết</label>
+                <select class="custom-select" id="inputGroupSelect01" name="TypeBlog">
+                    <option selected>{{typeblog}}</option>
+                    {{#if_e typeblog 1}}
+                    <option>0</option>
+                    {{/if_e}}
+                    {{#if_e typeblog 0}}
+                    <option>1</option>
+                    {{/if_e}}
+                </select>
+            </div>
             <!-- Content Input -->
             <div class="form-group mt-2">
                 <label for="txtContent">Nội dung</label>
                 <textarea class="form-control" id="txtContent" name="Context"> {{this.blog.Context}}</textarea>
             </div>
             <div class="card-body">
-                <label for="txtFullDes">Nhãn</label>
-                <input type="text" name="Tag" value="{{#each this.Tags}} {{NameTag}}, {{/each}}" data-role="tagsinput">
-                </input>
+                <label for="txtFullDes">Nhãn</label><br>
+                 {{#each this.Tags}} <input type="checkbox"  checked="checked" name="ListTag" value={{IDTag}}>{{NameTag}}{{/each}}
+                  {{#each this.listtagnotblog}} <input type="checkbox" name="ListTag" value={{IDTag}}>{{NameTag}}{{/each}}
             </div>
             <a  onclick="goBack()" class="btn btn-primary" href="#" role="button">
                 <i class="fa fa-backward" aria-hidden="true"></i>

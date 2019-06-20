@@ -5,13 +5,13 @@ var admin = require('../../middlewares/admin');
 
 var router = express.Router();
 
-router.get('/',admin, (req, res) => {
+router.get('/', admin, (req, res) => {
     res.redirect('admin.manageblogs/all', {
         layout: 'dashboard.hbs',
         listblogs: rows
     });
 })
-router.get('/all',admin, (req, res) => {
+router.get('/all', admin, (req, res) => {
     temp.all().then(rows => {
         console.log(rows);
         res.render('f_admin/vwBlog/listall', {
@@ -23,7 +23,7 @@ router.get('/all',admin, (req, res) => {
     });
 })
 
-router.get('/view/:id',admin, (req, res) => {
+router.get('/view/:id', admin, (req, res) => {
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
@@ -50,39 +50,64 @@ router.get('/edit/:id', admin, (req, res) => {
     var id = req.params.id
     var Tags
     var Categories
-    temp.findTags(id).then(rows => {
-        Tags = rows;
-        temp.findCate(id).then(rows => {
-            Categories = rows;
-            temp.singleBlog(id).then(rows => {
-                var dateproduct = moment(rows[0].DateProduct).format('DD/MM/YYYY');
-                var datepublic = moment(rows[0].DatePublic).format('DD/MM/YYYY');
-                res.render('f_admin/vwBlog/edit', {
-                    layout: 'dashboard.hbs',
-                    Tags: Tags,
-                    blog: rows[0],
-                    status: rows[0].Status,
-                    dateproduct: dateproduct,
-                    datepublic: datepublic,
-                    Categories: Categories
 
-                });
+    temp.TagsnotBlog(id).then(rows => {
+        var listtagnotblog = rows
+        temp.findTags(id).then(rows => {
+            Tags = rows;
+            temp.findCate(id).then(rows => {
+                Categories = rows;
+                temp.singleBlog(id).then(rows => {
+                    var dateproduct = moment(rows[0].DateProduct).format('DD/MM/YYYY');
+                    var datepublic = moment(rows[0].DatePublic).format('DD/MM/YYYY');
+                    res.render('f_admin/vwBlog/edit', {
+                        layout: 'dashboard.hbs',
+                        Tags: Tags,
+                        blog: rows[0],
+                        status: rows[0].Status,
+                        dateproduct: dateproduct,
+                        datepublic: datepublic,
+                        Categories: Categories,
+                        typeblog: rows[0].TypeBlog,
+                        listtagnotblog: listtagnotblog
+                    });
+                })
             })
-        })
 
+        })
     })
+
 })
 
-router.post('/update/:id',admin, (req, res) => {
+router.post('/update/:id', admin, (req, res) => {
     var id = req.params.id;
     var nameCate = req.body.NameCategory
     var idCate
+    var listtag = req.body.ListTag
+    console.log(listtag);
+    var i;
+    temp.deleteTagbyBlog(id).then(id=>{    
+    })
+    for (i = 0; i < listtag.length; i++) {
+        temp.insertTagsBlog(id,listtag[i]).then(id=>{
+        })
+    }
+
+    console.log(listtag);
     if (req.body.Status == 'Draft') {
         var status = 0;
     }
     else {
         var status = 1;
     }
+
+    if (req.body.TypeBlog == '0') {
+        var typeblog = 0;
+    }
+    else {
+        var typeblog = 1;
+    }
+
     temp.findIDCate(nameCate).then(rows => {
         idCate = rows[0].IDCategory;
         var pub = moment(req.body.DatePublic, 'DD/MM/YYYY').format('YYYY-MM-DD');
@@ -94,7 +119,9 @@ router.post('/update/:id',admin, (req, res) => {
             IDCategory: idCate,
             Status: status,
             DatePublic: pub,
-            Context: req.body.Context
+            Context: req.body.Context,
+            TypeBlog: typeblog,
+            StatusEditor: 2
         }
         temp.update(entity)
             .then(id => {
@@ -105,7 +132,7 @@ router.post('/update/:id',admin, (req, res) => {
     })
 })
 
-router.post('/delete/:id', admin,(req, res) => {
+router.post('/delete/:id', admin, (req, res) => {
     var id = req.params.id;
     temp.delete(id)
         .then(id => {
@@ -126,7 +153,7 @@ function findTag(listtag, id) {
 ////////////////////////////////// Quản lí theo Category
 ////////////////////////
 
-router.get('/category', admin,(req, res) => {
+router.get('/category', admin, (req, res) => {
     temp.allCategory().then(rows => {
         var listcategory = rows
         temp.all().then(rows => {
@@ -142,7 +169,7 @@ router.get('/category', admin,(req, res) => {
     })
 })
 
-router.post('/category', admin,(req, res) => {
+router.post('/category', admin, (req, res) => {
     var name = req.body.NameCategory
 
     if (name == "All") {
@@ -185,7 +212,7 @@ router.get('/category/:id', admin, (req, res) => {
 
 ///Quan li theo tag
 
-router.get('/tag',admin, (req, res) => {
+router.get('/tag', admin, (req, res) => {
     temp.allTag().then(rows => {
         var listtags = rows
         temp.all().then(rows => {
@@ -202,7 +229,7 @@ router.get('/tag',admin, (req, res) => {
 })
 
 
-router.post('/tag', admin,(req, res) => {
+router.post('/tag', admin, (req, res) => {
     var name = req.body.NameTag
 
     if (name == "All") {
@@ -215,9 +242,9 @@ router.post('/tag', admin,(req, res) => {
 })
 
 
-router.get('/tag/:id', admin,(req, res) => {
+router.get('/tag/:id', admin, (req, res) => {
     var id = req.params.id
-    temp.findNameTag(id).then(rows=>{
+    temp.findNameTag(id).then(rows => {
         var nameTag = rows[0].NameTag
         temp.findTag(id).then(rows => {
             var listtags = rows
@@ -237,11 +264,11 @@ router.get('/tag/:id', admin,(req, res) => {
                         error: true
                     });
                 }
-    
+
             }).catch(err => {
                 console.log(err);
             });
-    
+
         })
     })
 })

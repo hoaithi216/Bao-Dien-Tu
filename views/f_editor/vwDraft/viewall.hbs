@@ -100,15 +100,6 @@
                 <input readonly class="form-control" id="txtTitle" name="Tittle"
                     value="{{#if_e status 0}}Draft{{/if_e}} {{#if_e status 1}}Publish{{/if_e}}">
             </div>
-            <div class="form-group">
-                <label for="txtTitle">Ngày xuất bản</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle"
-                    value="{{#if_e status 0}}Chưa xuất bản{{/if_e}} {{#if_e status 1}} {{datepublic}} {{/if_e}}">
-            </div>
-            <div class="form-group">
-                <label for="txtTitle">Loại bài viết</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle" value="{{this.blog.TypeBlog}}">
-            </div>
             <!-- Content Input -->
             <div class="form-group mt-2">
                 <label for="txtContent">Nội dung</label>
@@ -123,9 +114,13 @@
                 <i class="fa fa-backward" aria-hidden="true"></i>
                 List
             </a>
-            <a class="btn btn btn-success" href="/admin/manageblogs/edit/{{this.blog.IDBlog}}" role="button">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-                Edit
+            <a class="btn  btn-outline-danger" href="/f_editor/draft/refuse/{{this.blog.IDBlog}}" role="button">
+                <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                Từ chối
+            </a>
+            <a class="btn btn btn-success" href="/f_editor/draft/edit/{{this.blog.IDBlog}}" role="button">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Duyệt
             </a>
         </form>
     </div>

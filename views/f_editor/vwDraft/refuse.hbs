@@ -1,0 +1,24 @@
+
+<div class="card shadow mt-3">
+    <h4 class="card-header">
+        Từ chối bài viết
+    </h4>
+    <div class="card-body">
+        <form method="POST" action="/f_editor/draft/refuse/{{this.blog.IDBlog}}">
+    
+            <div class="form-group">
+                <label for="txtTitle">Nội dung</label>
+                 <textarea  class="form-control" id="txtTitle" name="Feedback"></textarea>
+
+            </div>
+            <a onclick="goBack()" class="btn btn-primary" href="#" role="button">
+                <i class="fa fa-backward" aria-hidden="true"></i>
+                List
+            </a>
+             <button type="submit" class="btn btn-success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Save
+            </button>
+        </form>
+    </div>
+</div>

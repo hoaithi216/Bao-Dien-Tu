@@ -2,6 +2,8 @@
 <!-- Tags Input -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 {{/section}}
 
 {{#section 'js'}}
@@ -23,15 +25,13 @@
         });
     })
 
-  // $(function () {
-  //   $('#avatar').fileinput({
-  //     theme: 'fa',
-  //     dropZoneEnabled: false,
-  //     allowedFileExtensions: ['png', 'jpg', 'jpeg'],
-  //     uploadUrl: '/add',
-  //     uploadAsync: false
-  //   })
-  // })
+    $(function () {
+        $('#txtPublic').datetimepicker({
+            format: 'd/m/Y',
+            timepicker: false,
+            mask: true,
+        });
+    })
 
   // fetch('/add-blog', {
   //   method: 'POST',
@@ -51,81 +51,83 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-<script>
-    function goBack() {
-        window.history.back();
-    }
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
+    <script>
+function goBack() {
+  window.history.back();
+}
 </script>
+
 {{/section}}
 
 
 <div class="card shadow mt-3">
     <h4 class="card-header">
-        Chi tiết bài viết
+        Chi tiết bài viết đã duyệt
     </h4>
     <div class="card-body">
         <form method="POST">
             <!-- Title Input -->
             <div class="form-group">
                 <label for="txtTitle">Tác giả</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle" value="{{this.blog.Username}}">
+                <input readonly class="form-control" id="txtTitle" name="Username" value="{{this.blog.Username}}">
 
             </div>
             <div class="form-group">
                 <label for="txtTitle">ID Blog</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle" value="{{this.blog.IDBlog}}">
+                <input readonly class="form-control" id="txtTitle" name="IDBlog" value="{{this.blog.IDBlog}}">
             </div>
             <div class="form-group">
                 <label for="txtTitle">Tiêu đề</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle" value="{{this.blog.Tittle}}">
+                <input  readonly class="form-control" id="txtTitle" name="Tittle" value="{{this.blog.Tittle}}">
             </div>
             <div class="form-group">
                 <label for="txtTitle">Tóm tắt</label>
-                <textarea readonly class="form-control" id="txtTitle" name="Tittle">{{this.blog.SortContext}}</textarea>
+                <textarea readonly class="form-control" id="txtTitle" name="SortContext">{{this.blog.SortContext}}</textarea>
             </div>
             <div class="form-group">
                 <label for="txtTitle">Ảnh thumbnail</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle" value="{{this.blog.AvatarBlog}}">
+                <input readonly class="form-control" id="txtTitle" name="VatarBlog" value="{{this.blog.AvatarBlog}}">
             </div>
             <div class="form-group">
                 <label for="txtTitle">Chuyên mục</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle" value="{{this.blog.NameCategory}}">
+                <select class="custom-select" id="inputGroupSelect01" name="NameCategory">
+                    <option selected>{{this.blog.NameCategory}}</option>
+                
+                </select>
             </div>
             <div class="form-group">
                 <label for="txtTitle">Ngày viết</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle" value="{{dateproduct}}">
+                <input readonly class="form-control" id="txtTitle" name="DateProduct" value="{{dateproduct}}">
             </div>
             <div class="form-group">
                 <label for="txtTitle">Trạng thái</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle"
-                    value="{{#if_e status 0}}Draft{{/if_e}} {{#if_e status 1}}Publish{{/if_e}}">
+                <input readonly class="form-control" id="txtTitle" name="Status" value="Publish">
+                
             </div>
             <div class="form-group">
                 <label for="txtTitle">Ngày xuất bản</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle"
-                    value="{{#if_e status 0}}Chưa xuất bản{{/if_e}} {{#if_e status 1}} {{datepublic}} {{/if_e}}">
+                <input readonly class="form-control" id="txtPublic" name="DatePublic" value="{{datepublic}}">
             </div>
             <div class="form-group">
                 <label for="txtTitle">Loại bài viết</label>
-                <input readonly class="form-control" id="txtTitle" name="Tittle" value="{{this.blog.TypeBlog}}">
+                  <input readonly class="form-control" id="txtTitle" name="VatarBlog" value="{{this.blog.TypeBlog}}">
             </div>
             <!-- Content Input -->
             <div class="form-group mt-2">
                 <label for="txtContent">Nội dung</label>
-                <textarea readonly class="form-control" id="txtContent" name="Context"> {{this.blog.Context}}</textarea>
+                <textarea class="form-control" id="txtContent" name="Context"> {{this.blog.Context}}</textarea>
             </div>
             <div class="card-body">
-                <label for="txtFullDes">Nhãn</label>
-                <input readonly type="text" name="Tag" value="{{#each this.Tags}} {{NameTag}}, {{/each}}"
+                <label for="txtFullDes">Nhãn</label><br>
+                 <input readonly type="text" name="Tag" value="{{#each this.Tags}} {{NameTag}}, {{/each}}"
                     data-role="tagsinput"> </input>
             </div>
-            <a onclick="goBack()" class="btn btn-primary" href="#" role="button">
+            <a  onclick="goBack()" class="btn btn-primary" href="#" role="button">
                 <i class="fa fa-backward" aria-hidden="true"></i>
                 List
-            </a>
-            <a class="btn btn btn-success" href="/admin/manageblogs/edit/{{this.blog.IDBlog}}" role="button">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-                Edit
             </a>
         </form>
     </div>
