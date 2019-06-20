@@ -30,6 +30,9 @@ app.use(require('./middlewares/locals2.mdw'));
 // app.use(require('./middlewares/locals.mdw'));
 app.use(require('./middlewares/auth-locals.mdw'));
 
+var authWriter = require('./middlewares/auth-writer');
+var authEditor = require('./middlewares/auth-editor');
+
 
 app.get('/', (req, res) => {
  
@@ -52,8 +55,8 @@ app.use('/category', require('./routes/category.route'));
 
 
 ////Thanh
-app.use('/writer', require('./routes/f_writer/blog.route'));
-app.use('/editor', require('./routes/editor/manage-draft.route'));
+app.use('/writer', authWriter, require('./routes/writer/blog.route'));
+app.use('/editor', authEditor, require('./routes/editor/manage-draft.route'));
 ////Thanh
 
 

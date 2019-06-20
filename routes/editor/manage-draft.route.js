@@ -17,7 +17,7 @@ router.get("/pending", (req, res) => {
     .then(rows => {
         res.render('editor/pending-draft', {
             title: "manage-draft",
-            layout: "../../views/_layouts/baseview-editor.hbs",
+            layout: "baseview-editor.hbs",
             drafts: rows
         })
     }).catch(err => {
@@ -33,7 +33,7 @@ router.get("/accepted", (req, res) => {
         console.log(rows);
         res.render('editor/accepted-blog', {
             title: "manage-draft",
-            layout: "../../views/_layouts/baseview-editor.hbs",
+            layout: "baseview-editor.hbs",
             drafts: rows
         })
     }).catch(err => {
@@ -49,7 +49,7 @@ router.get("/refused", (req, res) => {
         console.log(rows);
         res.render('editor/refused-blog', {
             title: "manage-draft",
-            layout: "../../views/_layouts/baseview-editor.hbs",
+            layout: "baseview-editor.hbs",
             drafts: rows
         })
     }).catch(err => {
@@ -59,28 +59,28 @@ router.get("/refused", (req, res) => {
 
 router.get("/accept/:id", (req, res) => {
     var id = req.params.id;
-    var blog = blogModel.single(id);
-    var categories = categoryModel.all();
-    var p;
-    Promise.all([blog, categories]).then(values => {
-        if (values[0].length > 0) {
-            for (const cat of values[1]) {
-                if (cat.id == values[0].IDCategory) {
-                    temp = cat;
+    Promise.all([blogModel.single(id),
+                categoryModel.all()])
+    .then(([blog, cat]) => {
+        let temp;
+        if (blog.length > 0) {
+            for (const c of cat) {
+                if (c.id == blog.IDCategory) {
+                    temp = c;
                 }
             }
             res.render('editor/accept-blog', {
                 title: "accept-blog",
-                layout: "../../views/_layouts/baseview-editor.hbs",
-                blog: values[0],
-                categories: values[1],
+                layout: "baseview-editor.hbs",
+                blog: blog,
+                categories: cat,
                 error: false,
                 temp: temp
             });
         } else {
             res.render('editor/accept-blog', {
                 title: "accept-blog",
-                layout: "../../views/_layouts/baseview-editor.hbs",
+                layout: "baseview-editor.hbs",
                 error: true
             });
         }
@@ -90,8 +90,10 @@ router.get("/accept/:id", (req, res) => {
 })
 
 router.post('/accept/:id', (req, res) => {
-    var DatePublic = moment(req.body.DatePublic, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    var StatusEditor = 1;
+    var DatePublic = moment(req.body.DatePublic, 'DD/MM/YYYY hh:mm:ss').format('YYYY-MM-DD hh:mm:ss');
+    var premium = 0;
+    var iduser = req.session.user.IDuser;
+    if (req.body.Premium == 1) premium = 1;
     console.log(req.body);
     var entity = {
         IDBlog: req.params.id,
@@ -101,7 +103,9 @@ router.post('/accept/:id', (req, res) => {
         Context: req.body.Context,
         SortContext: req.body.SortContext,
         AvatarBlog: req.body.linkAvatar,
-        StatusEditor: StatusEditor
+        StatusEditor: 1,
+        TypeBlog: premium,
+        Editor: iduser
     }
     blogModel.update(entity)
     .then(id => {
@@ -114,28 +118,28 @@ router.post('/accept/:id', (req, res) => {
 
 router.get("/refuse/:id", (req, res) => {
     var id = req.params.id;
-    var blog = blogModel.single(id);
-    var categories = categoryModel.all();
-    var p;
-    Promise.all([blog, categories]).then(values => {
-        if (values[0].length > 0) {
-            for (const cat of values[1]) {
-                if (cat.id == values[0].IDCategory) {
-                    temp = cat;
+    Promise.all([blogModel.single(id),
+                categoryModel.all()])
+    .then(([blog, cat]) => {
+        let temp;
+        if (blog.length > 0) {
+            for (const c of cat) {
+                if (c.id == blog.IDCategory) {
+                    temp = c;
                 }
             }
             res.render('editor/refuse-blog', {
                 title: "refuse-blog",
-                layout: "../../views/_layouts/baseview-editor.hbs",
-                blog: values[0],
-                categories: values[1],
+                layout: "baseview-editor.hbs",
+                blog: blog,
+                categories: cat,
                 error: false,
                 temp: temp
             });
         } else {
             res.render('editor/refuse-blog', {
                 title: "refuse-blog",
-                layout: "../../views/_layouts/baseview-editor.hbs",
+                layout: "baseview-editor.hbs",
                 error: true
             });
         }
@@ -145,6 +149,7 @@ router.get("/refuse/:id", (req, res) => {
 })
 
 router.post('/refuse/:id', (req, res) => {
+    var iduser = req.session.user.IDuser;
     var entity = {
         IDBlog: req.params.id,
         IDCategory: req.body.IDCategory,
@@ -152,8 +157,9 @@ router.post('/refuse/:id', (req, res) => {
         Context: req.body.Context,
         SortContext: req.body.SortContext,
         AvatarBlog: req.body.linkAvatar,
-        StatusEditor: '3',
-        Feedback: req.body.Feedback
+        StatusEditor: 3,
+        Feedback: req.body.Feedback,
+        Editor: iduser
     }
     console.log(entity);
     blogModel.update(entity)

@@ -25,31 +25,31 @@ router.get("/register", (req, res, next) => {
 })
 
 router.post('/register', (req, res, next) => {
-    var d = new Date();
-    var currdate = moment(d).format('YYYY-MM-DD');
+  var d = new Date();
+  var currdate = moment(d).format('YYYY-MM-DD');
 
-    var saltRounds = 10;
-    var hash = bcrypt.hashSync(req.body.password, saltRounds);
-    var dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    var entity = {
-      Username: req.body.username,
-      Password: hash,
-      FirstName: req.body.FristName,
-      LastName: req.body.LastName,
-      Email: req.body.email,
-      DOB: dob,
-      Permission: 0,
-      TimeSub: currdate,
-    }
+  var saltRounds = 10;
+  var hash = bcrypt.hashSync(req.body.password, saltRounds);
+  var dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
+  var entity = {
+    Username: req.body.username,
+    Password: hash,
+    FirstName: req.body.FristName,
+    LastName: req.body.LastName,
+    Email: req.body.email,
+    DOB: dob,
+    Permission: 0,
+    TimeSub: currdate,
+  }
 
-    var EXP = new Date();
-    EXP = addDays(EXP, 7);
-    EXP = moment(EXP).format('YYYY-MM-DD');
-    userModel.add(entity).then(id => {
-      userModel.addate(req.body.username, EXP).then(id => {
-        res.redirect('/account/login');
-      })
+  var EXP = new Date();
+  EXP = addDays(EXP, 7);
+  EXP = moment(EXP).format('YYYY-MM-DD');
+  userModel.add(entity).then(id => {
+    userModel.addate(req.body.username, EXP).then(id => {
+      res.redirect('/account/login');
     })
+  })
 })
 
 
@@ -74,22 +74,22 @@ router.post('/login', (req, res, next) => {
       if (err)
         return next(err);
       req.session.user = user;
-      var retUrl = req.session.retUrl || '/';
+      var retUrl = req.session.retUrl;
       console.log(retUrl);
       if (!retUrl) {
         switch (user.Permission) {
           case 0:
-            retUrl = '/';
-            break;
+          retUrl = '/';
+          break;
           case 1:
-            retUrl = '/writer';
-            break;
+          retUrl = '/writer';
+          break;
           case 2:
-            retUrl = '/editor';
-            break;
+          retUrl = '/editor';
+          break;
           case 3:
-            retUrl = '/admin';
-            break;
+          retUrl = '/admin';
+          break;
         }
       }
       delete req.session.retUrl;
@@ -98,9 +98,66 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 })
 
-router.get('/profile', auth, (req, res, next) => {
-  res.end('PROFILE');
-})
+
+router.get("/profile", function (req, res) {
+  console.log(req.session.user);  var id = req.session.user.IDuser;
+  userModel.single(id).then(user => {
+    if (!user) {
+      return res.redirect('/');
+    }
+    res.render("vwAccount/update-profile", {
+      layout: false,
+      title: "update-profile",
+      user: user
+    });
+  }).catch(err => {
+    console.log(err);
+  });
+});
+
+router.post("/profile", function (req, res) {
+  var dob = moment(req.body.DOB).format('YYYY-MM-DD');
+  userModel.single(req.body.IDUser)
+  .then(user => {
+    user.FirstName = req.body.FirstName;
+    user.LastName = req.body.LastName;
+    user.NickName = req.body.NickName;
+    user.Email = req.body.Email;
+    user.DOB = dob;
+    userModel.update(user).then(id => {
+      var EXP = new Date();
+      EXP = addDays(EXP, 7);
+      EXP = moment(EXP).format('YYYY-MM-DD');
+      userModel.addate(user.Username, EXP).then(id => {
+        switch (user.Permission) {
+          case 0:
+          res.redirect('/');
+          break;
+          case 1:
+          res.redirect('/writer');
+          break;
+          case 2:
+          res.redirect('/editor');
+          break;
+          case 3:
+          res.redirect('/admin');
+          break;
+          default:
+          res.redirect('/');
+          break; ''
+        }
+      })
+    }).catch(err => {
+      console.log(err);
+      return res.redirect('/');
+    });
+
+  }).catch(err => {
+    console.log(err);
+    return res.redirect('/');
+  });
+});
+
 router.get('/logout', function (req, res) {
   req.logOut();
   res.redirect('/');
