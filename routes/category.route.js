@@ -1,6 +1,7 @@
 var express = require('express');
 const showByCat = require('./showByCat.route');
 var blogModel = require('../models/blog.model');
+var parentsCat = require('../models/parentscat.model');
 const router = express.Router();
 
 router.use(express.static('public'));
@@ -28,10 +29,10 @@ router.get('/:IDcat', (req, res, next) => {
      
       blogModel.countByCat(IDcat),
       blogModel.NameCat(IDcat),
-      
-      blogModel.pageByCat(IDcat, limit, offset)
-    ]).then(([count_rows ,NameCat, rows]) => {
      
+      blogModel.pageByCat(IDcat, limit, offset)
+    ]).then(([count_rows ,NameCat, ,rows]) => {
+      console.log(parentsCat1[0]);
       
       for (const c of res.locals.categories) {
         if (c.IDCategory === +IDcat) {
@@ -53,9 +54,10 @@ router.get('/:IDcat', (req, res, next) => {
         }
         pages.push(obj);
       }
-      
+
       res.render('vwBlogs/byCat', {
-        NameCate: NameCat,
+        
+    
         layout: 'main.hbs',
         Blogs: rows,
         pages

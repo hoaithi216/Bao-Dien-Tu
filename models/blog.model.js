@@ -14,13 +14,21 @@ module.exports = {
   searchAll: query =>{
     return db.load(`select * from blogs where match (Tittle, Context, SortContext) AGAINST ("${query}") `);
   },
+  AllBlogPublished: () =>{
+    return db.load(`select * from blogs b
+
+    where DATEDIFF(DatePublic,CURRENT_DATE()) <= 0
+          AND b.Status = 1;
+      `)
+  },
 
   pageByCat: (IDCategory, limit, offset) => {
     return db.load(`select * from blogs where IDCategory = ${IDCategory} limit ${limit} offset ${offset}`);
   },
 
   countByCat: IDcat => {
-    return db.load(`select count(*) as total from blogs where IDCategory = ${IDcat}`);
+    return db.load(`select count(*) as total from blogs  where IDCategory = ${IDcat} AND  DATEDIFF(DatePublic,CURRENT_DATE()) <= 0
+    AND Status = 1`);
   },
  
  /////////// Thanh

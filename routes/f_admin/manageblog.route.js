@@ -84,7 +84,14 @@ router.post('/update/:id',admin, (req, res) => {
         var status = 1;
     }
     temp.findIDCate(nameCate).then(rows => {
+
+        var array = req.body.Tag.split(',');
+        // console.log(array)
         idCate = rows[0].IDCategory;
+        // thi
+        var test = req.body.vehicle1;
+        console.log(test);
+        async.each()
         var pub = moment(req.body.DatePublic, 'DD/MM/YYYY').format('YYYY-MM-DD');
         var entity = {
             IDBlog: req.body.IDBlog,
@@ -99,6 +106,8 @@ router.post('/update/:id',admin, (req, res) => {
         temp.update(entity)
             .then(id => {
                 res.redirect(`/admin/manageblogs/view/${req.body.IDBlog}`)
+                console.log(req.body.Tag + "thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+               
             }).catch(err => {
                 console.log(err);
             })
