@@ -64,6 +64,8 @@ app.use('/admin/manageparents', require('./routes/f_admin/manageparents.route'))
 app.use('/admin/managetag', require('./routes/f_admin/managetag.route'));
 app.use('/admin/manageusers', require('./routes/f_admin/manageusers.route'));
 app.use('/admin/manageblogs', require('./routes/f_admin/manageblog.route'));
+
+app.use('/f_editor/draft', require('./routes/f_editor/managedraft.route'));
 //app.use('/f_writer/blog', require('./routes/f_writer/blog.route'));
 
 
