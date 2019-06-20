@@ -88,7 +88,7 @@ router.post('/login', (req, res, next) => {
           retUrl = '/editor';
           break;
           case 3:
-          retUrl = '/admin';
+          retUrl = '/admin/renewal';
           break;
         }
       }

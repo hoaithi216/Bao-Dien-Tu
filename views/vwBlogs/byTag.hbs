@@ -1,0 +1,52 @@
+
+    <div class="section-heading mt-50">
+        {{#each NameTag}}
+        <h6>{{NameTag}}</h6>
+        {{/each}}
+    </div>
+    <div class=""></div>
+    <!-- Single blog post -->
+    {{#each this.Blogs}}
+    <div class="single-blog-post style-3 box-shadow d-flex align-items-center">
+        <!-- Post Thumbnail -->
+        <div class="post-thumbnail">
+            <img src={{AvatarBlog}} >
+        </div>
+        <!-- Post Content -->
+        <div class="post-content">
+            <a href="/category/{{IDCategory}}/blog/{{IDBlog}}" class="headline">
+                <h5>{{Tittle}}</h5>
+            </a>
+            <p>{{SortContext}}</p>
+            <!-- Post Meta -->
+            <div class="post-meta">
+                <p><a href="#" class="post-author">Hoai Thi</a> Ngày đăng <a href="#" class="post-date">
+                        {{DateProduct}}</a></p>
+            </div>
+        </div>
+
+    </div>
+    {{/each}}
+
+    <!-- nav 1 2 3 4 5..-->
+                 <nav aria-label="Page navigation example">
+                     <ul class="pagination mt-50">
+                        {{#each this.pages}}
+                        {{#if active}}
+                        <li class="page-item active" aria-current="page">
+                          <a class="page-link" href="javascript:;">
+                            {{value}} <span class="sr-only">(current)</span>
+                          </a>
+                        </li>
+                        {{else}}
+                        <li class="page-item">
+                          <a class="page-link" href="?page={{value}}">{{value}}</a>
+                        </li>
+                        {{/if}}
+            
+                        {{/each}}
+                       
+                     </ul>
+                 </nav>
+
+
