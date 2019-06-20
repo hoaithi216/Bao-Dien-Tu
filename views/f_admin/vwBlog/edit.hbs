@@ -54,10 +54,10 @@
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 
-    <script>
-function goBack() {
-  window.history.back();
-}
+<script>
+    function goBack() {
+        window.history.back();
+    }
 </script>
 
 {{/section}}
@@ -138,16 +138,24 @@ function goBack() {
                 <textarea class="form-control" id="txtContent" name="Context"> {{this.blog.Context}}</textarea>
             </div>
             <div class="card-body">
+
                 <label for="txtFullDes">Nhãn</label><br>
                  {{#each this.Tags}} <input type="checkbox"  checked="checked" name="ListTag" value={{IDTag}}>{{NameTag}}{{/each}}
                   {{#each this.listtagnotblog}} <input type="checkbox" name="ListTag" value={{IDTag}}>{{NameTag}}{{/each}}
+
             </div>
-            <a  onclick="goBack()" class="btn btn-primary" href="#" role="button">
+            <!-- hoai thi -->
+
+            {{!-- <input type="checkbox" name="vehicle1" value=75> I have a bike<br>
+            <input type="checkbox" name="vehicle1" value=45> I have a car<br>
+            <input type="checkbox" name="vehicle1" value=82> I have a boat<br> --}}
+            <a onclick="goBack()" class="btn btn-primary" href="#" role="button">
                 <i class="fa fa-backward" aria-hidden="true"></i>
                 List
             </a>
 
-            <button type="submit" class="btn btn-outline-danger" formaction="/admin/manageblogs/delete/{{this.blog.IDBlog}}">
+            <button type="submit" class="btn btn-outline-danger"
+                formaction="/admin/manageblogs/delete/{{this.blog.IDBlog}}">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                 Delete
             </button>

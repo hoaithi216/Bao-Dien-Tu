@@ -66,6 +66,7 @@ module.exports = {
         return db.load(`SELECT * from tags where tags.IDTag = ${id}`);
     },
 
+
     TagsnotBlog: (id) => {
         return db.load(`SELECT * from tags t where not EXISTS (SELECT tb.IDTag from tagsblog tb WHERE t.IDTag=tb.IDTag And tb.IDBlog = ${id})`);
     },
@@ -80,6 +81,7 @@ module.exports = {
     }
 
     
+
     
 
 
