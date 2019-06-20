@@ -31,9 +31,9 @@ router.get('/:IDcat', (req, res, next) => {
       blogModel.NameCat(IDcat),
      
       blogModel.pageByCat(IDcat, limit, offset)
-    ]).then(([count_rows ,NameCat, ,rows]) => {
-      console.log(parentsCat1[0]);
-      
+    ]).then(([count_rows ,NameCat ,rows]) => {
+     
+    
       for (const c of res.locals.categories) {
         if (c.IDCategory === +IDcat) {
           c.isActive = true;
@@ -57,7 +57,7 @@ router.get('/:IDcat', (req, res, next) => {
 
       res.render('vwBlogs/byCat', {
         
-    
+        NameCate: NameCat,
         layout: 'main.hbs',
         Blogs: rows,
         pages

@@ -27,7 +27,7 @@ require('./middlewares/passport.js')(app);
 
 app.set('view engine', 'hbs');
 app.use(require('./middlewares/locals2.mdw'));
-// app.use(require('./middlewares/locals.mdw'));
+app.use(require('./middlewares/locals.mdw'));
 app.use(require('./middlewares/auth-locals.mdw'));
 
 var authWriter = require('./middlewares/auth-writer');
@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 //created by Hoai Thi
 app.use('/account', require('./routes/account.route'));
 app.use('/search', require('./routes/search.route'));
-
+app.use('/tags', require('./routes/tags.route'));
 
 // app.use('/', require('./routes/showByCat.route'));
 app.use('/google', require('./routes/loginGG.route'));

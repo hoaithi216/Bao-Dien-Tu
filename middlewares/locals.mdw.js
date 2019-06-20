@@ -1,5 +1,6 @@
-// var parentscat = require('../models/parentscat.model');
-// var category = require('../models/category.model')
+var parentscat = require('../models/parentscat.model');
+var category = require('../models/category.model')
+var tag = require('../models/tag.model')
 // // module.exports = (req, res, next) => {
 // //   Promise.all([ 
 // //     parentscat.havesubcategory(),
@@ -17,22 +18,24 @@
 // // }
 // // var parentscat = require('../models/parentscat.model');
 
-// module.exports = (req, res, next) => {
-//   Promise.all([ 
-//     category.all(),
-//     parentscat.havesubcategory(),
+module.exports = (req, res, next) => {
+  Promise.all([ 
+    category.all(),
+    tag.all()
+    // parentscat.havesubcategory(),
     
-//   ]).then(([categories,havesubcategory]) => {
- 
-//     res.locals.categories = categories;
-//     res.locals.havesubcategory = havesubcategory;
+  ]).then(([categories,tags]) => {
+    
+    res.locals.categories = categories;
+    res.locals.tags = tags;
+  
  
    
-//     next();
+    next();
 
-//   }).catch (err =>{
-//     console.log(err);
-//     res.end('erro occured');
-//   });
+  }).catch (err =>{
+    console.log(err);
+    res.end('erro occured');
+  });
 
-// }
+}
