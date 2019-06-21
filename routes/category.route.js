@@ -11,14 +11,8 @@ require('../middlewares/sesson')(router);
 router.get('/:IDcat', (req, res, next) => {
   res.locals.IDcate = req.params.IDcat;
   var IDcat = req.params.IDcat;
-  
- 
-
-  
 
   var limit = 6;
-
- 
 
   var page = req.query.page || 1;
   if (page < 1) page = 1;
@@ -29,7 +23,6 @@ router.get('/:IDcat', (req, res, next) => {
      
       blogModel.countByCat(IDcat),
       blogModel.NameCat(IDcat),
-     
       blogModel.pageByCat(IDcat, limit, offset)
     ]).then(([count_rows ,NameCat ,rows]) => {
      
@@ -42,19 +35,23 @@ router.get('/:IDcat', (req, res, next) => {
   
       var pages = [];
       var total = count_rows[0].total;
+      console.log(total);
       var nPages = Math.floor(total / limit);
+      
       if (total % limit > 0) nPages++;
-      for (i = 1; i <= nPages; i++) {
-        var active = false;
+      // console.log(nPages);
+       for (i = 1; i <= nPages; i++) {
+       var active = false;
         if (+page === i) active = true;
-  
-        var obj = {
-          value: i,
-          active
-        }
-        pages.push(obj);
-      }
 
+      var obj = {
+        value: i,
+        active
+      }
+      pages.push(obj);
+    }
+        console.log(pages);
+       
       res.render('vwBlogs/byCat', {
         
         NameCate: NameCat,

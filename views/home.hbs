@@ -1,25 +1,25 @@
 <!-- ##### Tin mới & Nổi bật trong tuần Start ##### -->
 
 <!-- ##### Tin mới ##### -->
-<div class="popular-news-area section-padding-80-50 mt-20">
+<div class="popular-news-area section-padding-80-50 mt-30">
     <div class="container">
 
         <div class="row">
             <div class="col-12 col-lg-6 ">
+                {{#each Query3}}
                 <div class="single-blog-post box-shadow">
                     <!-- Post Thumbnail -->
                     <div class="post-thumbnail">
-                        <img src="img/blog-img/b1.jpg" alt="">
+                        <img src="{{AvatarBlog}}" alt="">
                         <!-- Catagory -->
-                        <div class="post-cta"><a href="category.html">Thế giới</a></div>
+                        <div class="post-cta"><a href="/category/{{IDCategory}}/blog/{{IDBlog}}">Thế giới</a></div>
                     </div>
                     <!-- Post Content -->
                     <div class="post-content">
-                        <a href="singlenews.html" class="headline">
-                            <h5>18 Điều Thú Vị Có Thể Bạn Chưa Biết Về Hiện Tượng Bắc Cực Quang</h5>
+                        <a href="/category/{{IDCategory}}/blog/{{IDBlog}}" class="headline">
+                            <h5>{{Tittle}}</h5>
                         </a>
-                        <p>Những hình ảnh về bắc cực quang trong danh sách này cũng rất ấn tượng. Bạn hãy
-                            sẵn sàng xách ba lô lên và đi đến vùng đất Bắc Cực ...</p>
+                        <p>{{SortContext}}</p>
                         <!-- Post Meta -->
                         <div class="post-meta">
                             <p><a href="#" class="post-author">Hoài Thi</a>Ngày đăng<a href="#" class="post-date"> 3
@@ -28,17 +28,26 @@
                         </div>
                     </div>
                 </div>
+                {{/each}}
             </div>
             <div class="col-12 col-lg-6">
-                <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
+                {{#each Query2}}
+                <div style = "height: 97px;" class="single-blog-post post-style-5 d-flex wow align-items-center ">
                     <!-- Post Thumbnail -->
-                    <div class="post-thumbnail">
-                        <img src="img/blog-img/b10.jpg" alt="">
+                    <div style="
+    min-width: 97px;
+" class="post-thumbnail">
+                        <img style="
+    width: 97px;
+    height: 97px;
+" src="{{AvatarBlog}}" alt="">
                     </div>
                     <!-- Post Content -->
                     <div class="post-content">
-                        <a href="singlenews.html" class="headline">
-                            <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
+                        <a href="/category/{{IDCategory}}/blog/{{IDBlog}}" class="headline">
+                            <h5 style = "     height: 35px;
+    overflow: hidden;
+    width: 210px;">{{Tittle}}</h5>
                         </a>
                         <!-- Post Meta -->
                         <div class="post-meta">
@@ -48,63 +57,8 @@
                         </div>
                     </div>
                 </div>
+                {{/each}}
 
-                <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
-                    <!-- Post Thumbnail -->
-                    <div class="post-thumbnail">
-                        <img src="img/blog-img/b10.jpg" alt="">
-                    </div>
-                    <!-- Post Content -->
-                    <div class="post-content">
-                        <a href="singlenews.html" class="headline">
-                            <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
-                        </a>
-                        <!-- Post Meta -->
-                        <div class="post-meta">
-                            <p><a href="#" class="post-author">Tên tác giả</a>Ngày đăng <a href="#" class="post-date">3
-                                    tháng 5
-                                    2019</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
-                    <!-- Post Thumbnail -->
-                    <div class="post-thumbnail">
-                        <img src="img/blog-img/b10.jpg" alt="">
-                    </div>
-                    <!-- Post Content -->
-                    <div class="post-content">
-                        <a href="singlenews.html" class="headline">
-                            <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
-                        </a>
-                        <!-- Post Meta -->
-                        <div class="post-meta">
-                            <p><a href="#" class="post-author">Tên tác giả</a>Ngày đăng<a href="#" class="post-date">3
-                                    tháng 5
-                                    2019</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-blog-post post-style-5 d-flex wow align-items-center ">
-                    <!-- Post Thumbnail -->
-                    <div class="post-thumbnail">
-                        <img src="img/blog-img/b10.jpg" alt="">
-                    </div>
-                    <!-- Post Content -->
-                    <div class="post-content">
-                        <a href="singlenews.html" class="headline">
-                            <h5>Thời tiết ngày 22/4: Miền Bắc và Trung nắng nóng mức nào?</h5>
-                        </a>
-                        <!-- Post Meta -->
-                        <div class="post-meta">
-                            <p><a href="#" class="post-author">Tên tác giả</a>Ngày đăng<a href="#" class="post-date"> 3
-                                    tháng 5
-                                    2019</a></p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -112,7 +66,7 @@
 
 
 
-<div class="popular-news-area section-padding-80-50">
+<div class="popular-news-area section-padding-80-50 mt-30">
     <div class="container">
         <div class="row">
             <div class="section-heading">

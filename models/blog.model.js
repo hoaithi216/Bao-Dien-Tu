@@ -27,8 +27,8 @@ module.exports = {
   },
 
   countByCat: IDcat => {
-    return db.load(`select count(*) as total from blogs  where IDCategory = ${IDcat} AND  DATEDIFF(DatePublic,CURRENT_DATE()) <= 0
-    AND Status = 1`);
+    return db.load(`select count(*) as total from blogs  where IDCategory = ${IDcat} AND  DATEDIFF(DatePublic,CURRENT_DATE()) <= 0 AND Status != 0
+   `);
   },
  
  /////////// Thanh
@@ -62,11 +62,17 @@ module.exports = {
       inner join users u on b.Auth = u.IDuser
       inner join category c on b.IDCategory = c.IDCategory`)
   },
-  top10perCat: () =>{
+  top10newBlog: () =>{
     return db.load(`SELECT * from blogs b
     WHERE DATEDIFF(b.DatePublic, CURRENT_DATE()) <= 0
     ORDER BY b.DatePublic DESC
-    LIMIT 10`)
+    LIMIT 5`)
+  },
+  Query2: () =>{
+    return db.load(`SELECT * from blogs WHERE status = 2`);
+  },
+  Query3: () =>{
+    return db.load(`SELECT * from blogs WHERE status = 3`);
   },
 
 

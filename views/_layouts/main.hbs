@@ -159,26 +159,37 @@
                 <div class="col-12">
                     <div class="hero-slides owl-carousel">
                         <!-- Single Blog Post -->
+                        {{#each top10newBlog}}
                         <div class="single-blog-post style-4 d-flex align-items-center mb-50">
+
                             <div class="post-thumb">
-                                <a href="singlenews.html"><img src="img/bg-img/new1.jpg" alt=""></a>
+
+                                <a href="/category/{{IDCategory}}/blog/{{IDBlog}}"><img src="{{AvatarBlog}}" style="
+    height: 100px;
+    width: 129px;
+" alt=""></a>
                             </div>
                             <div class="post-data">
-                                <a href="singlenews.html" class="post-title">
-                                    <h6>Thời điểm các cặp đôi thường ngoại tình</h6>
+                                <a href="/category/{{IDCategory}}/blog/{{IDBlog}}" class="post-title">
+                                    <h6 style="
+                                         height: 45px;
+                                                 overflow: hidden;
+                                                    width: 250px;">{{Tittle}}</h6>
                                 </a>
-                                <div class="post-meta">
-                                    <p class="post-date"><a href="#">2 Ngày trước</a></p>
-                                </div>
+                                <div class=" post-meta">
+                                        <p class="post-date"><a type = "date" href="#">{{DatePublic}}</a></p>
                             </div>
                         </div>
 
-
                     </div>
-                </div>
+                    {{/each}}
 
+
+                </div>
             </div>
+
         </div>
+    </div>
     </div>
     <!-- ##### Hero Area End ##### -->
     <div class="blog-area section-padding-0-80">
