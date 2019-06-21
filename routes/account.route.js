@@ -79,17 +79,17 @@ router.post('/login', (req, res, next) => {
       if (!retUrl) {
         switch (user.Permission) {
           case 0:
-          retUrl = '/';
-          break;
+            retUrl = '/';
+            break;
           case 1:
-          retUrl = '/f_writer';
-          break;
+            retUrl = '/f_writer';
+            break;
           case 2:
-          retUrl = '/f_editor';
-          break;
+            retUrl = '/f_editor';
+            break;
           case 3:
-          retUrl = '/admin';
-          break;
+            retUrl = '/admin';
+            break;
         }
       }
       delete req.session.retUrl;
@@ -99,66 +99,48 @@ router.post('/login', (req, res, next) => {
 })
 
 
-router.get("/profile", function (req, res) {
-  console.log(req.session.user);  var id = req.session.user.IDuser;
-  userModel.single(id).then(user => {
-    if (!user) {
-      return res.redirect('/');
+router.get("/profile", auth, function (req, res) {
+  console.log(req.user.IDuser)
+  userModel.findInfoUser(req.user.IDuser).then(rows => {
+    var date = rows[0].DOB
+    date = moment(date).format('DD/MM/YYYY');
+    res.render("vwAccount/profile", {
+      layout: 'dashboard.hbs',
+      users: rows[0],
+      date:date
+    });
+  })
+});
+
+router.post("/profile", auth, function (req, res) {
+  var date = moment(req.body.DOB,'DD-MM-YYYY').format('YYYY-MM-DD');
+  if(req.user.Permission == 1){
+    var entity = {
+      IDuser: req.user.IDuser,
+      Username: req.body.Username,
+      FirstName: req.body.FirstName,
+      LastName: req.body.LastName,
+      Email: req.body.Email,
+      DOB : date,
+      NickName: req.body.NickName
     }
-    res.render("vwAccount/update-profile", {
-      layout: false,
-      title: "update-profile",
-      user: user
-    });
-  }).catch(err => {
-    console.log(err);
-  });
+  }else{
+    var entity = {
+      IDuser: req.user.IDuser,
+      Username: req.body.Username,
+      FirstName: req.body.FirstName,
+      LastName: req.body.LastName,
+      Email: req.body.Email,
+      DOB : date
+    }
+  }
+  
+  userModel.update(entity).then (id =>{
+    res.redirect("/account/profile")
+  })
 });
 
-router.post("/profile", function (req, res) {
-  var dob = moment(req.body.DOB).format('YYYY-MM-DD');
-  userModel.single(req.body.IDUser)
-  .then(user => {
-    user.FirstName = req.body.FirstName;
-    user.LastName = req.body.LastName;
-    user.NickName = req.body.NickName;
-    user.Email = req.body.Email;
-    user.DOB = dob;
-    userModel.update(user).then(id => {
-      var EXP = new Date();
-      EXP = addDays(EXP, 7);
-      EXP = moment(EXP).format('YYYY-MM-DD');
-      userModel.addate(user.Username, EXP).then(id => {
-        switch (user.Permission) {
-          case 0:
-          res.redirect('/');
-          break;
-          case 1:
-          res.redirect('/writer');
-          break;
-          case 2:
-          res.redirect('/editor');
-          break;
-          case 3:
-          res.redirect('/admin');
-          break;
-          default:
-          res.redirect('/');
-          break; ''
-        }
-      })
-    }).catch(err => {
-      console.log(err);
-      return res.redirect('/');
-    });
-
-  }).catch(err => {
-    console.log(err);
-    return res.redirect('/');
-  });
-});
-
-router.get('/logout', function (req, res) {
+router.get('/logout', auth, function (req, res) {
   req.logOut();
   res.redirect('/');
 });

@@ -1,0 +1,90 @@
+{{#section 'css'}}
+<!-- Tags Input -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+{{#section 'js'}}
+<!-- Tiny MCE -->
+<script
+    src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6"></script>
+<script>
+    $(function () {
+        tinymce.init({
+            selector: '#txtContent',
+            height: 500,
+            menubar: false,
+            plugins: 'paste image link autolink lists table media',
+            toolbar: [
+                'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+                'forecolor backcolor',
+                'table link image media',
+            ],
+        });
+    })
+
+    $(function () {
+        $('#txtPublic').datetimepicker({
+            format: 'd/m/Y',
+            timepicker: false,
+            mask: true,
+        });
+    })
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
+    <script>
+function goBack() {
+  window.history.back();
+}
+</script>
+
+{{/section}}
+
+
+<div class="card shadow mt-3">
+    <h4 class="card-header">
+        Cập nhật Profile
+    </h4>
+    <div class="card-body">
+        <form method="POST" action="/account/profile">
+            <!-- Title Input -->
+            <div class="form-group">
+                <label for="txtTitle">Username</label>
+                <input readonly class="form-control" id="txtTitle" name="Username" value="{{this.users.Username}}">
+            </div>
+            <div class="form-group">
+                <label for="txtTitle">FirstName</label>
+                <input readonly class="form-control" id="txtTitle" name="FirstName" value="{{this.users.FirstName}}">
+            </div>
+            <div class="form-group">
+                <label for="txtTitle">LastName</label>
+                <input class="form-control" id="txtTitle" name="LastName" value="{{this.users.LastName}}">
+            </div>
+             {{#if_e authUser.Permission 1}}
+             <div class="form-group">
+                <label for="txtTitle">NickName</label>
+                <input class="form-control" id="txtTitle" name="NickName" value="{{this.users.NickName}}">
+            </div>
+            {{/if_e}}
+           <div class="form-group">
+                <label for="txtTitle">Email</label>
+                <input class="form-control" id="txtTitle" name="Email" value="{{this.users.Email}}">
+            </div>
+            <div class="form-group">
+                <label for="txtTitle">DOB</label>
+                <input class="form-control" id="txtPublic" name="DOB" value="{{date}}">
+            </div>
+            <button type="submit" class="btn btn-success">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                Save
+            </button>
+        </form>
+    </div>
+</div>
