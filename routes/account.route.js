@@ -100,7 +100,11 @@ router.post('/login', (req, res, next) => {
 
 
 router.get("/profile", auth, function (req, res) {
+<<<<<<< HEAD
   res.locals.isActive = 17
+=======
+
+>>>>>>> 416e294caa83db487da3ba3958cdb64d59258473
   console.log(req.user.IDuser)
   userModel.findInfoUser(req.user.IDuser).then(rows => {
     var date = rows[0].DOB
@@ -109,6 +113,7 @@ router.get("/profile", auth, function (req, res) {
       layout: 'dashboard.hbs',
       users: rows[0],
       date:date
+
     });
   })
 });
@@ -143,6 +148,7 @@ router.post("/profile", auth, function (req, res) {
 
 router.get('/logout', auth, function (req, res) {
   req.logOut();
+  req.session.destroy();
   res.redirect('/');
 });
 

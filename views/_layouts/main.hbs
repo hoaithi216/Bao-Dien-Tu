@@ -59,11 +59,11 @@
                                 <li class="navbar-nav nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                         data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-                                       <div style="padding-top:25px;padding-left:20px;" class=d-flex>
-                                           <h6 style="color: white;">hi {{authUser.Username}}</h6>
-                                         <i style="color: #ffff; padding-left: 10px;" class="fas fa-user"></i>
-                                       </div>
-                                        
+                                        <div style="padding-top:25px;padding-left:20px;" class=d-flex>
+                                            <h6 style="color: white;">hi {{authUser.Username}}</h6>
+                                            <i style="color: #ffff; padding-left: 10px;" class="fas fa-user"></i>
+                                        </div>
+
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="/dashboard">
@@ -130,17 +130,17 @@
                             <div class="classynav">
                                 <ul>
                                     <li class="active"><a href="/">Trang chủ</a></li>
-                                    {{#each parentscat}}
+                                    {{#each categories}}
 
 
-                                    <li><a href="#">{{NameParents}}</a>
+                                    <li><a href="/category/{{IDCategory}}">{{NameCategory}}</a>
 
-
+                                        {{!-- 
                                         <ul class="dropdown">
                                             {{#each ../havesubcategory}}
                                             {{#if_e IDParents 1}}<li><a href="/category/{{IDCategory}}">{{NameCategory}} </a></li>  {{/if_e}}
                                             {{/each}}
-                                        </ul>
+                                        </ul> --}}
 
 
                                     </li>
@@ -191,8 +191,8 @@
                 <!-- ##### Các tin trong 1 category ##### -->
                 <div class="col-12 col-md-6 col-lg-8">
                     {{{body}}}
-               
-                </div>          
+
+                </div>
                 <!--Hiển thị 3-4 bài viết nổi bật nhất trong tuần qua-->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="popular-news-widget mt-100">
@@ -238,29 +238,29 @@
                     <div class="section-heading style-2">
                         <h6> Nổi bật mỗi chuyên mục</h6>
                     </div>
-
+                    {{#each top10perCat}}
                     <div class="single-blog-post small-featured-post d-flex">
                         <div class="post-thumb">
-                            <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
+                            <a href="#"><img src="{{AvatarBlog}}" alt=""></a>
                         </div>
                         <div class="post-data">
-                            <a href="#" class="post-catagory">Xã Hội</a>
+                            <a href="#" class="post-catagory">{{NameCategory}}</a>
                             <div class="post-meta">
-                                <a href="singlenews.html" class="post-title">
-                                    <h6>Thời tiếng ngày 6/5: Miền Bắc và Trung nóng mức nàot ngày 22/4: Miền Bắc và
-                                        Trung nóng mức nào</h6>
+                                <a href="/category/{{IDCategory}}/blog/{{IDBlog}}" class="post-title">
+                                    <h6 style="height: 45px; overflow:hidden; width:350px;">{{SortContext}}</h6>
                                 </a>
-                                <p class="post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
+                                <p class=" post-date"><span>7:00 Sáng</span> | <span>14 tháng tu</span></p>
                             </div>
                         </div>
                     </div>
+                    {{/each}}
                 </div>
 
             </div>
         </div>
 
     </div>
-    
+
 
 
 

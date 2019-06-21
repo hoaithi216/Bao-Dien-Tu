@@ -4,11 +4,15 @@ module.exports = {
   all: () => {
     return db.load('select * from users');
   },
+  authblog: ID => {
+    
+    return db.load(`select * from users  where IDuser = '${ID}' and DATEDIFF(TimeSub,CURRENT_DATE()) >= 0
+  `)},
 
   single: id => {
     return db.load(`select * from users where IDuser = ${id}`);
   },
-
+  
   singleByUserName: userName => {
     return db.load(`select * from users where Username = '${userName}'`);
   },

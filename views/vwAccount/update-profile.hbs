@@ -7,7 +7,105 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+</head>
+
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
+    <a class="navbar-brand" href="#">
+      <i class="fa fa-home" aria-hidden="true"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+    <form id="frmSignout" action="/account/logout" method="POST"></form>
+    <ul class="navbar-nav">
+      {{#if isAuthenticated}}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Hi, <b>{{authUser.FirstName}}</b>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/account/profile">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          Profile
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/account/logout">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+          Sign Out
+        </a>
+      </div>
+    </li>
+    {{else}}
+    <li class="nav-item">
+      <a class="nav-link" href="/account/register">
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+        Regiter
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/account/login">
+        <i class="fa fa-sign-in" aria-hidden="true"></i>
+        Sign In
+      </a>
+    </li>
+    {{/if}}
+  </ul>
+</div>
+</nav>
+
+<div class="container">
+  <form method="POST" id="frmUpdate" novalidate>
+    <div class="card shadow">
+      <h4 class="card-header">
+        Update Profile
+      </h4>
+      <div class="card-body">
+        {{#each user}}
+        <div class="form-group">
+          <label for="Username">Username</label>
+          <input class="form-control" id="Username" name="Username" value="{{Username}}" 
+          readonly>
+        </div>
+        <div class="form-group">
+          <label for="FirstName">First Name</label>
+          <input type="text" class="form-control" id="FirstName" name="FirstName" value="{{FirstName}}">
+        </div>
+        <div class="form-group">
+          <label for="LastName">Last Name</label>
+          <input type="text" class="form-control" id="LastName" name="LastName" value="{{LastName}}">
+        </div>
+        <div class="form-group">
+          <label for="Email">Email</label>
+          <input type="text" class="form-control" id="Email" name="Email" value="{{Email}}">
+        </div>
+        <div class="form-group">
+          <label for="DOB">Date of birth</label>
+          <input type="text" class="form-control" id="DOB" name="DOB" value="{{DOB}}">
+        </div>
+      </div>
+      {{/each}}
+      <div class="card-footer text-right">
+        <button type="submit" class="btn btn-lg btn-success btn-block">
+          <i class="fa fa-check" aria-hidden="true"></i>
+          Update
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
 
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
