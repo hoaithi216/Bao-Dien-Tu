@@ -86,10 +86,10 @@ router.post('/update/:id', admin, (req, res) => {
     var listtag = req.body.ListTag
     console.log(listtag);
     var i;
-    temp.deleteTagbyBlog(id).then(id=>{    
+    temp.deleteTagbyBlog(id).then(id => {
     })
     for (i = 0; i < listtag.length; i++) {
-        temp.insertTagsBlog(id,listtag[i]).then(id=>{
+        temp.insertTagsBlog(id, listtag[i]).then(id => {
         })
     }
 
@@ -134,7 +134,7 @@ router.post('/update/:id', admin, (req, res) => {
             .then(id => {
                 res.redirect(`/admin/manageblogs/view/${req.body.IDBlog}`)
                 console.log(req.body.Tag + "thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
-               
+
             }).catch(err => {
                 console.log(err);
             })

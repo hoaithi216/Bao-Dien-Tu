@@ -70,6 +70,11 @@ app.get('/f_editor', (req, res) => {
 
   res.redirect('/f_editor/draft')
 })
+
+app.get('/f_writer', (req, res) => {
+
+  res.redirect('/f_writer/blog')
+})
 app.use('/admin/percategory', require('./routes/f_admin/percategory.route'));
 app.use('/admin/renewal', require('./routes/f_admin/accrenewal.route'));
 app.use('/admin/managecategory', require('./routes/f_admin/managecategory.route'));
@@ -79,7 +84,7 @@ app.use('/admin/manageusers', require('./routes/f_admin/manageusers.route'));
 app.use('/admin/manageblogs', require('./routes/f_admin/manageblog.route'));
 
 app.use('/f_editor/draft', require('./routes/f_editor/managedraft.route'));
-//app.use('/f_writer/blog', require('./routes/f_writer/blog.route'));
+app.use('/f_writer', require('./routes/f_writer/f_writer.route'));
 
 
 

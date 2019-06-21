@@ -82,13 +82,13 @@ router.post('/login', (req, res, next) => {
           retUrl = '/';
           break;
           case 1:
-          retUrl = '/writer';
+          retUrl = '/f_writer';
           break;
           case 2:
-          retUrl = '/editor';
+          retUrl = '/f_editor';
           break;
           case 3:
-          retUrl = '/admin/renewal';
+          retUrl = '/admin';
           break;
         }
       }

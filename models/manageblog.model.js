@@ -65,6 +65,9 @@ module.exports = {
     findNameTag: (id) => {
         return db.load(`SELECT * from tags where tags.IDTag = ${id}`);
     },
+    add: entity => {
+        return db.add('blogs', entity);
+      },
 
 
     TagsnotBlog: (id) => {
@@ -78,7 +81,12 @@ module.exports = {
     deleteTagbyBlog:(id)=>{
         return db.load(`DELETE FROM tagsblog
         WHERE tagsblog.IDBlog = ${id}`)
+    },
+    MaxIDBlog:()=>{
+        return db.load(`SELECT * FROM blogs b 
+        ORDER BY b.IDBlog  DESC`)
     }
+
 
     
 

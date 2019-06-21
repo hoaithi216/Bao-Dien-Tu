@@ -1,12 +1,12 @@
 var express = require('express');
 var moment = require('moment');
 var temp2 = require('../../models/managedraft.model');
-var admin = require('../../middlewares/admin');
+var editor = require('../../middlewares/editor');
 var temp = require('../../models/manageblog.model');
 
 var router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', editor,(req, res) => {
     console.log(req.user.Username);
     temp2.catebyEditor(req.user.Username).then(rows => {
         var listcate = rows
@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 
 })
 
-router.get('/view/:id', (req, res) => {
+router.get('/view/:id', editor,(req, res) => {
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
@@ -48,7 +48,7 @@ router.get('/view/:id', (req, res) => {
 })
 
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', editor,(req, res) => {
     var id = req.params.id
     var Tags
     var Categories
@@ -82,7 +82,7 @@ router.get('/edit/:id', (req, res) => {
 })
 
 
-router.post('/update/:id', (req, res) => {
+router.post('/update/:id', editor,(req, res) => {
     var id = req.params.id;
     var nameCate = req.body.NameCategory
     var idCate
@@ -131,7 +131,7 @@ router.post('/update/:id', (req, res) => {
 })
 
 
-router.get('/refuse/:id', (req, res) => {
+router.get('/refuse/:id', editor,(req, res) => {
     var id = req.params.id
     temp.singleBlog(id).then(rows => {
         res.render('f_editor/vwDraft/refuse', {
@@ -142,7 +142,7 @@ router.get('/refuse/:id', (req, res) => {
 
 })
 
-router.post('/refuse/:id', (req, res) => {
+router.post('/refuse/:id', editor,(req, res) => {
     var id = req.params.id
     temp2.refuseEditor(id, req.body.Feedback).then(rows => {
         res.redirect(`/f_editor/draft`)
@@ -150,7 +150,7 @@ router.post('/refuse/:id', (req, res) => {
 })
 
 
-router.get('/list_agree', (req, res) => {
+router.get('/list_agree', editor,(req, res) => {
     console.log(req.user.Username);
     temp2.catebyEditor(req.user.Username).then(rows => {
         var listcate = rows
@@ -170,7 +170,7 @@ router.get('/list_agree', (req, res) => {
 })
 
 
-router.get('/list_agree/:id', (req, res) => {
+router.get('/list_agree/:id',editor, (req, res) => {
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
@@ -192,7 +192,7 @@ router.get('/list_agree/:id', (req, res) => {
 })
 
 
-router.get('/list_refuse', (req, res) => {
+router.get('/list_refuse', editor,(req, res) => {
     console.log(req.user.Username);
     temp2.catebyEditor(req.user.Username).then(rows => {
         var listcate = rows
@@ -211,7 +211,7 @@ router.get('/list_refuse', (req, res) => {
 
 })
 
-router.get('/list_refuse/:id', (req, res) => {
+router.get('/list_refuse/:id', editor,(req, res) => {
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
