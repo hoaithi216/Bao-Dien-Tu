@@ -7,6 +7,7 @@ var temp = require('../../models/manageblog.model');
 var router = express.Router();
 
 router.get('/', editor,(req, res) => {
+    res.locals.isActive = 10
     console.log(req.user.Username);
     temp2.catebyEditor(req.user.Username).then(rows => {
         var listcate = rows
@@ -25,6 +26,7 @@ router.get('/', editor,(req, res) => {
 })
 
 router.get('/view/:id', editor,(req, res) => {
+    res.locals.isActive = 10
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
@@ -151,6 +153,7 @@ router.post('/refuse/:id', editor,(req, res) => {
 
 
 router.get('/list_agree', editor,(req, res) => {
+    res.locals.isActive = 12
     console.log(req.user.Username);
     temp2.catebyEditor(req.user.Username).then(rows => {
         var listcate = rows
@@ -171,6 +174,7 @@ router.get('/list_agree', editor,(req, res) => {
 
 
 router.get('/list_agree/:id',editor, (req, res) => {
+    res.locals.isActive = 12
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
@@ -193,7 +197,9 @@ router.get('/list_agree/:id',editor, (req, res) => {
 
 
 router.get('/list_refuse', editor,(req, res) => {
-    console.log(req.user.Username);
+   // console.log(req.user.Username);
+    //console.log(res.locals.isActive)
+    res.locals.isActive = 11
     temp2.catebyEditor(req.user.Username).then(rows => {
         var listcate = rows
         console.log(req.user.IDuser)
@@ -213,6 +219,7 @@ router.get('/list_refuse', editor,(req, res) => {
 
 router.get('/list_refuse/:id', editor,(req, res) => {
     var id = req.params.id
+    res.locals.isActive = 11
     var Tags
     temp.findTags(id).then(rows => {
         Tags = rows;

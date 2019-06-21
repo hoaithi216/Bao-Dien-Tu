@@ -22,6 +22,7 @@ router.get("/is-available", (req, res, next) => {
 })
 
 router.get('/', admin, (req, res) => {
+  res.locals.isActive = 4
   temp.all().then(rows => {
     console.log(rows);
     res.render('f_admin/vwUsers/listall', {
@@ -65,6 +66,7 @@ router.post('/add',admin, (req, res, next) => {
 
 
 router.get('/view/:id', admin, (req, res) => {
+  res.locals.isActive = 4
   var iduser = req.params.id
 
   temp.singleUser(iduser).then(rows => {
@@ -85,6 +87,7 @@ router.get('/view/:id', admin, (req, res) => {
 
 
 router.get('/edit/:id', admin,(req, res) => {
+  res.locals.isActive = 4
   var iduser = req.params.id
   temp.user(iduser).then(rows => {
     res.render('f_admin/vwUsers/edituser', {

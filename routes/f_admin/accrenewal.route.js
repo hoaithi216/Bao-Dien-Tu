@@ -8,6 +8,7 @@ var router = express.Router();
 
 
 router.get('/', admin, (req, res) => {
+    res.locals.isActive = 8
     var p = temp.all();
     p.then(rows => {
         console.log(rows);
@@ -22,6 +23,7 @@ router.get('/', admin, (req, res) => {
 })
 
 router.get('/update/:id', admin, (req, res) => {
+    res.locals.isActive = 8
     var id = req.params.id;
     temp.view(id).then(rows =>{
         

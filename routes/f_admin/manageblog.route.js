@@ -12,6 +12,7 @@ router.get('/', admin, (req, res) => {
     });
 })
 router.get('/all', admin, (req, res) => {
+    res.locals.isActive = 1
     temp.all().then(rows => {
         console.log(rows);
         res.render('f_admin/vwBlog/listall', {
@@ -24,6 +25,7 @@ router.get('/all', admin, (req, res) => {
 })
 
 router.get('/view/:id', admin, (req, res) => {
+    res.locals.isActive = 1
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
@@ -47,6 +49,7 @@ router.get('/view/:id', admin, (req, res) => {
 })
 
 router.get('/edit/:id', admin, (req, res) => {
+    res.locals.isActive = 1
     var id = req.params.id
     var Tags
     var Categories
@@ -163,6 +166,7 @@ function findTag(listtag, id) {
 ////////////////////////
 
 router.get('/category', admin, (req, res) => {
+    res.locals.isActive = 2
     temp.allCategory().then(rows => {
         var listcategory = rows
         temp.all().then(rows => {
@@ -192,6 +196,7 @@ router.post('/category', admin, (req, res) => {
 })
 
 router.get('/category/:id', admin, (req, res) => {
+    res.locals.isActive = 1
     var id = req.params.id
     temp.findCate2(id).then(rows => {
         var listcategory = rows
@@ -222,6 +227,7 @@ router.get('/category/:id', admin, (req, res) => {
 ///Quan li theo tag
 
 router.get('/tag', admin, (req, res) => {
+    res.locals.isActive = 3
     temp.allTag().then(rows => {
         var listtags = rows
         temp.all().then(rows => {
@@ -252,6 +258,7 @@ router.post('/tag', admin, (req, res) => {
 
 
 router.get('/tag/:id', admin, (req, res) => {
+    res.locals.isActive = 3
     var id = req.params.id
     temp.findNameTag(id).then(rows => {
         var nameTag = rows[0].NameTag

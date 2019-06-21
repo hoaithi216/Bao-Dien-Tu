@@ -74,23 +74,23 @@
         <div class="card shadow">
           <h5 class="card-header">Admin</h5>
           <div class="list-group">
-            <a href="http://localhost:3000/admin/manageblogs/all" class="list-group-item list-group-item-action">Quản lí
+            <a href="http://localhost:3000/admin/manageblogs/all" class="list-group-item list-group-item-action{{#if_e isActive 1}} active{{/if_e}}">Quản lí
               bài viết (All)</a>
             <a href="http://localhost:3000/admin/manageblogs/category"
-              class="list-group-item list-group-item-action">Quản lí bài viết (Categories)</a>
-            <a href="http://localhost:3000/admin/manageblogs/tag" class="list-group-item list-group-item-action">Quản lí
+              class="list-group-item list-group-item-action{{#if_e isActive 2}}active{{/if_e}}">Quản lí bài viết (Categories)</a>
+            <a href="http://localhost:3000/admin/manageblogs/tag" class="list-group-item list-group-item-action{{#if_e isActive 3}} active{{/if_e}}">Quản lí
               bài viết (Tags) </a>
-            <a href="http://localhost:3000/admin/manageusers" class="list-group-item list-group-item-action">Quản lí
+            <a href="http://localhost:3000/admin/manageusers" class="list-group-item list-group-item-action{{#if_e isActive 4}} active{{/if_e}}">Quản lí
               Users</a>
-            <a href="http://localhost:3000/admin/manageparents" class="list-group-item list-group-item-action">Quản lí
+            <a href="http://localhost:3000/admin/manageparents" class="list-group-item list-group-item-action{{#if_e isActive 5}} active{{/if_e}}">Quản lí
               chuyên mục gốc (Parents)</a>
-            <a href="http://localhost:3000/admin/managecategory" class="list-group-item list-group-item-action">Quản lí
+            <a href="http://localhost:3000/admin/managecategory" class="list-group-item list-group-item-action{{#if_e isActive 6}} active{{/if_e}}">Quản lí
               chuyên mục con (Categories)</a>
-            <a href="http://localhost:3000/admin/managetag" class="list-group-item list-group-item-action">Quản lý nhãn
+            <a href="http://localhost:3000/admin/managetag" class="list-group-item list-group-item-action{{#if_e isActive 7}} active{{/if_e}}">Quản lý nhãn
               (tags)</a>
-            <a href="http://localhost:3000/admin/renewal" class="list-group-item list-group-item-action">Gia hạn độc giả
+            <a href="http://localhost:3000/admin/renewal" class="list-group-item list-group-item-action{{#if_e isActive 8}} active{{/if_e}}">Gia hạn độc giả
               (Subcriber)</a>
-            <a href="http://localhost:3000/admin/percategory" class="list-group-item list-group-item-action">Phân công
+            <a href="http://localhost:3000/admin/percategory" class="list-group-item list-group-item-action{{#if_e isActive 9}} active{{/if_e}}">Phân công
               chuyên mục (Editor)</a>
           </div>
         </div>
@@ -99,12 +99,12 @@
         <div class="card shadow">
           <h5 class="card-header">Editor</h5>
           <div class="list-group">
-            <a href="http://localhost:3000/f_editor/draft" class="list-group-item list-group-item-action">Quản lí bài
+            <a href="http://localhost:3000/f_editor/draft" class="list-group-item list-group-item-action{{#if_e isActive 10}} active{{/if_e}}">Quản lí bài
               nháp (Draft)</a>
             <a href="http://localhost:3000/f_editor/draft/list_refuse"
-              class="list-group-item list-group-item-action">Danh sách bài viết từ chối</a>
+              class="list-group-item list-group-item-action  {{#if_e isActive 11}} active{{/if_e}} ">Danh sách bài viết từ chối</a>
             <a href="http://localhost:3000/f_editor/draft/list_agree"
-              class="list-group-item list-group-item-action">Danh sách bài viết đã duyệt</a>
+              class="list-group-item list-group-item-action{{#if_e isActive 12}} active{{/if_e}}">Danh sách bài viết đã duyệt</a>
           </div>
         </div>
         {{/if_e}}
@@ -112,19 +112,20 @@
         <div class="card shadow">
           <h5 class="card-header">Writter</h5>
           <div class="list-group">
-            <a href="http://localhost:3000/f_writer/blog" class="list-group-item list-group-item-action">Viết bài</a>
-            <a href="http://localhost:3000/f_writer/list_draft" class="list-group-item list-group-item-action">Danh sách bài viết chờ duyệt (Draft)</a>
-            <a href="http://localhost:3000/f_writer/list_agree" class="list-group-item list-group-item-action">Danh sách bài đã duyệt</a>
-            <a href="http://localhost:3000/f_writer/list_refuse" class="list-group-item list-group-item-action">Danh sách bài viết bị tự chối</a>
+            <a href="http://localhost:3000/f_writer/blog" class="list-group-item list-group-item-action{{#if_e isActive 13}} active{{/if_e}}">Viết bài</a>
+            <a href="http://localhost:3000/f_writer/list_draft" class="list-group-item list-group-item-action{{#if_e isActive 14}} active{{/if_e}}">Danh sách bài viết chờ duyệt (Draft)</a>
+            <a href="http://localhost:3000/f_writer/list_agree" class="list-group-item list-group-item-action{{#if_e isActive 15}} active{{/if_e}}">Danh sách bài đã duyệt</a>
+            <a href="http://localhost:3000/f_writer/list_refuse" class="list-group-item list-group-item-action{{#if_e isActive 16}} active{{/if_e}}">Danh sách bài viết bị tự chối</a>
           </div>
         </div>
+          {{/if_e}}
         <div class="card shadow">
           <h5 class="card-header">Profile</h5>
           <div class="list-group">
-            <a href="http://localhost:3000/account/profile" class="list-group-item list-group-item-action">Cập nhật thông tin cá nhân</a>
+            <a href="http://localhost:3000/account/profile" class="list-group-item list-group-item-action{{#if_e isActive 17}} active{{/if_e}}">Cập nhật thông tin cá nhân</a>
           </div>
         </div>
-        {{/if_e}}
+      
       </div>
       <div class="col-sm-9">
         {{{body}}}

@@ -100,6 +100,7 @@ router.post('/login', (req, res, next) => {
 
 
 router.get("/profile", auth, function (req, res) {
+  res.locals.isActive = 17
   console.log(req.user.IDuser)
   userModel.findInfoUser(req.user.IDuser).then(rows => {
     var date = rows[0].DOB

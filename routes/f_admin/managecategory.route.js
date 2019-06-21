@@ -8,7 +8,7 @@ var router = express.Router();
 
 
 router.get('/', admin, (req, res) => {
-    
+    res.locals.isActive = 6
     temp.all().then(rows => {
         console.log(rows);
         res.render('f_admin/vwCategory/listall', {
@@ -23,6 +23,7 @@ router.get('/', admin, (req, res) => {
 
 
 router.get('/:parents/:id/:category', admin,(req, res) => {
+    res.locals.isActive = 6
     var par = req.params.parents;
     var id = req.params.id;
     var ca = req.params.category;
@@ -57,6 +58,7 @@ router.post('/delete/:id', admin,(req,res) =>{
 
 
 router.get('/add', admin,(req, res) => {
+    res.locals.isActive = 6
     
     temp.choose().then(rows => {
         res.render('f_admin/vwCategory/add', {

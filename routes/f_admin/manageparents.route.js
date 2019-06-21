@@ -8,6 +8,7 @@ var router = express.Router();
 
 
 router.get('/', admin,(req, res) => {
+    res.locals.isActive = 5
     
     temp.all().then(rows => {
         console.log(rows);
@@ -23,6 +24,7 @@ router.get('/', admin,(req, res) => {
 
 
 router.get('/:id/:parents', admin,(req, res) => {
+    res.locals.isActive = 5
     var par = req.params.parents;
     var id = req.params.id;
    
@@ -58,6 +60,7 @@ router.post('/delete/:id', admin,(req,res) =>{
 
 
 router.get('/add', admin,(req, res) => {
+    res.locals.isActive = 5
     res.render('f_admin/vwParents/add', {
         layout: 'dashboard.hbs'
     });

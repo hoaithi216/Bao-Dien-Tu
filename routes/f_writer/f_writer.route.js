@@ -6,6 +6,7 @@ var temp = require('../../models/manageblog.model');
 var router = express.Router();
 
 router.get('/list_refuse', writer,(req, res) => {
+    res.locals.isActive = 16
     temp2.allblogbyrefuse(req.user.IDuser).then(rows => {
         console.log(rows);
         res.render('f_writer/vwRefuse/listall', {
@@ -18,6 +19,7 @@ router.get('/list_refuse', writer,(req, res) => {
 })
 
 router.get('/list_refuse/:id', writer,(req, res) => {
+    res.locals.isActive = 16
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
@@ -137,6 +139,7 @@ router.post('/delete/:id', writer,(req, res) => {
 
 /////agree 
 router.get('/list_agree', writer,(req, res) => {
+    res.locals.isActive = 15
     temp2.allblogbyagree(req.user.IDuser).then(rows => {
         console.log(rows);
         res.render('f_writer/vwAgree/listall', {
@@ -150,6 +153,7 @@ router.get('/list_agree', writer,(req, res) => {
 
 
 router.get('/list_agree/:id', writer,(req, res) => {
+    res.locals.isActive = 15
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
@@ -172,6 +176,7 @@ router.get('/list_agree/:id', writer,(req, res) => {
 
 //// draft
 router.get('/list_draft', writer,(req, res) => {
+    res.locals.isActive = 14
     temp2.allblogbydraft(req.user.IDuser).then(rows => {
         console.log(rows);
         res.render('f_writer/vwDraft/listall', {
@@ -184,6 +189,7 @@ router.get('/list_draft', writer,(req, res) => {
 })
 
 router.get('/list_draft/:id', writer,(req, res) => {
+    res.locals.isActive = 14
     var id = req.params.id
     var Tags
     temp.findTags(id).then(rows => {
@@ -207,6 +213,7 @@ router.get('/list_draft/:id', writer,(req, res) => {
 ////blog
 
 router.get('/blog', writer,(req, res) => {
+    res.locals.isActive = 13
     temp2.fullCate().then(rows =>{
         var Categories = rows
         temp2.fullTags().then(rows => {
