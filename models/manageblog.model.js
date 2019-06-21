@@ -14,7 +14,7 @@ module.exports = {
     },
     
     findTags: (id) => {
-        return db.load(`SELECT t.* FROM blogs b, tags t, tagsblog tb WHERE b.IDBlog = tb.IDBlog AND t.IDTag = tb.IDTag And b.IDBlog = ${id}`);
+        return db.load(`SELECT DISTINCT t.* FROM blogs b, tags t, tagsblog tb WHERE b.IDBlog = tb.IDBlog AND t.IDTag = tb.IDTag And b.IDBlog = ${id}`);
     },
 
     findCate:(idcate) =>{
@@ -24,7 +24,7 @@ module.exports = {
             where c.IDCategory = b.IDCategory
             and b.IDCategory = ${idcate})`)
     },
-    findCate2:(idcate) =>{
+    findCate2:(id) =>{
         return db.load(`select * from category c where c.IDCategory != ${id}`)
     },
     findTag:(id) =>{
@@ -65,7 +65,31 @@ module.exports = {
     findNameTag: (id) => {
         return db.load(`SELECT * from tags where tags.IDTag = ${id}`);
     },
-   
+    add: entity => {
+        return db.add('blogs', entity);
+      },
+
+
+    TagsnotBlog: (id) => {
+        return db.load(`SELECT * from tags t where not EXISTS (SELECT tb.IDTag from tagsblog tb WHERE t.IDTag=tb.IDTag And tb.IDBlog = ${id})`);
+    },
+
+    insertTagsBlog:(idblog,idtag)=>{
+        return db.load(`insert into tagsblog (IDBlog,IDTag)
+        values(${idblog},${idtag})`)
+    },
+    deleteTagbyBlog:(id)=>{
+        return db.load(`DELETE FROM tagsblog
+        WHERE tagsblog.IDBlog = ${id}`)
+    },
+    MaxIDBlog:()=>{
+        return db.load(`SELECT * FROM blogs b 
+        ORDER BY b.IDBlog  DESC`)
+    }
+
+
+    
+
     
 
 
