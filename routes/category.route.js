@@ -3,7 +3,7 @@ const showByCat = require('./showByCat.route');
 var blogModel = require('../models/blog.model');
 var parentsCat = require('../models/parentscat.model');
 const router = express.Router();
-
+router.use(require('../middlewares/auth-locals.mdw'));
 router.use(express.static('public'));
 require('../middlewares/sesson')(router);
 
@@ -13,7 +13,7 @@ router.get('/:IDcat', (req, res, next) => {
   var IDcat = req.params.IDcat;
   
  
-  
+
   
 
   var limit = 6;

@@ -47,7 +47,7 @@ var fbOpts = {
 }
 passport.use(new GoogleStrategy(fbOpts,(accessToken, refreshToken, profile, cb) => { 
   if (profile.id) {
-     console.log(profile);
+    
     // //  console.log(profile.email);
     //  console.log(profile.displayName);
     var entity = {
@@ -59,7 +59,7 @@ passport.use(new GoogleStrategy(fbOpts,(accessToken, refreshToken, profile, cb) 
     userModel.add(entity).then((user) => {
       console.log("complete");
       
-      return cb(user);
+      return cb(null,user);
     })
       
     
@@ -83,7 +83,7 @@ router.get('/',passport.authenticate('google', {scope:['profile']}));
 
 
 router.get('/auth/google/redirect', passport.authenticate('google'), (req, res ,next)=>{
-  console.log(req.user)
+  console.log("thi deppp" + req.user)
   res.redirect('/');
   
 }

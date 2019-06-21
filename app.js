@@ -35,14 +35,14 @@ var authEditor = require('./middlewares/auth-editor');
 
 
 app.get('/', (req, res) => {
- 
-  res.render('home');
+  
+  res.redirect('/home');
 })
 //created by Hoai Thi
 app.use('/account', require('./routes/account.route'));
 app.use('/search', require('./routes/search.route'));
 app.use('/tags', require('./routes/tags.route'));
-
+app.use('/home', require('./routes/home.route'));
 // app.use('/', require('./routes/showByCat.route'));
 app.use('/google', require('./routes/loginGG.route'));
 app.use('/category', require('./routes/category.route'));

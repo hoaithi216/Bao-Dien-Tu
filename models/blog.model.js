@@ -53,7 +53,15 @@ module.exports = {
   single: id => {
     return db.load(`select * from blogs where IDBlog = ${id}`);
   },
-
+  top10perCat: () =>{
+    return db.load(`select b.*, c.NameCategory, u.NickName
+      from blogs b inner join (select IDCategory, MAX(b.amount_of_views) as max from blogs b
+                                  where Status = 1 and DATEDIFF(b.DateProduct, CURRENT_DATE()) <= 0
+                                  GROUP BY b.IDCategory) as tv
+      on tv.IDCategory = b.IDCategory and b.amount_of_views = tv.max
+      inner join users u on b.Auth = u.IDuser
+      inner join category c on b.IDCategory = c.IDCategory`)
+  },
   add: entity => {
     return db.add('blogs', entity);
   },

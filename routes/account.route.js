@@ -99,8 +99,8 @@ router.post('/login', (req, res, next) => {
 })
 
 
-router.get("/profile", function (req, res) {
-  console.log(req.session.user);  var id = req.session.user.IDuser;
+router.get("/profile", auth, function (req, res) {
+  console.log(req.user);  var id = req.user.IDuser;
   userModel.single(id).then(user => {
     if (!user) {
       return res.redirect('/');
@@ -160,6 +160,7 @@ router.post("/profile", function (req, res) {
 
 router.get('/logout', function (req, res) {
   req.logOut();
+  req.session.destroy();
   res.redirect('/');
 });
 
