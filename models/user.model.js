@@ -20,11 +20,12 @@ module.exports = {
   add: entity => {
     return db.add('users', entity);
   },
+  findInfoUser: (id) => {
+    return db.load(`select * from users u where u.IDuser = ${id}`);
+  },
 
   update: entity => {
-    var id = entity.IDuser;
-    delete entity.IDuser;
-    return db.update('users', 'IDuser', entity, id);
+    return db.update('users', 'IDuser', entity);
   },
 
   delete: id => {

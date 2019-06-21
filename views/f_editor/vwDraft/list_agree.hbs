@@ -1,0 +1,50 @@
+<div class="card shadow">
+    <h4 class="card-header">Danh sách bài viết đã duyệt</h4>
+    <div class="rows">
+        <form method="POST" action="">
+            <div class="form-group row">
+                <div class="input-group col-4">
+                    <select class="custom-select" id="inputGroupSelect01" name="NameCategory">
+                        {{#each this.listcate}}
+                        <option>{{NameCategory}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                 
+               
+            </div>
+        </form>
+    </div>
+    <div class="rows">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">ID Blog</th>
+                    <th scope="col">Tiêu đề</th>
+                    <th scope="col">Tóm tắt</th>
+                    <th scope="col">Tác giả</th>
+                    <th scope="col">Chuyên mục</th>
+                   
+    
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.listblogs}}
+                <tr>
+                    <th class="text-center" scope="row">{{IDBlog}}</th>
+                    <td>{{Tittle}}</td>
+                    <td>{{SortContext}}</td>
+                    <td>{{Username}}</td>
+                     <td>{{NameCategory}}</td>
+                    <td class="text-right">
+                        <a class="btn btn-primary" href="/f_editor/draft/list_agree/{{IDBlog}}" role="button">
+                            Chi tiết
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

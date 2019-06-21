@@ -5,16 +5,13 @@
             <div class="form-group row">
                 <div class="input-group col-4">
                     <select class="custom-select" id="inputGroupSelect01" name="NameCategory">
-                        <option selected>All</option>
-                        {{#each this.listcategory}}
-                        <option>ffff</option>
+                        {{#each this.listcate}}
+                        <option>{{NameCategory}}</option>
                         {{/each}}
                     </select>
                 </div>
-                <button type="submit" class="btn btn-success col-2">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                    Xem
-                </button>
+                 
+               
             </div>
         </form>
     </div>
@@ -27,7 +24,7 @@
                     <th scope="col">Tóm tắt</th>
                     <th scope="col">Tác giả</th>
                     <th scope="col">Chuyên mục</th>
-                    <th scope="col">Trạng thái</th>
+                   
                    
 
                 </tr>
@@ -40,9 +37,8 @@
                     <td>{{SortContext}}</td>
                     <td>{{Username}}</td>
                      <td>{{NameCategory}}</td>
-                    <td>{{#if_e this.Status 0}}Draft{{/if_e}} {{#if_e Status 1}}Xuất bản{{/if_e}} </td>
                     <td class="text-right">
-                        <a class="btn btn-primary" href="/admin/manageblogs/view/{{IDBlog}}" role="button">
+                        <a class="btn btn-primary" href="/f_editor/draft/view/{{IDBlog}}" role="button">
                             Chi tiết
                         </a>
                     </td>

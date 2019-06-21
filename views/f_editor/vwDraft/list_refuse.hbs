@@ -1,28 +1,18 @@
 <div class="card shadow">
-    <h4 class="card-header">Danh sách bài viết theo Category</h4>
-     {{#if this.error}}
-    <div class="alert alert-danger" role="alert">
-      Không có bài viết. <a href="/admin/manageblogs/category" class="alert-link">Go back</a>.
-    </div>
-    {{else}}
+    <h4 class="card-header">Danh sách bài viết đã từ chối</h4>
     <div class="rows">
-        <form method="POST" action="/admin/manageblogs/category">
+        <form method="POST" action="">
             <div class="form-group row">
                 <div class="input-group col-4">
                     <select class="custom-select" id="inputGroupSelect01" name="NameCategory">
-                        <option selected>{{nameCate}}</option>
-                        {{#each this.listcategory}}
+                        {{#each this.listcate}}
                         <option>{{NameCategory}}</option>
                         {{/each}}
-                         <option>All</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-success col-2">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                    Xem
-                </button>
+                 
+               
             </div>
-
         </form>
     </div>
     <div class="rows">
@@ -33,7 +23,10 @@
                     <th scope="col">Tiêu đề</th>
                     <th scope="col">Tóm tắt</th>
                     <th scope="col">Tác giả</th>
-                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Chuyên mục</th>
+                   
+    
+
                 </tr>
             </thead>
             <tbody>
@@ -43,19 +36,15 @@
                     <td>{{Tittle}}</td>
                     <td>{{SortContext}}</td>
                     <td>{{Username}}</td>
-                    <td>{{#if_e this.Status 0}}Draft{{/if_e}} {{#if_e Status 1}}Xuất bản{{/if_e}} </td>
+                     <td>{{NameCategory}}</td>
                     <td class="text-right">
-                        <a class="btn btn-primary" href="/admin/manageblogs/view/{{IDBlog}}" role="button">
+                        <a class="btn btn-primary" href="/f_editor/draft/list_refuse/{{IDBlog}}" role="button">
                             Chi tiết
                         </a>
                     </td>
                 </tr>
                 {{/each}}
-
             </tbody>
-
-
         </table>
     </div>
-    {{/if}}
 </div>

@@ -1,0 +1,120 @@
+{{#section 'css'}}
+<!-- Tags Input -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+{{#section 'js'}}
+<!-- Tiny MCE -->
+<script
+    src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6"></script>
+<script>
+    $(function () {
+        tinymce.init({
+            selector: '#txtContent',
+            height: 500,
+            menubar: false,
+            plugins: 'paste image link autolink lists table media',
+            toolbar: [
+                'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+                'forecolor backcolor',
+                'table link image media',
+            ],
+        });
+    })
+
+    $(function () {
+        $('#txtProduct').datetimepicker({
+            format: 'd/m/Y',
+            timepicker: false,
+            mask: true,
+        });
+    })
+
+  // fetch('/add-blog', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({
+  //     blog: {
+  //       IDCategory: IDCategory,
+  //       Tittle: Tittle,
+  //       Context: tinyMCE.get('txtContent').getContent(),
+  //       SortContext: SortContext
+  //     }
+  //   })
+  // });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+{{/section}}
+
+
+<div class="card shadow mt-3">
+    <h4 class="card-header">
+        Viết bài
+    </h4>
+    <div class="card-body">
+        <form method="POST" action="/f_writer/blog">
+            <!-- Title Input -->
+           
+            
+            <div class="form-group">
+                <label for="txtTitle">Tiêu đề</label>
+                <input class="form-control" id="txtTitle" name="Tittle" value="">
+            </div>
+            <div class="form-group">
+                <label for="txtTitle">Tóm tắt</label>
+                <textarea class="form-control" id="txtTitle" name="SortContext"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="txtTitle">Ảnh thumbnail</label>
+                <input class="form-control" id="txtTitle" name="VatarBlog" value="">
+            </div>
+            <div class="form-group">
+                <label for="txtTitle">Chuyên mục</label>
+                <select class="custom-select" id="inputGroupSelect01" name="NameCategory">
+                    <option selected></option>
+                    {{#each this.Categories}}
+                    <option>{{NameCategory}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <!-- Content Input -->
+            <div class="form-group mt-2">
+                <label for="txtContent">Nội dung</label>
+                <textarea class="form-control" id="txtContent" name="Context"></textarea>
+            </div>
+            <div class="card-body">
+                <label for="txtFullDes">Nhãn</label><br>
+                 {{#each this.Tags}} <input type="checkbox" name="ListTag" value={{IDTag}}>{{NameTag}}{{/each}}
+            </div>
+            <!-- hoai thi -->
+
+            {{!-- <input type="checkbox" name="vehicle1" value=75> I have a bike<br>
+            <input type="checkbox" name="vehicle1" value=45> I have a car<br>
+            <input type="checkbox" name="vehicle1" value=82> I have a boat<br> --}}
+            <a onclick="goBack()" class="btn btn-primary" href="#" role="button">
+                <i class="fa fa-backward" aria-hidden="true"></i>
+                List
+            </a>
+            <button type="submit" class="btn btn-success">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                Save
+            </button>
+        </form>
+    </div>
+</div>

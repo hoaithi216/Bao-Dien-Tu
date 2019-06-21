@@ -14,7 +14,7 @@
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="http://localhost:3000">
       <i class="fa fa-home" aria-hidden="true"></i>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -86,7 +86,8 @@
               chuyên mục gốc (Parents)</a>
             <a href="http://localhost:3000/admin/managecategory" class="list-group-item list-group-item-action">Quản lí
               chuyên mục con (Categories)</a>
-              <a href="http://localhost:3000/admin/managetag" class="list-group-item list-group-item-action">Quản lý nhãn (tags)</a>
+            <a href="http://localhost:3000/admin/managetag" class="list-group-item list-group-item-action">Quản lý nhãn
+              (tags)</a>
             <a href="http://localhost:3000/admin/renewal" class="list-group-item list-group-item-action">Gia hạn độc giả
               (Subcriber)</a>
             <a href="http://localhost:3000/admin/percategory" class="list-group-item list-group-item-action">Phân công
@@ -98,8 +99,12 @@
         <div class="card shadow">
           <h5 class="card-header">Editor</h5>
           <div class="list-group">
-            <a href="percategory" class="list-group-item list-group-item-action">Xem bai</a>
-            <a href="renewal" class="list-group-item list-group-item-action">Dang bài</a>
+            <a href="http://localhost:3000/f_editor/draft" class="list-group-item list-group-item-action">Quản lí bài
+              nháp (Draft)</a>
+            <a href="http://localhost:3000/f_editor/draft/list_refuse"
+              class="list-group-item list-group-item-action">Danh sách bài viết từ chối</a>
+            <a href="http://localhost:3000/f_editor/draft/list_agree"
+              class="list-group-item list-group-item-action">Danh sách bài viết đã duyệt</a>
           </div>
         </div>
         {{/if_e}}
@@ -107,8 +112,16 @@
         <div class="card shadow">
           <h5 class="card-header">Writter</h5>
           <div class="list-group">
-            <a href="percategory" class="list-group-item list-group-item-action">Xem bai</a>
-            <a href="renewal" class="list-group-item list-group-item-action">Dang bài</a>
+            <a href="http://localhost:3000/f_writer/blog" class="list-group-item list-group-item-action">Viết bài</a>
+            <a href="http://localhost:3000/f_writer/list_draft" class="list-group-item list-group-item-action">Danh sách bài viết chờ duyệt (Draft)</a>
+            <a href="http://localhost:3000/f_writer/list_agree" class="list-group-item list-group-item-action">Danh sách bài đã duyệt</a>
+            <a href="http://localhost:3000/f_writer/list_refuse" class="list-group-item list-group-item-action">Danh sách bài viết bị tự chối</a>
+          </div>
+        </div>
+        <div class="card shadow">
+          <h5 class="card-header">Profile</h5>
+          <div class="list-group">
+            <a href="http://localhost:3000/account/profile" class="list-group-item list-group-item-action">Cập nhật thông tin cá nhân</a>
           </div>
         </div>
         {{/if_e}}
