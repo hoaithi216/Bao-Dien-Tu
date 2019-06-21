@@ -5,7 +5,7 @@ var admin = require('../../middlewares/admin');
 
 var router = express.Router();
 router.get('/', admin,(req, res) => {
-    
+    res.locals.isActive = 7
     temp.all().then(rows => {
         console.log(rows);
         res.render('f_admin/vwTag/listall', {
@@ -18,6 +18,7 @@ router.get('/', admin,(req, res) => {
 })
 
 router.get('/:id/:tag', admin,(req, res) => {
+    res.locals.isActive = 7
     var tag = req.params.tag;
     var id = req.params.id;
    
@@ -51,6 +52,7 @@ router.post('/delete/:id', admin,(req,res) =>{
 
 
 router.get('/add', admin,(req, res) => {
+    res.locals.isActive = 7
     res.render('f_admin/vwTag/add', {
         layout: 'dashboard.hbs'
     });

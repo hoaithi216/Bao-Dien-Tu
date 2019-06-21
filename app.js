@@ -48,7 +48,7 @@ app.use('/google', require('./routes/loginGG.route'));
 app.use('/category', require('./routes/category.route'));
 //app.use('/admin', require('./routes/admin/category.route'));
 //app.use('/admin/users', require('./routes/admin/users.route'));
-
+//global.isActive = 0;
 
 // created by Duy Thanh
 // app.use('/writer/add-blog', require('./routes/writer/add-blog.route'));
@@ -74,6 +74,11 @@ app.get('/f_editor', (req, res) => {
 app.get('/f_writer', (req, res) => {
 
   res.redirect('/f_writer/blog')
+})
+
+app.get('/dashboard', (req, res) => {
+    res.redirect('/account/profile')
+ 
 })
 app.use('/admin/percategory', require('./routes/f_admin/percategory.route'));
 app.use('/admin/renewal', require('./routes/f_admin/accrenewal.route'));

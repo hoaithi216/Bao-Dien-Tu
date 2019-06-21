@@ -5,6 +5,6 @@ module.exports = (req, res, next) => {
     } else if(req.user.Permission==1){
         next();
     } else {
-        res.end("Ban khong co qquyen truy cap");
+        res.end("Ban khong co quyen truy cap");
     }
   }

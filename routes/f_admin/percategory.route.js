@@ -5,6 +5,7 @@ var router = express.Router();
 
 
 router.get('/', admin, (req, res) => {
+    res.locals.isActive = 9
     var p = categoryModel.all();
     p.then(rows => {
         console.log(rows);
@@ -18,6 +19,7 @@ router.get('/', admin, (req, res) => {
 })
 
 router.get('/view/:id', admin, (req, res) => {
+    res.locals.isActive = 9
     var id = req.params.id;
 
     categoryModel.single(id).then(rows =>{
@@ -46,6 +48,7 @@ router.get('/view/:id', admin, (req, res) => {
 })
 
 router.get('/edit/:id/:name', admin, (req, res) => {
+    res.locals.isActive = 9
     var id = req.params.id;
     var name = req.params.name;
     var p = categoryModel.choose(id);
@@ -64,6 +67,7 @@ router.get('/edit/:id/:name', admin, (req, res) => {
 })
 
 router.get('/add/:id', admin, (req, res) => {
+    res.locals.isActive = 9
     var id = req.params.id;
     var p = categoryModel.choose(id);
     p.then(rows => {
